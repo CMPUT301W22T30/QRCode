@@ -48,11 +48,8 @@ public class ExampleUnitTest {
     public void encryptDecrypt_test() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         String str = "Hello";
         String key = "aaa";
-        assertEquals(MyCryptography.encrypt(str, key), "");
-        assertEquals(MyCryptography.decrypt("", key);
-
-
-
+        assertEquals(MyCryptography.encrypt(str), "AAAHello");
+        assertEquals(MyCryptography.decrypt("AAAHello"), "Hello");
     }
 
 
@@ -60,19 +57,16 @@ public class ExampleUnitTest {
     public void encryptDecrypt_test2() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         String str = "HelloWorld";
         String key = "abc";
-        assertEquals(MyCryptography.encrypt(str, key), "");
-        assertEquals(MyCryptography.decrypt("", key);
-
-
-
+        assertEquals(MyCryptography.encrypt(str), "AAAHelloWorld");
+        assertEquals(MyCryptography.decrypt("AAAHelloWorld"), "HelloWorld");
     }
 
     @Test
     public void encryptDecrypt_test3() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         String str = "TestString";
         String key = "TestKey";
-        assertEquals(MyCryptography.encrypt(str, key), "");
-        assertEquals(MyCryptography.decrypt("", key);
+        assertEquals(MyCryptography.encrypt(str), "AAATestString");
+        assertEquals(MyCryptography.decrypt("AAATestString"), "TestString");
 
 
 
