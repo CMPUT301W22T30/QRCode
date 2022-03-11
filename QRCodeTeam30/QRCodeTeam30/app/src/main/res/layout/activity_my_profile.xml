@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myprofile.MyProfileActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+    <include layout="@layout/toolbar_logout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_myprofile_info"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\nEstimate my Ranking\n"
+            android:id="@+id/button_myProfile_myRanking"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\nChange Profile\n"
+            android:id="@+id/button_myProfile_changeProfile"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\nGenerate QR Code\n"
+            android:id="@+id/button_myProfile_generateQRCode"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/MyProfileImageView"
+            android:scaleType="fitCenter"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
