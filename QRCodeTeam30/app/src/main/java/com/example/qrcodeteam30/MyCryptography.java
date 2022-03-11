@@ -27,50 +27,62 @@ public class MyCryptography {
                 hexString.append(hex);
             }
             return hexString.toString();
-        } catch(Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static SecretKeySpec secretKey;
-    private static byte[] key;
+//    private static SecretKeySpec secretKey;
+//    private static byte[] key;
+//
+//    public static void setKey(final String myKey) {
+//        MessageDigest sha = null;
+//        try {
+//            key = myKey.getBytes("UTF-8");
+//            sha = MessageDigest.getInstance("SHA-1");
+//            key = sha.digest(key);
+//            key = Arrays.copyOf(key, 16);
+//            secretKey = new SecretKeySpec(key, "AES");
+//        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+//    public static String encrypt(final String strToEncrypt, final String secret) {
+//        try {
+//            setKey(secret);
+//            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+//            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+//            cipher.doFinal(strToEncrypt.getBytes("UTF-8"));
+//        } catch (Exception e) {
+//            System.out.println("Error while encrypting: " + e.toString());
+//        }
+//        return null;
+//    }
+//
+//
+//    public static String decrypt(final String strToDecrypt, final String secret) {
+//        try {
+//            setKey(secret);
+//            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+//            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+//            return new String(cipher.doFinal(strToDecrypt.getBytes("UTF-8")));
+//        } catch (Exception e) {
+//            System.out.println("Error while decrypting: " + e.toString());
+//        }
+//        return null;
+//    }
 
-    public static void setKey(final String myKey) {
-        MessageDigest sha = null;
-        try {
-            key = myKey.getBytes("UTF-8");
-            sha = MessageDigest.getInstance("SHA-1");
-            key = sha.digest(key);
-            key = Arrays.copyOf(key, 16);
-            secretKey = new SecretKeySpec(key, "AES");
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    public static String encrypt(String strToEncrypt) {
+        return "AAA" + strToEncrypt;
+
     }
 
+    public static String decrypt(String strToDecrypt) {
+        return strToDecrypt.substring(3);
 
-    public static String encrypt(final String strToEncrypt, final String secret) {
-        try {
-            setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            cipher.doFinal(strToEncrypt.getBytes("UTF-8"));
-        } catch (Exception e) {
-            System.out.println("Error while encrypting: " + e.toString());
-        }
-        return null;
+
     }
 
-
-    public static String decrypt(final String strToDecrypt, final String secret) {
-        try {
-            setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(cipher.doFinal(strToDecrypt.getBytes("UTF-8")));
-        } catch (Exception e) {
-            System.out.println("Error while decrypting: " + e.toString());
-        }
-        return null;
-    }
 }
