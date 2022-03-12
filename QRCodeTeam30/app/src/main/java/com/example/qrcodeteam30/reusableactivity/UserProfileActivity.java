@@ -117,5 +117,4 @@ public class UserProfileActivity extends AppCompatActivity {
         listenerRegistration.remove();
         super.onPause();
     }
-
 }

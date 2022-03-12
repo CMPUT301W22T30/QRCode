@@ -125,7 +125,6 @@ public class ViewAllCommentActivity extends AppCompatActivity {
             editText.setText("");
             var comment = new Comment(qrCodeUsername, sessionUsername, commentContent);
             myFirestoreUpload.addComment(comment, qrCode);
-
         });
 
     }
