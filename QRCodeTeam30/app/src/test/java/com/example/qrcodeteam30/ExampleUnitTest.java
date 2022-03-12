@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.example.qrcodeteam30.controllerclass.CalculateScore;
+import com.example.qrcodeteam30.controllerclass.MyCryptography;
 import com.example.qrcodeteam30.modelclass.QRCode;
 
 import java.io.UnsupportedEncodingException;
@@ -26,7 +28,7 @@ public class ExampleUnitTest {
 
 
     @Test
-    public void sha256_test() throws NoSuchAlgorithmException {
+    public void sha256Test() throws NoSuchAlgorithmException {
         assertEquals(MyCryptography.hashSHA256("abc"),
                 "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
         assertEquals(MyCryptography.hashSHA256("BFG5DGW54"),
@@ -37,15 +39,14 @@ public class ExampleUnitTest {
 
 
     @Test
-    public void calculateScore_test1() {
-        assertEquals(QRCode.calculateScore("BFG5DGW54"), 19.0, 0.00001);
-        assertEquals(QRCode.calculateScore("4710247000478"), 44.0, 0.00001);
-        assertEquals(QRCode.calculateScore("066721009159"), 22.0, 0.00001);
+    public void calculateScoreTest() {
+        double score = CalculateScore.calculateScore("BFG5DGW54");
+        assertEquals(score, 19.0, 0.00001);
     }
 
 //Haven't done unit test for encrypt and decrypt
     @Test
-    public void encryptDecrypt_test() throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    public void encryptDecryptTest() {
         String str = "Hello";
         String key = "aaa";
         assertEquals(MyCryptography.encrypt(str), "AAAHello");

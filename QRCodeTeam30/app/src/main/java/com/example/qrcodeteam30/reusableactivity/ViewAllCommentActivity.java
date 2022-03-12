@@ -1,12 +1,8 @@
 package com.example.qrcodeteam30.reusableactivity;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,12 +16,12 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.qrcodeteam30.MainActivity;
 import com.example.qrcodeteam30.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.listviewadapter.CustomListViewAllComment;
+import com.example.qrcodeteam30.controllerclass.MyFirestoreUpload;
+import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListViewAllComment;
 import com.example.qrcodeteam30.modelclass.Comment;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -38,6 +34,7 @@ public class ViewAllCommentActivity extends AppCompatActivity {
     private String sessionUsername;
     private String qrCodeUsername;
     private DocumentReference documentReference;
+    MyFirestoreUpload myFirestoreUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,23 +45,20 @@ public class ViewAllCommentActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        myFirestoreUpload = new MyFirestoreUpload(getApplicationContext());
+
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {
             var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(ViewAllCommentActivity.this);
             materialAlertDialogBuilder.setTitle("Log out").setMessage("Do you want to log out?")
                     .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Log out", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(ViewAllCommentActivity.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
+                    .setPositiveButton("Log out", (dialogInterface, i) -> {
+                        var intent = new Intent(ViewAllCommentActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
                     }).show();
         });
-
-        Context context = getApplicationContext();
 
         sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
@@ -73,8 +67,11 @@ public class ViewAllCommentActivity extends AppCompatActivity {
             intent.putExtra("SessionUsername", sessionUsername);
             startActivity(intent);
         });
+
+
         qrCodeUsername = getIntent().getStringExtra("QRCodeUsername");
         QRCode qrCode = (QRCode) getIntent().getSerializableExtra("QRCode");
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         documentReference = db.document(qrCode.getCommentListReference());
 
@@ -86,27 +83,21 @@ public class ViewAllCommentActivity extends AppCompatActivity {
         arrayAdapter = new CustomListViewAllComment(this, arrayList);
         listView.setAdapter(arrayAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (!arrayAdapter.getItem(i).getAuthor().equals(sessionUsername)) {
-                    return;
-                }
-                var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(ViewAllCommentActivity.this);
-                materialAlertDialogBuilder.setTitle("Delete").setMessage("Do you want to delete this comment?")
-                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int j) {
-                                Comment commentTemp = arrayAdapter.getItem(i);
-                                arrayList.remove(i);
-                                arrayAdapter.notifyDataSetChanged();
-                                documentReference.update("CommentList", FieldValue.arrayRemove(commentTemp));
-
-                            }
-                        })
-                        .setNegativeButton("Cancel", null)
-                        .show();
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            if (!arrayAdapter.getItem(i).getAuthor().equals(sessionUsername)) {
+                return;
             }
+            var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(ViewAllCommentActivity.this);
+            materialAlertDialogBuilder.setTitle("Delete").setMessage("Do you want to delete this comment?")
+                    .setPositiveButton("Delete", (dialogInterface, j) -> {
+                        Comment commentTemp = arrayAdapter.getItem(i);
+                        arrayList.remove(i);
+                        arrayAdapter.notifyDataSetChanged();
+                        myFirestoreUpload.deleteComment(commentTemp, qrCode);
+
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
         });
 
         documentReference.addSnapshotListener((value, error) -> {
@@ -133,7 +124,7 @@ public class ViewAllCommentActivity extends AppCompatActivity {
             }
             editText.setText("");
             var comment = new Comment(qrCodeUsername, sessionUsername, commentContent);
-            documentReference.update("CommentList", FieldValue.arrayUnion(comment));
+            myFirestoreUpload.addComment(comment, qrCode);
         });
 
     }

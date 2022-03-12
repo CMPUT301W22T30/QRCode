@@ -15,15 +15,12 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.qrcodeteam30.MainActivity;
 import com.example.qrcodeteam30.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.modelclass.QRCode;
+import com.example.qrcodeteam30.controllerclass.MyFirestoreUpload;
 import com.example.qrcodeteam30.modelclass.UserInformation;
-import com.example.qrcodeteam30.viewAllQRCode.ViewAllQRCode;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.qrcodeteam30.viewallqrcode.ViewAllQRCodeActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
@@ -34,7 +31,8 @@ public class UserProfileActivity extends AppCompatActivity {
     private String sessionUsername;
     private TextView textView;
     private UserInformation userInformation;
-    ListenerRegistration listenerRegistration;
+    private ListenerRegistration listenerRegistration;
+    private MyFirestoreUpload myFirestoreUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +42,8 @@ public class UserProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        myFirestoreUpload = new MyFirestoreUpload(getApplicationContext());
 
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {
@@ -86,12 +86,20 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
         buttonViewAllQRCode.setOnClickListener(v -> {
-            var intent = new Intent(UserProfileActivity.this, ViewAllQRCode.class);
+            var intent = new Intent(UserProfileActivity.this, ViewAllQRCodeActivity.class);
             intent.putExtra("Username", username);
             intent.putExtra("SessionUsername", sessionUsername);
             startActivity(intent);
         });
 
+        if (sessionUsername.equals("admin") && !username.equals("admin")) {
+            buttonDeleteUser.setOnClickListener(v -> {
+                myFirestoreUpload.deleteUser(username);
+                finish();
+            });
+        } else {
+            buttonDeleteUser.setVisibility(View.GONE);
+        }
     }
 
     @Override
