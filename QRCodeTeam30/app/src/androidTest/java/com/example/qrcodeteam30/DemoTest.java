@@ -36,7 +36,7 @@ public class DemoTest {
 
         // Sleep 1 second (await for data from Firestore to download to device)
         // Must sleep every time we switch activity (1 second is enough)
-        // The reason is because Espresso is too fast, so the new acitivity has not been registered
+        // The reason is because Espresso is too fast, so the new activity has not been registered
         // yet after this code is run => Error
         Thread.sleep(1000);
 
