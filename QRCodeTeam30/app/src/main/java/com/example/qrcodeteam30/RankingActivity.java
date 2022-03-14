@@ -1,6 +1,5 @@
 package com.example.qrcodeteam30;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -54,14 +53,11 @@ public class RankingActivity extends AppCompatActivity {
             var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(RankingActivity.this);
             materialAlertDialogBuilder.setTitle("Log out").setMessage("Do you want to log out?")
                     .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Log out", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            var intent = new Intent(RankingActivity.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
+                    .setPositiveButton("Log out", (dialogInterface, i) -> {
+                        var intent = new Intent(RankingActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
                     }).show();
         });
 
