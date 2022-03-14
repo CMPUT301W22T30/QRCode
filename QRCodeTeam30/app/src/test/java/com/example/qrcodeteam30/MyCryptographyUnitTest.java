@@ -46,12 +46,6 @@ public class MyCryptographyUnitTest {
                 "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068");
     }
 
-    @Test
-    public void calculateScoreTest() {
-        double score = CalculateScoreController.calculateScore("BFG5DGW54");
-        assertEquals(score, 19.0, 0.00001);
-    }
-
 
     @Test
     public void encryptDecryptTest1() {
