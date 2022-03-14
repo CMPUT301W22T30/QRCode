@@ -1,6 +1,7 @@
 package com.example.qrcodeteam30;
 
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
@@ -78,23 +79,21 @@ public class TestGameQRCodes {
         Espresso.onData(anything()).inAdapterView(withId(R.id.viewAllQRCode_listView))
                 .atPosition(0)
                 .perform(click());
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
         // Press on the view comment button to view and add comments
-        Espresso.onView(withId(R.id.button_viewComment_qrCode_info));
-        Thread.sleep(5000);
+        Espresso.onView(withId(R.id.button_viewComment_qrCode_info)).perform(click());
+
+        Thread.sleep(1000);
 
         // Type comment
         Espresso.onView(withId(R.id.editText_addComment_viewAllComment))
-                .perform(typeText("admin_test_comment"));
-
-        Thread.sleep(1000);
+                .perform(typeText("admin_test_comment"), closeSoftKeyboard());
 
         // Add comment
         Espresso.onView(withId(R.id.button_addComment_viewAllComment)).perform(click());
 
-        // Check comment
-        //Espresso.onData(anything()).inAdapterView(withId(R.id.listView_viewAllComment)).check("context")
+        Thread.sleep(1000);
 
         scenario.close();
     }

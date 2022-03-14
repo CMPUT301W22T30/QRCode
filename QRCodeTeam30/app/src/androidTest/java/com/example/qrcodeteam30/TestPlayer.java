@@ -4,6 +4,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
+import static androidx.test.espresso.action.ViewActions.pressKey;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.action.ViewActions.typeTextIntoFocusedView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -15,6 +16,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anything;
 
+import android.view.KeyEvent;
 import android.view.View;
 import androidx.appcompat.widget.SearchView;
 
@@ -275,7 +277,7 @@ public class TestPlayer {
         Espresso.onView(withId(R.id.searchView_searchUsername)).perform(typeSearchViewText("BiBo1604"));
 
         // Press Search Button
-        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(pressImeActionButton());
+        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(pressKey(KeyEvent.KEYCODE_ENTER));
 
         // Sleep
         Thread.sleep(1000);
