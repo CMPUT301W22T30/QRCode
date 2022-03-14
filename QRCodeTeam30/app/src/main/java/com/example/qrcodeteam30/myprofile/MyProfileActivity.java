@@ -1,6 +1,5 @@
 package com.example.qrcodeteam30.myprofile;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
