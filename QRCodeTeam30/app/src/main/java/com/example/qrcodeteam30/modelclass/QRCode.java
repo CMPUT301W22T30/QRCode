@@ -7,6 +7,12 @@ import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
+/**
+ * This model class represents a QR code and its properties
+ * Includiong username that the QR code belongs to, the content, the location, the date of taken
+ * The score, the reference to the list of comment on Firestore, the format (QR code/barcodes/...),
+ * the reference to the photo on Firestore
+ */
 public class QRCode implements Serializable {
     private String username;
     private String qrCodeContent;
@@ -18,29 +24,60 @@ public class QRCode implements Serializable {
     private String format;
     private boolean recordLocation;
 
+    /**
+     * Get photoReference
+     * @return
+     */
     public String getPhotoReference() {
         return photoReference;
     }
 
+    /**
+     * Set photoReference
+     * @param photoReference
+     */
     public void setPhotoReference(String photoReference) {
         this.photoReference = photoReference;
     }
 
     private String photoReference;
 
+    /**
+     * Check if recordPhoto is true or false
+     * @return
+     */
     public boolean isRecordPhoto() {
         return recordPhoto;
     }
 
+    /**
+     * Set recordPhoto
+     * @param recordPhoto
+     */
     public void setRecordPhoto(boolean recordPhoto) {
         this.recordPhoto = recordPhoto;
     }
 
     private boolean recordPhoto;
 
+    /**
+     * Empty constructor
+     */
     public QRCode() {
     }
 
+    /**
+     * Constructor
+     * @param qrCodeContent
+     * @param latitude
+     * @param longitude
+     * @param username
+     * @param format
+     * @param commentListReference
+     * @param recordLocation
+     * @param recordPhoto
+     * @param photoReference
+     */
     public QRCode(String qrCodeContent, double latitude, double longitude,
                   String username, String format, String commentListReference,
                   boolean recordLocation, boolean recordPhoto, String photoReference) {
@@ -57,74 +94,146 @@ public class QRCode implements Serializable {
         this.photoReference = photoReference;
     }
 
+    /**
+     * get content
+     * @return the content
+     */
     public String getQrCodeContent() {
         return qrCodeContent;
     }
 
+    /**
+     * set content
+     * @param qrCodeContent
+     */
     public void setQrCodeContent(String qrCodeContent) {
         this.qrCodeContent = qrCodeContent;
     }
 
+    /**
+     * get Latitude
+     * @return the latitude
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * set latitude
+     * @param latitude
+     */
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
+    /**
+     * get longitude
+     * @return the longitude
+     */
     public double getLongitude() {
         return longitude;
     }
 
+    /**
+     * set longitude
+     * @param longitude
+     */
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
+    /**
+     * get date
+     * @return the date
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     * set date
+     * @param date
+     */
     public void setDate(String date) {
         this.date = date;
     }
 
+    /**
+     * get score
+     * @return the score
+     */
     public double getScore() {
         return score;
     }
 
+    /**
+     * set score
+     * @param score
+     */
     public void setScore(double score) {
         this.score = score;
     }
 
+    /**
+     * get username
+     * @return the username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * set username
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * get format
+     * @return return the format of QR code in String
+     */
     public String getFormat() {
         return format;
     }
 
+    /**
+     * set format
+     * @param format
+     */
     public void setFormat(String format) {
         this.format = format;
     }
 
+    /**
+     * get reference to comment list on Firestore
+     * @return get reference to comment list on Firestore
+     */
     public String getCommentListReference() {
         return commentListReference;
     }
 
+    /**
+     * set reference to comment list on Firestore
+     * @param commentListReference
+     */
     public void setCommentListReference(String commentListReference) {
         this.commentListReference = commentListReference;
     }
 
+    /**
+     * Check if record location is true or false
+     * @return true or false depends on the above criteria
+     */
     public boolean isRecordLocation() {
         return recordLocation;
     }
 
+    /**
+     * set record location
+     * @param recordLocation
+     */
     public void setRecordLocation(boolean recordLocation) {
         this.recordLocation = recordLocation;
     }

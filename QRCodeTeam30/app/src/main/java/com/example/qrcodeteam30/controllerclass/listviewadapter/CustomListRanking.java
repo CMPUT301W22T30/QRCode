@@ -17,6 +17,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Custom adapter for showing all the ranking of the players based on total score
+ * Use with RankingActivity
+ */
 public class CustomListRanking extends ArrayAdapter<UserInformation> {
 
     private ArrayList<UserInformation> arrayList;

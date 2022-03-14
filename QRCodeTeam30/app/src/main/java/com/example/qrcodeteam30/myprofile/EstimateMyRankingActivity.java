@@ -22,6 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.math.BigDecimal;
 import java.util.Locale;
 
+/**
+ * Estimate the user's ranking in terms of Max score, Min score, Total score, the number of QR Code
+ * Ranking is shown in Percentile
+ */
 public class EstimateMyRankingActivity extends AppCompatActivity {
     private String sessionUsername;
     private double max;

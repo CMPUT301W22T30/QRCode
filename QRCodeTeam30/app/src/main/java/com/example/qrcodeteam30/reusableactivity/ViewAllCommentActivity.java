@@ -27,6 +27,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * An interface for showing all the comments of the QR Code, adding and deleting comment
+ */
 public class ViewAllCommentActivity extends AppCompatActivity {
     private ArrayAdapter<Comment> arrayAdapter;
     private ArrayList<Comment> arrayList;

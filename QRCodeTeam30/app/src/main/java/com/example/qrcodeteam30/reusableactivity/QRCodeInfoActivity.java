@@ -30,6 +30,14 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import java.math.BigDecimal;
 import java.util.Locale;
 
+/**
+ * Show the info of the QR Code
+ * This info includes its score and its date of taken
+ * It is also an interface for viewing the Photo of the QR Code (if there is),
+ * a button to launch the activity for the location of the QR Code in the map,
+ * and a button to launch an activity to view all comments.
+ * It also includes a button to delete this QR Code (if the current logged in username is admin)
+ */
 public class QRCodeInfoActivity extends AppCompatActivity {
     private ImageView imageView;
     private int listViewPosition;

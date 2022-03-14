@@ -27,12 +27,21 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Handling anything related to modify the Google Firestore database (on cloud)
+ * Because of the limitation of Android, unfortunately for the download part, it is integrated in the Activity (View)
+ * class, and we cannot separate it into its own class like this
+ */
 public class MyFirestoreUpload {
     private FirebaseFirestore db;
     private CollectionReference collectionReferenceSignInInformation;
     private LocationManager locationManager;
     private Context context;
 
+    /**
+     * Constructor
+     * @param context
+     */
     public MyFirestoreUpload(Context context) {
         this.db = FirebaseFirestore.getInstance();
         this.context = context;
@@ -40,6 +49,13 @@ public class MyFirestoreUpload {
         this.collectionReferenceSignInInformation = db.collection("SignInInformation");
     }
 
+    /**
+     * Upload QR Code to database, with location and photo
+     * @param str
+     * @param formatName
+     * @param bitmapResizeString
+     * @param sessionUsername
+     */
     public void uploadQRCodeToDBLocationPhoto(String str, String formatName, String bitmapResizeString, String sessionUsername) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -90,6 +106,12 @@ public class MyFirestoreUpload {
         });
     }
 
+    /**
+     * Upload QR Code to database, with location and no photo
+     * @param str
+     * @param formatName
+     * @param sessionUsername
+     */
     public void uploadQRCodeToDBLocationNoPhoto(String str, String formatName, String sessionUsername) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -135,6 +157,13 @@ public class MyFirestoreUpload {
 
     }
 
+    /**
+     * Upload QR Code to database, with no location and photo
+     * @param str
+     * @param formatName
+     * @param bitmapResizeString
+     * @param sessionUsername
+     */
     public void uploadQRCodeToDBNoLocationPhoto(String str, String formatName, String bitmapResizeString, String sessionUsername) {
         final var colRefPhoto = db.collection("Photo");
         final var colRefComment = db.collection("Comment");
@@ -161,6 +190,12 @@ public class MyFirestoreUpload {
     }
 
 
+    /**
+     * Upload QR Code to database, with no location and no photo
+     * @param str
+     * @param formatName
+     * @param sessionUsername
+     */
     public void uploadQRCodeToDBNoLocationNoPhoto(String str, String formatName, String sessionUsername) {
         final var colRefComment = db.collection("Comment");
         Map<String, Object> map = new HashMap<>();
@@ -179,23 +214,42 @@ public class MyFirestoreUpload {
     }
 
 
+    /**
+     * Upload the new user (which just signed up) to the cloud
+     * @param userInformation
+     */
     public void signUpNewUser(@NonNull UserInformation userInformation) {
         collectionReferenceSignInInformation.document(userInformation.getUsername()).set(userInformation);
     }
 
 
+    /**
+     * Add the comment to the cloud
+     * @param comment
+     * @param qrCode
+     */
     public void addComment(Comment comment, @NonNull QRCode qrCode) {
         final var documentReference = db.document(qrCode.getCommentListReference());
         documentReference.update("CommentList", FieldValue.arrayUnion(comment));
     }
 
 
+    /**
+     * Delete the comment from the cloud
+     * @param comment
+     * @param qrCode
+     */
     public void deleteComment(Comment comment, @NonNull QRCode qrCode) {
         final var documentReference = db.document(qrCode.getCommentListReference());
         documentReference.update("CommentList", FieldValue.arrayRemove(comment));
     }
 
 
+    /**
+     * Delete user from the cloud
+     * This includes delete all of his/her QR code and its associated photos and comments
+     * @param username
+     */
     public void deleteUser(String username) {
         if (username.equals("admin")) {
             return;

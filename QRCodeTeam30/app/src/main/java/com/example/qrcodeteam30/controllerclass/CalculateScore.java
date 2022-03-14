@@ -2,8 +2,15 @@ package com.example.qrcodeteam30.controllerclass;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Calculate the score
+ */
 public class CalculateScore {
-
+    /**
+     * Calculate the score
+     * @param str
+     * @return a score from the string
+     */
     public static double calculateScore(String str) {
         String hashStr = null;
         try {

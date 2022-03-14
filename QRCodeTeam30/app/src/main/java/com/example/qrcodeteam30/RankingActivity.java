@@ -24,6 +24,9 @@ import com.google.firebase.firestore.ListenerRegistration;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * Display the ranking of all users based on their total score
+ */
 public class RankingActivity extends AppCompatActivity {
     private ArrayAdapter<UserInformation> arrayAdapter;
     private ArrayList<UserInformation> arrayList;

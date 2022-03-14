@@ -26,6 +26,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * Check if any user scanned the same QR Code
+ * The criteria of "same": Same content and same location
+ * The QR Code that does not have location info will not be include in the searching process
+ */
 public class CheckSameQRCodeActivity extends AppCompatActivity {
     private QRCode qrCode;
     private String sessionUsername;

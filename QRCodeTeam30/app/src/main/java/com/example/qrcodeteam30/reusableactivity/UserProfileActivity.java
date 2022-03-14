@@ -26,6 +26,11 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.Locale;
 
+/**
+ * Shows the user profile of any user
+ * This includes their name, username,a button to view all of his/her QR Code, and a delete user button
+ * (if the current logged in user is admin)
+ */
 public class UserProfileActivity extends AppCompatActivity {
     private String username;
     private String sessionUsername;

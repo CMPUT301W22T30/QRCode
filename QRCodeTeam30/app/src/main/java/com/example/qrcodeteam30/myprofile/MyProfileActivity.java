@@ -30,6 +30,11 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.util.Locale;
 
+/**
+ * Showing the user information (username, name)
+ * Includes button to launch activity to change profile, estimate QR Codes ranking
+ * Include button to show a unique QR Code for automatic log in
+ */
 public class MyProfileActivity extends AppCompatActivity {
     private String sessionUsername;
     private String password;

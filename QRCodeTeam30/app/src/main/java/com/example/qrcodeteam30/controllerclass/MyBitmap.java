@@ -7,6 +7,9 @@ import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
 
+/**
+ * Handling anything related to Bitmap (Photo)
+ */
 public class MyBitmap {
     /**
      * Method to scale the Bitmap to respect the max bytes

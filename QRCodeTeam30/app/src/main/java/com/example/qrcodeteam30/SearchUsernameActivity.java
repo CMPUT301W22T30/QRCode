@@ -22,6 +22,12 @@ import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.ArrayList;
 
+/**
+ * <p>
+ *     This activity represents the interface for the user to search other user
+ *     Then, the user can see which QR Codes do the other user have (by press the search button)
+ * </p>
+ */
 public class SearchUsernameActivity extends AppCompatActivity {
     private String sessionUsername;
     FirebaseFirestore db;

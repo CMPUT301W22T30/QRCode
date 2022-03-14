@@ -30,6 +30,16 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.util.Locale;
 
+/**
+ * <p>
+ *     The main menu for the app, with five buttons represent five major features of the code.
+ *     Button 1: Scan QR Code (Which launch the camera and scan the QR Code)
+ *     Button 2: Search QR Code (Choosing from a map)
+ *     Button 3: Search username
+ *     Button 4: Check my profile
+ *     Button 5: View all of my QR Codes
+ * </p>
+ */
 public class PlayerMenuActivity extends AppCompatActivity {
     private String sessionUsername;
     private MyFirestoreUpload myFirestoreUpload;

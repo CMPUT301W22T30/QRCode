@@ -16,6 +16,10 @@ import com.example.qrcodeteam30.modelclass.Comment;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * Custom adapter for showing all the comment of a QR Code
+ * Use with ViewAllCommentActivity
+ */
 public class CustomListViewAllComment extends ArrayAdapter<Comment> {
     private ArrayList<Comment> arrayList;
     private Context context;

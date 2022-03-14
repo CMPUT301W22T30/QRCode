@@ -23,6 +23,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * An interface for changing the profile of the user (password, first name, last name)
+ */
 public class ChangeProfileActivity extends AppCompatActivity {
     private String sessionUsername;
     @Override

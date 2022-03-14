@@ -33,6 +33,9 @@ import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 import java.math.BigDecimal;
 import java.util.Locale;
 
+/**
+ * Show the location of the QR Code on a map
+ */
 public class MapQRCodeActivity extends AppCompatActivity {
     private String sessionUsername;
 

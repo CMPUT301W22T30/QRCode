@@ -22,6 +22,11 @@ import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * <p>
+ *     This activity is the interface for sign in. This is also the "Main" Activity for the app.
+ * </p>
+ */
 public class MainActivity extends AppCompatActivity {
     static private boolean retrievedSignInInformation = false;  // Behave as a lock/mutex
     private CollectionReference collectionReferenceSignInInformation;

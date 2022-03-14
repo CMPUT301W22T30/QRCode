@@ -8,6 +8,9 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+/**
+ * Handling asking permission
+ */
 public class MyPermission {
     private Context context;
     private Activity activity;
@@ -17,6 +20,10 @@ public class MyPermission {
         this.activity = activity;
     }
 
+    /**
+     * Check if there is location permission
+     * @return true if there is, false if there isn't
+     */
     public boolean hasLocationPermission() {
         return (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED)
@@ -25,6 +32,9 @@ public class MyPermission {
     }
 
 
+    /**
+     * Request location permission
+     */
     public void requestLocationPermission() {
         ActivityCompat.requestPermissions(activity, new String[]{
                 Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
@@ -32,6 +42,10 @@ public class MyPermission {
     }
 
 
+    /**
+     * Check if there is location and writing to storage permission
+     * @return true if there is, false if there isn't
+     */
     public boolean hasWritingLocationPermission() {
         return (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED)
@@ -42,6 +56,9 @@ public class MyPermission {
     }
 
 
+    /**
+     * Request location and writing to storage permission
+     */
     public void requestWritingLocationPermission() {
         ActivityCompat.requestPermissions(activity,
                 new String[]{

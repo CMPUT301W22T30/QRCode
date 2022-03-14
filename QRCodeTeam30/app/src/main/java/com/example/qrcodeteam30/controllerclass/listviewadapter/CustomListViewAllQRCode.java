@@ -16,6 +16,10 @@ import com.example.qrcodeteam30.modelclass.QRCode;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+/**
+ * Custom adapter for showing all the QR codes of the user
+ * Use with ViewAllQRCodeActivity
+ */
 public class CustomListViewAllQRCode extends ArrayAdapter<QRCode> {
     private ArrayList<QRCode> arrayList;
     private Context context;
