@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
+/**
+ * Display the statistics of the QR Codes the user have (max, min, sum, average)
+ */
 public class UserStatisticsActivity extends AppCompatActivity {
     private String username;
     private UserInformation userInformation;

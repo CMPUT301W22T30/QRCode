@@ -31,6 +31,9 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.ArrayList;
 
+/**
+ * Display all the QR Codes the user have
+ */
 public class ViewAllQRCodeActivity extends AppCompatActivity {
     private String username;
     private String sessionUsername;
