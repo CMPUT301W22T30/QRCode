@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
  * Handling anything related to cryptography (hash, encrypt, decrypt)
  * TO DO: Implement an encrypt/decrypt algorithm for QR Code content (planned using AES-256)
  */
-public class MyCryptography {
+public class MyCryptographyController {
     /**
      * Hash a string to SHA-256 hex representation
      * @param input

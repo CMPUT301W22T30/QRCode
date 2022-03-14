@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Calculate the score
  */
-public class CalculateScore {
+public class CalculateScoreController {
     /**
      * Calculate the score
      * @param str
@@ -14,7 +14,7 @@ public class CalculateScore {
     public static double calculateScore(String str) {
         String hashStr = null;
         try {
-            hashStr = MyCryptography.hashSHA256(str);
+            hashStr = MyCryptographyController.hashSHA256(str);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return -1;

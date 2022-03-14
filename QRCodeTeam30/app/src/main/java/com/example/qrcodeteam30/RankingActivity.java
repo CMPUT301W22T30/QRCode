@@ -13,7 +13,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListRanking;
+import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListRankingController;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.example.qrcodeteam30.reusableactivity.UserProfileActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -68,7 +68,7 @@ public class RankingActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listView_ranking);
 
         arrayList = new ArrayList<>();
-        arrayAdapter = new CustomListRanking(this, arrayList);
+        arrayAdapter = new CustomListRankingController(this, arrayList);
         listView.setAdapter(arrayAdapter);
 
         sessionUsername = getIntent().getStringExtra("SessionUsername");

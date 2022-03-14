@@ -20,11 +20,11 @@ import java.util.ArrayList;
  * Custom adapter for showing all the QR codes of the user
  * Use with ViewAllQRCodeActivity
  */
-public class CustomListViewAllQRCode extends ArrayAdapter<QRCode> {
+public class CustomListViewAllQRCodeController extends ArrayAdapter<QRCode> {
     private ArrayList<QRCode> arrayList;
     private Context context;
 
-    public CustomListViewAllQRCode(Context context, ArrayList<QRCode> arrayList) {
+    public CustomListViewAllQRCodeController(Context context, ArrayList<QRCode> arrayList) {
         super(context, 0, arrayList);
         this.arrayList = arrayList;
         this.context = context;

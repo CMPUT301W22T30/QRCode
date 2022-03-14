@@ -21,12 +21,12 @@ import java.util.Locale;
  * Custom adapter for showing all the ranking of the players based on total score
  * Use with RankingActivity
  */
-public class CustomListRanking extends ArrayAdapter<UserInformation> {
+public class CustomListRankingController extends ArrayAdapter<UserInformation> {
 
     private ArrayList<UserInformation> arrayList;
     private Context context;
 
-    public CustomListRanking(Context context, ArrayList<UserInformation> arrayList) {
+    public CustomListRankingController(Context context, ArrayList<UserInformation> arrayList) {
         super(context, 0, arrayList);
         this.arrayList = arrayList;
         this.context = context;

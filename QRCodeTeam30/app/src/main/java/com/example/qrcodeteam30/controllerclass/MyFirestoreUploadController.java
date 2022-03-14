@@ -32,7 +32,7 @@ import java.util.Map;
  * Because of the limitation of Android, unfortunately for the download part, it is integrated in the Activity (View)
  * class, and we cannot separate it into its own class like this
  */
-public class MyFirestoreUpload {
+public class MyFirestoreUploadController {
     private FirebaseFirestore db;
     private CollectionReference collectionReferenceSignInInformation;
     private LocationManager locationManager;
@@ -42,7 +42,7 @@ public class MyFirestoreUpload {
      * Constructor
      * @param context
      */
-    public MyFirestoreUpload(Context context) {
+    public MyFirestoreUploadController(Context context) {
         this.db = FirebaseFirestore.getInstance();
         this.context = context;
         this.locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);

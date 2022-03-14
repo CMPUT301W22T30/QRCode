@@ -15,7 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.qrcodeteam30.MainActivity;
 import com.example.qrcodeteam30.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.controllerclass.MyFirestoreUpload;
+import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.example.qrcodeteam30.viewallqrcode.ViewAllQRCodeActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -37,7 +37,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView textView;
     private UserInformation userInformation;
     private ListenerRegistration listenerRegistration;
-    private MyFirestoreUpload myFirestoreUpload;
+    private MyFirestoreUploadController myFirestoreUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class UserProfileActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        myFirestoreUpload = new MyFirestoreUpload(getApplicationContext());
+        myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
 
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {

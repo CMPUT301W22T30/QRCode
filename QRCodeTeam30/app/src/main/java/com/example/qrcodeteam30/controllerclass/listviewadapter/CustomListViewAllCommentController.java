@@ -20,11 +20,11 @@ import java.util.Locale;
  * Custom adapter for showing all the comment of a QR Code
  * Use with ViewAllCommentActivity
  */
-public class CustomListViewAllComment extends ArrayAdapter<Comment> {
+public class CustomListViewAllCommentController extends ArrayAdapter<Comment> {
     private ArrayList<Comment> arrayList;
     private Context context;
 
-    public CustomListViewAllComment(Context context, ArrayList<Comment> arrayList) {
+    public CustomListViewAllCommentController(Context context, ArrayList<Comment> arrayList) {
         super(context, 0, arrayList);
         this.arrayList = arrayList;
         this.context = context;

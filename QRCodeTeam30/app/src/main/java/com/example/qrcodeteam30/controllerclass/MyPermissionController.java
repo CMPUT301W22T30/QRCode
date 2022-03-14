@@ -11,11 +11,11 @@ import androidx.core.content.ContextCompat;
 /**
  * Handling asking permission
  */
-public class MyPermission {
+public class MyPermissionController {
     private Context context;
     private Activity activity;
 
-    public MyPermission(Context context, Activity activity) {
+    public MyPermissionController(Context context, Activity activity) {
         this.context = context;
         this.activity = activity;
     }

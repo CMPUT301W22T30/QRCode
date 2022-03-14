@@ -14,8 +14,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.controllerclass.MyCryptography;
-import com.example.qrcodeteam30.controllerclass.MyFirestoreUpload;
+import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
+import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,7 +31,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SignUpActivity extends AppCompatActivity {
     static private boolean retrievedSignUpInformation = false;  // Behave as a lock/mutex
-    MyFirestoreUpload myFirestoreUpload;
+    MyFirestoreUploadController myFirestoreUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        myFirestoreUpload = new MyFirestoreUpload(getApplicationContext());
+        myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
 
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setVisibility(View.GONE);
@@ -89,7 +89,7 @@ public class SignUpActivity extends AppCompatActivity {
                     } else {
                         UserInformation userInformation = null;
                         try {
-                            userInformation = new UserInformation(username, MyCryptography.hashSHA256(password), firstName, lastName, 0);
+                            userInformation = new UserInformation(username, MyCryptographyController.hashSHA256(password), firstName, lastName, 0);
                         } catch (NoSuchAlgorithmException e) {
                             e.printStackTrace();
                         }

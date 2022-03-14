@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.qrcodeteam30.MainActivity;
-import com.example.qrcodeteam30.controllerclass.MyCryptography;
+import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 import com.example.qrcodeteam30.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -88,7 +88,7 @@ public class ChangeProfileActivity extends AppCompatActivity {
             }
             if (passwordUpdate.length() > 0) {
                 try {
-                    documentReference.update("password", MyCryptography.hashSHA256(passwordUpdate));
+                    documentReference.update("password", MyCryptographyController.hashSHA256(passwordUpdate));
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }

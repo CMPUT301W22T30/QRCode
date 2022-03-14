@@ -16,8 +16,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.qrcodeteam30.MainActivity;
 import com.example.qrcodeteam30.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.controllerclass.MyFirestoreUpload;
-import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListViewAllComment;
+import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
+import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListViewAllCommentController;
 import com.example.qrcodeteam30.modelclass.Comment;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -37,7 +37,7 @@ public class ViewAllCommentActivity extends AppCompatActivity {
     private String sessionUsername;
     private String qrCodeUsername;
     private DocumentReference documentReference;
-    MyFirestoreUpload myFirestoreUpload;
+    MyFirestoreUploadController myFirestoreUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class ViewAllCommentActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        myFirestoreUpload = new MyFirestoreUpload(getApplicationContext());
+        myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
 
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {
@@ -83,7 +83,7 @@ public class ViewAllCommentActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText_addComment_viewAllComment);
 
         arrayList = new ArrayList<>();
-        arrayAdapter = new CustomListViewAllComment(this, arrayList);
+        arrayAdapter = new CustomListViewAllCommentController(this, arrayList);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {

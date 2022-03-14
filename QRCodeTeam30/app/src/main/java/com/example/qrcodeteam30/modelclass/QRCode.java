@@ -1,10 +1,9 @@
 package com.example.qrcodeteam30.modelclass;
 
-import com.example.qrcodeteam30.controllerclass.CalculateScore;
-import com.example.qrcodeteam30.controllerclass.MyCryptography;
+import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
+import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 /**
@@ -81,10 +80,10 @@ public class QRCode implements Serializable {
     public QRCode(String qrCodeContent, double latitude, double longitude,
                   String username, String format, String commentListReference,
                   boolean recordLocation, boolean recordPhoto, String photoReference) {
-        this.qrCodeContent = MyCryptography.encrypt(qrCodeContent);
+        this.qrCodeContent = MyCryptographyController.encrypt(qrCodeContent);
         this.latitude = latitude;
         this.longitude = longitude;
-        this.score = CalculateScore.calculateScore(qrCodeContent);
+        this.score = CalculateScoreController.calculateScore(qrCodeContent);
         this.date = (new Date()).toString();
         this.username = username;
         this.format = format;

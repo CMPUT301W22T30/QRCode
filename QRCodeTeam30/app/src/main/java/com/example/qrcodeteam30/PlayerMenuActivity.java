@@ -15,11 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.controllerclass.CalculateScore;
-import com.example.qrcodeteam30.controllerclass.MyBitmap;
-import com.example.qrcodeteam30.controllerclass.MyFirestoreUpload;
-import com.example.qrcodeteam30.controllerclass.MyPermission;
-import com.example.qrcodeteam30.modelclass.QRCode;
+import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
+import com.example.qrcodeteam30.controllerclass.MyBitmapController;
+import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
+import com.example.qrcodeteam30.controllerclass.MyPermissionController;
 import com.example.qrcodeteam30.myprofile.MyProfileActivity;
 import com.example.qrcodeteam30.viewallqrcode.ViewAllQRCodeActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -42,8 +41,8 @@ import java.util.Locale;
  */
 public class PlayerMenuActivity extends AppCompatActivity {
     private String sessionUsername;
-    private MyFirestoreUpload myFirestoreUpload;
-    private MyPermission myPermission;
+    private MyFirestoreUploadController myFirestoreUpload;
+    private MyPermissionController myPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +66,8 @@ public class PlayerMenuActivity extends AppCompatActivity {
         });
 
         sessionUsername = getIntent().getStringExtra("SessionUsername");
-        myFirestoreUpload = new MyFirestoreUpload(getApplicationContext());
-        myPermission = new MyPermission(this, this);
+        myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
+        myPermission = new MyPermissionController(this, this);
 
         Button buttonScanQRCode = findViewById(R.id.button_playerMenu_scanQRCode);
         Button buttonSearchQRCode = findViewById(R.id.button_playerMenu_searchQRCode);
@@ -137,7 +136,7 @@ public class PlayerMenuActivity extends AppCompatActivity {
                 if (str == null) {
                     Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
                 } else {
-                    BigDecimal strippedVal = new BigDecimal(CalculateScore.calculateScore(str)).stripTrailingZeros();
+                    BigDecimal strippedVal = new BigDecimal(CalculateScoreController.calculateScore(str)).stripTrailingZeros();
                     String scoreStrippedFormat = strippedVal.toPlainString();
 
                     String path = result.getBarcodeImagePath();
@@ -145,8 +144,8 @@ public class PlayerMenuActivity extends AppCompatActivity {
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                     Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
-                    Bitmap scaledBitmap = MyBitmap.scaleBitmap(bitmap, 65536);
-                    String bitmapResizeString = MyBitmap.bitMapToString(scaledBitmap);
+                    Bitmap scaledBitmap = MyBitmapController.scaleBitmap(bitmap, 65536);
+                    String bitmapResizeString = MyBitmapController.bitMapToString(scaledBitmap);
 
                     var acceptDeclineDialog = new MaterialAlertDialogBuilder(PlayerMenuActivity.this);
                     acceptDeclineDialog.setTitle("Do you want to record this barcode?")

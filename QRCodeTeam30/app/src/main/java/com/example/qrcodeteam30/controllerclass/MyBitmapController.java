@@ -10,7 +10,7 @@ import java.io.ByteArrayOutputStream;
 /**
  * Handling anything related to Bitmap (Photo)
  */
-public class MyBitmap {
+public class MyBitmapController {
     /**
      * Method to scale the Bitmap to respect the max bytes
      *

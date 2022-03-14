@@ -18,8 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.qrcodeteam30.MainActivity;
 import com.example.qrcodeteam30.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.controllerclass.MyBitmap;
-import com.example.qrcodeteam30.controllerclass.MyPermission;
+import com.example.qrcodeteam30.controllerclass.MyBitmapController;
+import com.example.qrcodeteam30.controllerclass.MyPermissionController;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,7 +42,7 @@ public class QRCodeInfoActivity extends AppCompatActivity {
     private ImageView imageView;
     private int listViewPosition;
     private String sessionUsername;
-    private MyPermission myPermission;
+    private MyPermissionController myPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class QRCodeInfoActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        myPermission = new MyPermission(this, this);
+        myPermission = new MyPermissionController(this, this);
 
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {
@@ -132,11 +132,11 @@ public class QRCodeInfoActivity extends AppCompatActivity {
                 var docRef = db.document(qrCode.getPhotoReference());
                 docRef.get().addOnCompleteListener(task -> {
                     String str = (String) task.getResult().get("photoString");
-                    Bitmap bitmap = MyBitmap.stringToBitMap(str);
+                    Bitmap bitmap = MyBitmapController.stringToBitMap(str);
                     int height = bitmap.getHeight();
                     int width = bitmap.getWidth();
                     int scale = 720 / height;
-                    Bitmap resizedBitmap = MyBitmap.getResizedBitmap(bitmap, width * scale, height * scale);
+                    Bitmap resizedBitmap = MyBitmapController.getResizedBitmap(bitmap, width * scale, height * scale);
 
                     var dialogBuilder = new MaterialAlertDialogBuilder(QRCodeInfoActivity.this);
                     var view = getLayoutInflater().inflate(R.layout.imageview_savephoto_dialog_layout, null);

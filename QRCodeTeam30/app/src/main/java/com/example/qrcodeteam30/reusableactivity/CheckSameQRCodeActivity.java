@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.qrcodeteam30.MainActivity;
-import com.example.qrcodeteam30.controllerclass.MyCryptography;
+import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 import com.example.qrcodeteam30.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.modelclass.QRCode;
@@ -94,7 +94,7 @@ public class CheckSameQRCodeActivity extends AppCompatActivity {
 
             HashSet<String> seen = new HashSet<>();
             for (var qrCode_iterator: arrayListQRCode) {
-                if (MyCryptography.decrypt(qrCode.getQrCodeContent()).equals(MyCryptography.decrypt(qrCode_iterator.getQrCodeContent()))
+                if (MyCryptographyController.decrypt(qrCode.getQrCodeContent()).equals(MyCryptographyController.decrypt(qrCode_iterator.getQrCodeContent()))
                         && Math.abs(qrCode.getLatitude() - qrCode_iterator.getLatitude()) < 0.001
                         && Math.abs(qrCode.getLongitude() - qrCode_iterator.getLongitude()) < 0.001
                         && !qrCode_iterator.getUsername().equals(qrCode.getUsername())) {

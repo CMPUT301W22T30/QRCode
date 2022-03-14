@@ -12,7 +12,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.controllerclass.MyCryptography;
+import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         var userInformation = document.toObject(UserInformation.class);
                         String hashedPassword = null;
                         try {
-                            hashedPassword = MyCryptography.hashSHA256(password);
+                            hashedPassword = MyCryptographyController.hashSHA256(password);
                         } catch (NoSuchAlgorithmException e) {
                             e.printStackTrace();
                         }

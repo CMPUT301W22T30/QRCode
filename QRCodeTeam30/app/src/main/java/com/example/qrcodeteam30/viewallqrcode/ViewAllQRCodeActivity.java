@@ -18,7 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.qrcodeteam30.MainActivity;
 import com.example.qrcodeteam30.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListViewAllQRCode;
+import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListViewAllQRCodeController;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.example.qrcodeteam30.reusableactivity.QRCodeInfoActivity;
@@ -82,7 +82,7 @@ public class ViewAllQRCodeActivity extends AppCompatActivity {
         Button button = findViewById(R.id.button_viewAllQRCode_statistics);
 
         arrayList = new ArrayList<>();
-        arrayAdapter = new CustomListViewAllQRCode(this, arrayList);
+        arrayAdapter = new CustomListViewAllQRCodeController(this, arrayList);
         listView.setAdapter(arrayAdapter);
 
         db = FirebaseFirestore.getInstance();

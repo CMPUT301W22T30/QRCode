@@ -19,7 +19,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.controllerclass.MyPermission;
+import com.example.qrcodeteam30.controllerclass.MyPermissionController;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.example.qrcodeteam30.reusableactivity.QRCodeInfoActivity;
@@ -59,7 +59,7 @@ public class SearchQRCodeActivity extends AppCompatActivity {
     private IMapController mapController;
     private ArrayList<QRCode> arrayListQRCode;
     private ListenerRegistration listenerRegistration;
-    private MyPermission myPermission;
+    private MyPermissionController myPermission;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReferenceSignInInformation = db.collection("SignInInformation");
 
@@ -76,7 +76,7 @@ public class SearchQRCodeActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        myPermission = new MyPermission(this, this);
+        myPermission = new MyPermissionController(this, this);
 
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {
