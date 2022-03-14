@@ -3,20 +3,32 @@ package com.example.qrcodeteam30;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressBack;
+import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.action.ViewActions.typeTextIntoFocusedView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anything;
+
+import android.view.View;
+import androidx.appcompat.widget.SearchView;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.hamcrest.Matcher;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(AndroidJUnit4.class)
 public class TestPlayer {
 
     @Test
@@ -252,23 +264,44 @@ public class TestPlayer {
 
         // Sleep
         Thread.sleep(1000);
+
+        // Click to search view
         Espresso.onView(withId(R.id.searchView_searchUsername)).perform(click());
-        Thread.sleep(5000);
-        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(typeText("admin"));
 
-        // Type username that want to search
-//        Espresso.onView(withId(R.id.searchView_searchUsername))
-//                .perform(typeText("BiBo1604"), closeSoftKeyboard()).check(matches(withText("BiBo1604")));
+        // Sleep
+        Thread.sleep(1000);
 
-//        // Press Search Button
-//        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(pressImeActionButton());
-//
-//        // Sleep
-//        Thread.sleep(1000);
-//
-//        // Check profile of other player is displayed
-//        Espresso.onView(withId(R.id.textView_userProfile)).check(matches(isDisplayed()));
+        // Type username
+        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(typeSearchViewText("BiBo1604"));
+
+        // Press Search Button
+        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(pressImeActionButton());
+
+        // Sleep
+        Thread.sleep(1000);
+
+        // Check profile of other player is displayed
+        Espresso.onView(withId(R.id.textView_userProfile)).check(matches(isDisplayed()));
 
         scenario.close();
+    }
+
+    public static ViewAction typeSearchViewText(final String text) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return allOf(isDisplayed(), isAssignableFrom(SearchView.class));
+            }
+
+            @Override
+            public String getDescription() {
+                return "Change view text";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                ((SearchView) view).setQuery(text, false);
+            }
+        };
     }
 }
