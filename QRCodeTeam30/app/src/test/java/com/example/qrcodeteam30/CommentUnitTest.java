@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import com.example.qrcodeteam30.modelclass.Comment;
 import org.junit.Test;
 
-public class CommentTest {
+public class CommentUnitTest {
     @Test
     public void getterSetterUsernameTest1() {
         Comment cmt = new Comment();
@@ -29,63 +29,63 @@ public class CommentTest {
     @Test
     public void getterSetterAuthorTest1() {
         Comment cmt = new Comment();
-        cmt.setUsername("razer");
-        assertEquals("razer", cmt.getUsername());
+        cmt.setAuthor("razer");
+        assertEquals("razer", cmt.getAuthor());
     }
 
     @Test
     public void getterSetterAuthorTest2() {
         Comment cmt = new Comment();
-        cmt.setUsername("alberta");
-        assertEquals("alberta", cmt.getUsername());
+        cmt.setAuthor("alberta");
+        assertEquals("alberta", cmt.getAuthor());
     }
 
     @Test
     public void getterSetterAuthorTest3() {
         Comment cmt = new Comment();
-        cmt.setUsername("toronto");
-        assertEquals("toronto", cmt.getUsername());
+        cmt.setAuthor("toronto");
+        assertEquals("toronto", cmt.getAuthor());
     }
 
     @Test
     public void getterSetterContentTest1() {
         Comment cmt = new Comment();
-        cmt.setUsername("Nice QR Code");
-        assertEquals("Nice QR Code", cmt.getUsername());
+        cmt.setContent("Nice QR Code");
+        assertEquals("Nice QR Code", cmt.getContent());
     }
 
     @Test
     public void getterSetterContentTest2() {
         Comment cmt = new Comment();
-        cmt.setUsername("High point");
-        assertEquals("High point", cmt.getUsername());
+        cmt.setContent("High point");
+        assertEquals("High point", cmt.getContent());
     }
 
     @Test
     public void getterSetterContentTest3() {
         Comment cmt = new Comment();
-        cmt.setUsername("I want to scan this QR Code");
-        assertEquals("I want to scan this QR Code", cmt.getUsername());
+        cmt.setContent("I want to scan this QR Code");
+        assertEquals("I want to scan this QR Code", cmt.getContent());
     }
 
     @Test
     public void getterSetterDateTest1() {
         Comment cmt = new Comment();
-        cmt.setUsername("Tue Dec  2 01:03:00 PST 2019");
-        assertEquals("Tue Dec  2 01:03:00 PST 2019", cmt.getUsername());
+        cmt.setDate("Tue Dec  2 01:03:00 PST 2019");
+        assertEquals("Tue Dec  2 01:03:00 PST 2019", cmt.getDate());
     }
 
     @Test
     public void getterSetterDateTest2() {
         Comment cmt = new Comment();
-        cmt.setUsername("Sun Feb  2 10:01:00 MT 2020");
-        assertEquals("Sun Feb  2 10:01:00 MT 2020", cmt.getUsername());
+        cmt.setDate("Sun Feb  2 10:01:00 MT 2020");
+        assertEquals("Sun Feb  2 10:01:00 MT 2020", cmt.getDate());
     }
 
     @Test
     public void getterSetterDateTest3() {
         Comment cmt = new Comment();
-        cmt.setUsername("Sun Aug 23 09:05:00 PDT 2001");
-        assertEquals("Sun Aug 23 09:05:00 PDT 2001", cmt.getUsername());
+        cmt.setDate("Sun Aug 23 09:05:00 PDT 2001");
+        assertEquals("Sun Aug 23 09:05:00 PDT 2001", cmt.getDate());
     }
 }
