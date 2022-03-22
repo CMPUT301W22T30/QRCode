@@ -1,8 +1,6 @@
 package com.example.qrcodeteam30;
 
 import static org.junit.Assert.assertEquals;
-
-import com.example.qrcodeteam30.modelclass.Comment;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import org.junit.Test;
 
