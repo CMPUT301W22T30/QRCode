@@ -18,7 +18,7 @@ import org.junit.Test;
 
 public class TestPlayerProfile {
     @Test
-    public void geoLocationNearbyQRCodes() throws Exception {
+    public void uniqueUsernameTest() throws Exception {
         // Launch MainActivity
         ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
 
