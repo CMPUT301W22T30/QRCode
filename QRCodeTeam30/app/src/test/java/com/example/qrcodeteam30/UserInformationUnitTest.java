@@ -73,22 +73,22 @@ public class UserInformationUnitTest {
     @Test
     public void getterAndSetterLastNameTest1() {
         UserInformation user = new UserInformation();
-        user.setFirstName("Duong");
-        assertEquals("Duong", user.getFirstName());
+        user.setLastName("Duong");
+        assertEquals("Duong", user.getLastName());
     }
 
     @Test
     public void getterAndSetterLastNameTest2() {
         UserInformation user = new UserInformation();
-        user.setFirstName("Hay");
-        assertEquals("Hay", user.getFirstName());
+        user.setLastName("Hay");
+        assertEquals("Hay", user.getLastName());
     }
 
     @Test
     public void getterAndSetterLastNameTest3() {
         UserInformation user = new UserInformation();
-        user.setFirstName("Maguire");
-        assertEquals("Maguire", user.getFirstName());
+        user.setLastName("Maguire");
+        assertEquals("Maguire", user.getLastName());
     }
 
     @Test
