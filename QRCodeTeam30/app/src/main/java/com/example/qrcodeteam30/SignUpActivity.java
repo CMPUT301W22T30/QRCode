@@ -24,10 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * <p>
- *     This activity is the interface for sign up.
- *     Upon sign up completion, it automatically launches PlayerMenuActivity (The main menu).
- * </p>
+ * This activity is the interface for sign up.
+ * Upon sign up completion, it automatically launches PlayerMenuActivity (The main menu).
  */
 public class SignUpActivity extends AppCompatActivity {
     static private boolean retrievedSignUpInformation = false;  // Behave as a lock/mutex

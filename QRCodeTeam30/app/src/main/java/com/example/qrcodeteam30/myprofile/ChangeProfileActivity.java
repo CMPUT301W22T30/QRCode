@@ -42,14 +42,11 @@ public class ChangeProfileActivity extends AppCompatActivity {
             var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(ChangeProfileActivity.this);
             materialAlertDialogBuilder.setTitle("Log out").setMessage("Do you want to log out?")
                     .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Log out", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            var intent = new Intent(ChangeProfileActivity.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
+                    .setPositiveButton("Log out", (dialogInterface, i) -> {
+                        var intent = new Intent(ChangeProfileActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
                     }).show();
         });
 

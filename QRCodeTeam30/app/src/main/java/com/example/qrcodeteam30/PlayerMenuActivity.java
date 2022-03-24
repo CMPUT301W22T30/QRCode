@@ -136,7 +136,7 @@ public class PlayerMenuActivity extends AppCompatActivity {
                 if (str == null) {
                     Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
                 } else {
-                    BigDecimal strippedVal = new BigDecimal(CalculateScoreController.calculateScore(str)).stripTrailingZeros();
+                    BigDecimal strippedVal = BigDecimal.valueOf(CalculateScoreController.calculateScore(str)).stripTrailingZeros();
                     String scoreStrippedFormat = strippedVal.toPlainString();
 
                     String path = result.getBarcodeImagePath();

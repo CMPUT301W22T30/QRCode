@@ -23,6 +23,14 @@
             android:id="@+id/textView_estimateRanking"
             android:layout_margin="10dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
+            android:textSize="20sp"
+            android:id="@+id/textView_estimateRanking_exactRanking"
+            android:layout_margin="10dp" />
+
     </LinearLayout>
 
 </LinearLayout>

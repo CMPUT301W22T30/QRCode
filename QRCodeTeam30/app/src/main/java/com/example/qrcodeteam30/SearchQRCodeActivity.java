@@ -44,12 +44,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * <p>
- *     This activity represents the activity that allows user to browse QR Code from a map
- *     Clicking on any marker to see that QR Code information
- *     Automatically centered the map at the current location
- *     If the location is not turned on, centered the map at the University of Alberta
- * </p>
+ * This activity represents the activity that allows user to browse QR Code from a map
+ * Clicking on any marker to see that QR Code information
+ * Automatically centered the map at the current location
+ * If the location is not turned on, centered the map at the University of Alberta
  */
 public class SearchQRCodeActivity extends AppCompatActivity {
     private String sessionUsername;
