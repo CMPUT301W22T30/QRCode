@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30;
+package com.example.qrcodeteam30.viewclass;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,12 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
 import com.example.qrcodeteam30.controllerclass.MyBitmapController;
 import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.controllerclass.MyPermissionController;
-import com.example.qrcodeteam30.myprofile.MyProfileActivity;
-import com.example.qrcodeteam30.viewallqrcode.ViewAllQRCodeActivity;
+import com.example.qrcodeteam30.viewclass.myprofile.MyProfileActivity;
+import com.example.qrcodeteam30.viewclass.viewallqrcode.ViewAllQRCodeActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
@@ -136,7 +137,7 @@ public class PlayerMenuActivity extends AppCompatActivity {
                 if (str == null) {
                     Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
                 } else {
-                    BigDecimal strippedVal = new BigDecimal(CalculateScoreController.calculateScore(str)).stripTrailingZeros();
+                    BigDecimal strippedVal = BigDecimal.valueOf(CalculateScoreController.calculateScore(str)).stripTrailingZeros();
                     String scoreStrippedFormat = strippedVal.toPlainString();
 
                     String path = result.getBarcodeImagePath();

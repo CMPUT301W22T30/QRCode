@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30;
+package com.example.qrcodeteam30.viewclass;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.modelclass.UserInformation;
@@ -24,10 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * <p>
- *     This activity is the interface for sign up.
- *     Upon sign up completion, it automatically launches PlayerMenuActivity (The main menu).
- * </p>
+ * This activity is the interface for sign up.
+ * Upon sign up completion, it automatically launches PlayerMenuActivity (The main menu).
  */
 public class SignUpActivity extends AppCompatActivity {
     static private boolean retrievedSignUpInformation = false;  // Behave as a lock/mutex

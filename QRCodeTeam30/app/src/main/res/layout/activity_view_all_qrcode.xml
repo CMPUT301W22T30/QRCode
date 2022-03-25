@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".viewallqrcode.ViewAllQRCodeActivity"
+    tools:context=".viewclass.viewallqrcode.ViewAllQRCodeActivity"
     android:orientation="vertical"
     android:gravity="center">
     <include layout="@layout/toolbar_logout"/>

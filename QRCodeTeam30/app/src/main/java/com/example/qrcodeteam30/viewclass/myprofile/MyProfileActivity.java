@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30.myprofile;
+package com.example.qrcodeteam30.viewclass.myprofile;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,8 +13,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.MainActivity;
-import com.example.qrcodeteam30.PlayerMenuActivity;
+import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.example.qrcodeteam30.modelclass.UserInformation;
@@ -112,8 +112,12 @@ public class MyProfileActivity extends AppCompatActivity {
             UserInformation userInformation = value.toObject(UserInformation.class);
             password = userInformation.getPassword();
 
-            textViewInfo.setText(String.format(Locale.CANADA, "Name: %s %s\nUsername: @%s",
-                    userInformation.getFirstName(), userInformation.getLastName(), userInformation.getUsername()));
+            if (userInformation.getFirstName().equals("") && userInformation.getLastName().equals("")) {
+                textViewInfo.setText(String.format(Locale.CANADA, "Username: @%s", userInformation.getUsername()));
+            } else {
+                textViewInfo.setText(String.format(Locale.CANADA, "Name: %s %s\nUsername: @%s",
+                        userInformation.getFirstName(), userInformation.getLastName(), userInformation.getUsername()));
+            }
 
             final var temp = userInformation.getQrCodeList();
             if (temp.size() == 0) {

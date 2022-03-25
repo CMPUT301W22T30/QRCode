@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30;
+package com.example.qrcodeteam30.viewclass;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.modelclass.UserInformation;
-import com.example.qrcodeteam30.reusableactivity.UserProfileActivity;
+import com.example.qrcodeteam30.viewclass.reusableactivity.UserProfileActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
@@ -23,10 +24,8 @@ import com.journeyapps.barcodescanner.ScanOptions;
 import java.util.ArrayList;
 
 /**
- * <p>
- *     This activity represents the interface for the user to search other user
- *     Then, the user can see which QR Codes do the other user have (by press the search button)
- * </p>
+ * This activity represents the interface for the user to search other user
+ * Then, the user can see which QR Codes do the other user have (by press the search button)
  */
 public class SearchUsernameActivity extends AppCompatActivity {
     private String sessionUsername;

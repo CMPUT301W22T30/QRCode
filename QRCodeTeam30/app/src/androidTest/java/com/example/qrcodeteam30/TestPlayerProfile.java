@@ -14,6 +14,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 
+import com.example.qrcodeteam30.viewclass.MainActivity;
+
 import org.junit.Test;
 
 public class TestPlayerProfile {

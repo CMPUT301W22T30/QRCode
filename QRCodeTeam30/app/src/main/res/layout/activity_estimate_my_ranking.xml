@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myprofile.EstimateMyRankingActivity"
+    tools:context=".viewclass.myprofile.EstimateMyRankingActivity"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_logout"/>
@@ -21,6 +21,14 @@
             android:textStyle="bold|italic"
             android:textSize="20sp"
             android:id="@+id/textView_estimateRanking"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
+            android:textSize="20sp"
+            android:id="@+id/textView_estimateRanking_exactRanking"
             android:layout_margin="10dp" />
 
     </LinearLayout>

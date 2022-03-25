@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30.reusableactivity;
+package com.example.qrcodeteam30.viewclass.reusableactivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,12 +12,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.MainActivity;
-import com.example.qrcodeteam30.PlayerMenuActivity;
+import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.modelclass.UserInformation;
-import com.example.qrcodeteam30.viewallqrcode.ViewAllQRCodeActivity;
+import com.example.qrcodeteam30.viewclass.viewallqrcode.ViewAllQRCodeActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;

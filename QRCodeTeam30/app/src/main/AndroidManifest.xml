@@ -21,67 +21,67 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QRCodeTeam30">
         <activity
-            android:name=".myprofile.EstimateMyRankingActivity"
+            android:name=".viewclass.myprofile.EstimateMyRankingActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".reusableactivity.CheckSameQRCodeActivity"
+            android:name=".viewclass.reusableactivity.CheckSameQRCodeActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".reusableactivity.ViewAllCommentActivity"
+            android:name=".viewclass.reusableactivity.ViewAllCommentActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".SearchQRCodeActivity"
+            android:name=".viewclass.SearchQRCodeActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".reusableactivity.UserProfileActivity"
+            android:name=".viewclass.reusableactivity.UserProfileActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".SearchUsernameActivity"
+            android:name=".viewclass.SearchUsernameActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".reusableactivity.MapQRCodeActivity"
+            android:name=".viewclass.reusableactivity.MapQRCodeActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".reusableactivity.QRCodeInfoActivity"
+            android:name=".viewclass.reusableactivity.QRCodeInfoActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".viewallqrcode.UserStatisticsActivity"
+            android:name=".viewclass.viewallqrcode.UserStatisticsActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".viewallqrcode.ViewAllQRCodeActivity"
+            android:name=".viewclass.viewallqrcode.ViewAllQRCodeActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".RankingActivity"
+            android:name=".viewclass.RankingActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".myprofile.ChangeProfileActivity"
+            android:name=".viewclass.myprofile.ChangeProfileActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".myprofile.MyProfileActivity"
+            android:name=".viewclass.myprofile.MyProfileActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".PlayerMenuActivity"
+            android:name=".viewclass.PlayerMenuActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".SignUpActivity"
+            android:name=".viewclass.SignUpActivity"
             android:exported="false"
             android:configChanges="orientation|screenSize"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".viewclass.MainActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize">
             <intent-filter>

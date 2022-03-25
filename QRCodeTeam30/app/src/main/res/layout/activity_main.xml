@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".viewclass.MainActivity"
     android:orientation="vertical">
     <include layout="@layout/toolbar_logout"/>
 
@@ -67,12 +67,21 @@
 
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SIGN IN WITH THIS DEVICE"
+            android:textSize="16sp"
+            android:id="@+id/signinactivity_sign_in_with_device"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SIGN UP"
             android:textSize="16sp"
             android:id="@+id/signinactivity_sign_up_button"
             android:layout_gravity="center"/>
+
     </LinearLayout>
 
 </LinearLayout>

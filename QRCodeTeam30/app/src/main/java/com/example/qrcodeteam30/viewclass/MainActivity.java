@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30;
+package com.example.qrcodeteam30.viewclass;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +12,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.R;
+import com.example.qrcodeteam30.controllerclass.DeviceUniqueIDController;
 import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
+import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.journeyapps.barcodescanner.ScanContract;
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonSignInQRCode = findViewById(R.id.sign_in_with_qrcode_button);
         Button buttonSignUp = findViewById(R.id.signinactivity_sign_up_button);
         Button buttonHome = findViewById(R.id.button_toolbar_home);
+        Button signInWithDeviceButton = findViewById(R.id.signinactivity_sign_in_with_device);
         buttonHome.setVisibility(View.GONE);
 
         buttonSignIn.setOnClickListener(v -> {
@@ -112,6 +117,39 @@ public class MainActivity extends AppCompatActivity {
         buttonSignUp.setOnClickListener(v -> {
             var intent = new Intent(MainActivity.this, SignUpActivity.class);
             startActivity(intent);
+        });
+
+        MyFirestoreUploadController myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
+        String uniqueID = DeviceUniqueIDController.getDeviceUniqueID(this, this);
+
+        signInWithDeviceButton.setOnClickListener(v -> {
+            final DocumentReference documentReference = collectionReferenceSignInInformation.document(uniqueID);
+
+            documentReference.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if (documentSnapshot.exists()) {
+                        var intent = new Intent(MainActivity.this, PlayerMenuActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("SessionUsername", uniqueID);
+                        startActivity(intent);
+                    } else {
+                        UserInformation userInformation = null;
+                        try {
+                            userInformation = new UserInformation(uniqueID, MyCryptographyController.hashSHA256(uniqueID + "QRCodeTeam30"), "", "", 0);
+                        } catch (NoSuchAlgorithmException e) {
+                            e.printStackTrace();
+                        }
+                        myFirestoreUpload.signUpNewUser(userInformation);
+
+                        var intent = new Intent(MainActivity.this, PlayerMenuActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("SessionUsername", uniqueID);
+                        startActivity(intent);
+                    }
+                    finish();
+                }
+            });
         });
     }
 

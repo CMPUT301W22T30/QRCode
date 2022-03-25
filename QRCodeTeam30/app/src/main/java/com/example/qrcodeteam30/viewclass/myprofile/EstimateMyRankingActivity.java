@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30.myprofile;
+package com.example.qrcodeteam30.viewclass.myprofile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +11,19 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.MainActivity;
-import com.example.qrcodeteam30.PlayerMenuActivity;
+import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Locale;
 
 /**
@@ -32,6 +36,10 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
     private double score;
     private int count;
     private TextView textView;
+    private TextView textViewExact;
+    ListenerRegistration listenerRegistration;
+    FirebaseFirestore db;
+    CollectionReference collectionReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,7 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
         });
 
         textView = findViewById(R.id.textView_estimateRanking);
+        textViewExact = findViewById(R.id.textView_estimateRanking_exactRanking);
 
         sessionUsername = getIntent().getStringExtra("SessionUsername");
         max = getIntent().getDoubleExtra("Max", -1);
@@ -72,13 +81,17 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
 
         if (count == 0) {
             textView.setText("You have no barcodes scanned");
-            return;
         }
 
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final CollectionReference collectionReference = db.collection("SignInInformation");
-        collectionReference.addSnapshotListener((value, error) -> {
+        db = FirebaseFirestore.getInstance();
+        collectionReference = db.collection("SignInInformation");
+
+    }
+
+    @Override
+    protected void onStart() {
+        listenerRegistration = collectionReference.addSnapshotListener((value, error) -> {
             int cfMax = 0;
             int fMax = 0;
             int cfCount = 0;
@@ -88,6 +101,10 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
             int numQRCodes = 0;
             int numDocs = 0;
 
+            HashSet<Double> allQRCodeHashSet = new HashSet<>();
+            ArrayList<Double> scoreArr = new ArrayList<>();
+            ArrayList<Integer> countArr = new ArrayList<>();
+
             for (var queryDocumentSnapshot : value) {
                 UserInformation userInformation = queryDocumentSnapshot.toObject(UserInformation.class);
                 if (userInformation.getScore() < score) {
@@ -95,12 +112,15 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
                 } else if (userInformation.getScore() == score) {
                     fScore++;
                 }
+                scoreArr.add(userInformation.getScore());
 
                 if (userInformation.getQrCodeList().size() < count) {
                     cfCount++;
                 } else if (userInformation.getQrCodeList().size() == count) {
                     fCount++;
                 }
+                countArr.add(userInformation.getQrCodeList().size());
+
                 for (var qrCode: userInformation.getQrCodeList()) {
                     if (qrCode.getScore() < max) {
                         cfMax++;
@@ -108,6 +128,7 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
                         fMax++;
                     }
                     numQRCodes++;
+                    allQRCodeHashSet.add(qrCode.getScore());
                 }
 
                 numDocs++;
@@ -123,7 +144,28 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
             textView.setText(String.format(Locale.CANADA,
                     "Total Score Percentile: Top %s%%\n\nMax Score Percentile: Top %s%%\n\nNumber of Barcodes Percentile: Top %s%%",
                     strippedValSum.toPlainString(), strippedValMax.toPlainString(), strippedValCount.toPlainString()));
+
+            ArrayList<Double> allQRCodeArr = new ArrayList<>(allQRCodeHashSet);
+
+            allQRCodeArr.sort(Collections.reverseOrder());
+            scoreArr.sort(Collections.reverseOrder());
+            countArr.sort(Collections.reverseOrder());
+
+            int rankMax = allQRCodeArr.indexOf(max);
+            int rankScore = scoreArr.indexOf(score);
+            int rankCount = countArr.indexOf(count);
+            textViewExact.setText(
+                    String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Unique Max Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
+                            rankScore + 1, scoreArr.size(), rankMax + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
+
         });
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        listenerRegistration.remove();
+        super.onStop();
     }
 
     @Override

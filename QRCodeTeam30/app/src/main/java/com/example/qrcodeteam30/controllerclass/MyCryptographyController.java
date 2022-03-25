@@ -38,7 +38,14 @@ public class MyCryptographyController {
      * @return encrypted string
      */
     public static String encrypt(String strToEncrypt) {
-        return "AAA" + strToEncrypt;
+        //return "AAA" + strToEncrypt;
+        String str = null;
+        try {
+            str = MyCryptographyController.hashSHA256(strToEncrypt);
+        } catch (NoSuchAlgorithmException e) {
+            str = "default";
+        }
+        return str;
 
     }
 
@@ -48,7 +55,8 @@ public class MyCryptographyController {
      * @return decrypted String
      */
     public static String decrypt(String strToDecrypt) {
-        return strToDecrypt.substring(3);
+        //return strToDecrypt.substring(3);
+        return strToDecrypt;
 
     }
 }
