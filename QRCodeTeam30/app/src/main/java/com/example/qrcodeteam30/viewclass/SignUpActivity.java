@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30;
+package com.example.qrcodeteam30.viewclass;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.modelclass.UserInformation;

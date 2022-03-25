@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30.reusableactivity;
+package com.example.qrcodeteam30.viewclass.reusableactivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,8 +15,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.MainActivity;
-import com.example.qrcodeteam30.PlayerMenuActivity;
+import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.MyBitmapController;
 import com.example.qrcodeteam30.controllerclass.MyPermissionController;

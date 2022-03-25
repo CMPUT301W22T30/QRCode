@@ -1,6 +1,5 @@
-package com.example.qrcodeteam30.myprofile;
+package com.example.qrcodeteam30.viewclass.myprofile;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,9 +12,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.MainActivity;
+import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
-import com.example.qrcodeteam30.PlayerMenuActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.DocumentReference;

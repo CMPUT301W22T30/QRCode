@@ -1,4 +1,4 @@
-package com.example.qrcodeteam30;
+package com.example.qrcodeteam30.viewclass;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,10 +19,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.MyPermissionController;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.example.qrcodeteam30.modelclass.UserInformation;
-import com.example.qrcodeteam30.reusableactivity.QRCodeInfoActivity;
+import com.example.qrcodeteam30.viewclass.reusableactivity.QRCodeInfoActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;

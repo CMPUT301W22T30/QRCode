@@ -1,7 +1,6 @@
-package com.example.qrcodeteam30.reusableactivity;
+package com.example.qrcodeteam30.viewclass.reusableactivity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,8 +12,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.MainActivity;
-import com.example.qrcodeteam30.PlayerMenuActivity;
+import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;

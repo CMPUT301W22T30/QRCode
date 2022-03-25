@@ -17,7 +17,8 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 
-import com.example.qrcodeteam30.myprofile.MyProfileActivity;
+import com.example.qrcodeteam30.viewclass.myprofile.MyProfileActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 
 import org.junit.Test;
 

@@ -18,6 +18,8 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 
+import com.example.qrcodeteam30.viewclass.MainActivity;
+
 import org.hamcrest.Matcher;
 import org.junit.Test;
 
