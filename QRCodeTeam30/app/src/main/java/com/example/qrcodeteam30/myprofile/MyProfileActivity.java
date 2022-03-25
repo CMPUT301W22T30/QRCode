@@ -112,8 +112,12 @@ public class MyProfileActivity extends AppCompatActivity {
             UserInformation userInformation = value.toObject(UserInformation.class);
             password = userInformation.getPassword();
 
-            textViewInfo.setText(String.format(Locale.CANADA, "Name: %s %s\nUsername: @%s",
-                    userInformation.getFirstName(), userInformation.getLastName(), userInformation.getUsername()));
+            if (userInformation.getFirstName().equals("") && userInformation.getLastName().equals("")) {
+                textViewInfo.setText(String.format(Locale.CANADA, "Username: @%s", userInformation.getUsername()));
+            } else {
+                textViewInfo.setText(String.format(Locale.CANADA, "Name: %s %s\nUsername: @%s",
+                        userInformation.getFirstName(), userInformation.getLastName(), userInformation.getUsername()));
+            }
 
             final var temp = userInformation.getQrCodeList();
             if (temp.size() == 0) {
