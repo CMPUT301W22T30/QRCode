@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.243" />
+        <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.1" />
+        <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/drawable/outline_password_24.xml" value="0.1335" />
+        <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/drawable/outline_person_24.xml" value="0.1335" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_change_profile.xml" value="0.1" />
+        <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_check_same_qrcode.xml" value="0.45677083333333335" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_estimate_my_ranking.xml" value="0.5536458333333333" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_main.xml" value="0.33125" />
+        <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_map_qrcode.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_my_profile.xml" value="0.31354166666666666" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_player_menu.xml" value="0.33125" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_qrcode_info.xml" value="0.33125" />
@@ -20,8 +26,7 @@
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/listview_ranking_content.xml" value="0.4244791666666667" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/listview_simple_content.xml" value="0.4244791666666667" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/listview_viewallqrcode_content.xml" value="0.4244791666666667" />
-        <entry key="..\:/Users/quang/Desktop/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/quang/Desktop/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_my_profile.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/layout/toolbar_logout.xml" value="0.25" />
       </map>
     </option>
   </component>
