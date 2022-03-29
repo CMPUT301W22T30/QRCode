@@ -11,10 +11,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.viewclass.MainActivity;
-import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.modelclass.UserInformation;
+import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -101,7 +101,8 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
             int numQRCodes = 0;
             int numDocs = 0;
 
-            HashSet<Double> allQRCodeHashSet = new HashSet<>();
+            HashSet<String> allQRCodeHashSetString = new HashSet<>();
+            ArrayList<Double> allQRCodeArr = new ArrayList<>();
             ArrayList<Double> scoreArr = new ArrayList<>();
             ArrayList<Integer> countArr = new ArrayList<>();
 
@@ -128,7 +129,11 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
                         fMax++;
                     }
                     numQRCodes++;
-                    allQRCodeHashSet.add(qrCode.getScore());
+
+                    if (!allQRCodeHashSetString.contains(qrCode.getQrCodeContent())) {
+                        allQRCodeHashSetString.add(qrCode.getQrCodeContent());
+                        allQRCodeArr.add(qrCode.getScore());
+                    }
                 }
 
                 numDocs++;
@@ -145,7 +150,6 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
                     "Total Score Percentile: Top %s%%\n\nMax Score Percentile: Top %s%%\n\nNumber of Barcodes Percentile: Top %s%%",
                     strippedValSum.toPlainString(), strippedValMax.toPlainString(), strippedValCount.toPlainString()));
 
-            ArrayList<Double> allQRCodeArr = new ArrayList<>(allQRCodeHashSet);
 
             allQRCodeArr.sort(Collections.reverseOrder());
             scoreArr.sort(Collections.reverseOrder());
