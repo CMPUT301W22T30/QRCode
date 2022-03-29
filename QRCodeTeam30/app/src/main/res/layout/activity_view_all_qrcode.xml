@@ -26,12 +26,13 @@
             android:layout_marginTop="5dp"
             android:divider="@null"/>
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/button_viewAllQRCode_statistics"
             android:text="Statistics"
-            android:backgroundTint="@color/blue1"/>
+            android:backgroundTint="@color/blue3"/>
 
     </LinearLayout>
 

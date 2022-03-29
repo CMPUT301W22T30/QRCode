@@ -69,7 +69,8 @@
                 android:layout_height="wrap_content"
                 android:text="\nDELETE\n"
                 android:id="@+id/button_delete_qrCode_info"
-                android:backgroundTint="@color/red"/>
+                android:backgroundTint="@color/red"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
