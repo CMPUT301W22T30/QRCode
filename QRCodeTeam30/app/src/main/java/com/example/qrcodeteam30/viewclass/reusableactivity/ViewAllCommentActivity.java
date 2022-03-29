@@ -87,7 +87,9 @@ public class ViewAllCommentActivity extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            if (!arrayAdapter.getItem(i).getAuthor().equals(sessionUsername)) {
+            if (!arrayAdapter.getItem(i).getAuthor().equals(sessionUsername)
+                    && !sessionUsername.equals("admin")
+                    && !arrayAdapter.getItem(i).getUsername().equals(sessionUsername)) {
                 return;
             }
             var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(ViewAllCommentActivity.this);
