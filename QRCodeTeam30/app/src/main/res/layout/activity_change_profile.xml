@@ -20,13 +20,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="First Name">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_changeProfile_firstName"/>
+                android:id="@+id/editText_changeProfile_firstName"
+                android:hint="First Name"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -34,13 +34,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Last Name">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_changeProfile_lastName"/>
+                android:id="@+id/editText_changeProfile_lastName"
+                android:hint="Last Name"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,13 +49,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="New Password">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_changeProfile_password"/>
+                android:id="@+id/editText_changeProfile_password"
+                android:inputType="textPassword"
+                android:hint="New Password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
