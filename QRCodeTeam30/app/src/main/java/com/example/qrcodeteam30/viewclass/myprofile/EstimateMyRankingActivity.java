@@ -158,10 +158,16 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
             int rankMax = allQRCodeArr.indexOf(max);
             int rankScore = scoreArr.indexOf(score);
             int rankCount = countArr.indexOf(count);
-            textViewExact.setText(
-                    String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Unique Max Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
-                            rankScore + 1, scoreArr.size(), rankMax + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
 
+            if (max == -1) {
+                textViewExact.setText(
+                        String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
+                                rankScore + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
+            } else {
+                textViewExact.setText(
+                        String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Unique Max Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
+                                rankScore + 1, scoreArr.size(), rankMax + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
+            }
         });
         super.onStart();
     }
