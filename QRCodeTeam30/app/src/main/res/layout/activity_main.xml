@@ -21,15 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Username"
-            app:helperText="Required*"
-            app:helperTextTextColor="@color/red"
             app:startIconDrawable="@drawable/outline_person_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/signin_username_editText"/>
+                android:id="@+id/signin_username_editText"
+                android:hint="Username"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,15 +35,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:hint="Password"
-            app:helperText="Required*"
-            app:helperTextTextColor="@color/red"
             app:startIconDrawable="@drawable/outline_password_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/signin_password_editText"/>
+                android:id="@+id/signin_password_editText"
+                android:inputType="textPassword"
+                android:hint="Password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
