@@ -41,28 +41,28 @@
                 android:layout_height="wrap_content"
                 android:text="\nCHECK SAME QR CODE\n"
                 android:id="@+id/button_checkSameQRCode_qrCode_info"
-                android:backgroundTint="@color/green_button"/>
+                android:backgroundTint="@color/blue3"/>
             <Button
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="\nVIEW LOCATION\n"
                 android:id="@+id/button_viewLocation_qrCode_info"
-                android:backgroundTint="@color/green_button"/>
+                android:backgroundTint="@color/blue3"/>
             <Button
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="\nVIEW PHOTO\n"
                 android:id="@+id/button_viewPhoto_qrCode_info"
-                android:backgroundTint="@color/green_button"/>
+                android:backgroundTint="@color/blue3"/>
             <Button
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="\nVIEW COMMENT\n"
                 android:id="@+id/button_viewComment_qrCode_info"
-                android:backgroundTint="@color/green_button"/>
+                android:backgroundTint="@color/blue3"/>
             <Button
                 style="@style/Widget.Material3.Button.TonalButton"
                 android:layout_width="match_parent"

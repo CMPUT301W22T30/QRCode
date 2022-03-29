@@ -10,4 +10,10 @@
     <color name="red">#FF0000</color>
     <color name="blue">#0000FF</color>
     <color name="green_button">#95E075</color>
+    <color name="blue1">#466289</color>
+    <color name="blue2">#627aa6</color>
+    <color name="blue3">#92a5d0</color>
+    <color name="blue4">#a9b9da</color>
+    <color name="blue5">#d3e1fe</color>
+    <color name="blue6">#e7edfd</color>
 </resources>

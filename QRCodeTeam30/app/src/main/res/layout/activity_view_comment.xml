@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".viewclass.reusableactivity.ViewAllCommentActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/background">
     <include layout="@layout/toolbar_logout"/>
 
     <LinearLayout

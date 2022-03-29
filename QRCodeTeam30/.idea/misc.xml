@@ -3,6 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/drawable/baseline_person_24.xml" value="0.15572916666666667" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/drawable/outline_password_24.xml" value="0.15572916666666667" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_change_profile.xml" value="0.2322357019064125" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_check_same_qrcode.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_estimate_my_ranking.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_main.xml" value="0.13958333333333334" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_map_qrcode.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_my_profile.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_player_menu.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_qrcode_info.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_ranking.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_search_qrcode.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_search_username.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_sign_up.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_user_profile.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_user_statistics.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_view_all_qrcode.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/activity_view_comment.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/imageview_savephoto_dialog_layout.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/listview_ranking_content.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/listview_simple_content.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/listview_viewallcomment_content.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/listview_viewallqrcode_content.xml" value="0.26875" />
+        <entry key="..\:/Dat/CMPUT301/prjui/QRCode/QRCodeTeam30/app/src/main/res/layout/toolbar_logout.xml" value="0.13958333333333334" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.243" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.1" />
         <entry key="..\:/Users/nmhj1/OneDrive/Documents/GitHub/QRCode/QRCodeTeam30/app/src/main/res/drawable/outline_password_24.xml" value="0.1335" />

@@ -24,7 +24,7 @@
             android:id="@+id/button_playerMenu_scanQRCode"
             android:text="Scan QR Code"
             android:layout_weight="1"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:id="@+id/button_playerMenu_searchQRCode"
             android:text="Search QR Code"
             android:layout_weight="1"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:id="@+id/button_playerMenu_searchUsername"
             android:text="Search Username"
             android:layout_weight="1"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:id="@+id/button_playerMenu_ranking"
             android:text="Ranking"
             android:layout_weight="1"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:id="@+id/button_playerMenu_myProfile"
             android:text="My Profile"
             android:layout_weight="1"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
             android:id="@+id/button_playerMenu_viewQRCode"
             android:text="View QR Code"
             android:layout_weight="1"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
 
     </LinearLayout>
 

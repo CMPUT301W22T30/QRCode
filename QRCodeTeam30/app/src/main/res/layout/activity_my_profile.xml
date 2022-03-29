@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="\nEstimate my Ranking\n"
             android:id="@+id/button_myProfile_myRanking"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
 
 
         <Button
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="\nChange Profile\n"
             android:id="@+id/button_myProfile_changeProfile"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
 
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="\nGenerate QR Code\n"
             android:id="@+id/button_myProfile_generateQRCode"
-            android:backgroundTint="@color/green_button"/>
+            android:backgroundTint="@color/blue3"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
