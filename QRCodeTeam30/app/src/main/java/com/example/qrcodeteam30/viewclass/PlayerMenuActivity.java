@@ -66,6 +66,7 @@ public class PlayerMenuActivity extends AppCompatActivity {
                     }).show();
         });
 
+
         sessionUsername = getIntent().getStringExtra("SessionUsername");
         game = (Game) getIntent().getSerializableExtra("Game");
         myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
@@ -78,7 +79,14 @@ public class PlayerMenuActivity extends AppCompatActivity {
         Button buttonMyProfile = findViewById(R.id.button_playerMenu_myProfile);
         Button buttonViewQRCode = findViewById(R.id.button_playerMenu_viewQRCode);
         Button buttonHome = findViewById(R.id.button_toolbar_home);
-        buttonHome.setVisibility(View.GONE);
+
+        buttonHome.setOnClickListener(v -> {
+            var intent = new Intent(PlayerMenuActivity.this, ChooseGameActivity.class);
+            intent.putExtra("SessionUsername", sessionUsername);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        });
 
 
         buttonScanQRCode.setOnClickListener(v -> {
