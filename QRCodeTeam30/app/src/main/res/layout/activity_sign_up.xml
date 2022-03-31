@@ -108,7 +108,7 @@
             android:textColor="@color/white"
             android:id="@+id/signupactivity_sign_up_button"
             android:layout_gravity="center"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
 
     </LinearLayout>
 

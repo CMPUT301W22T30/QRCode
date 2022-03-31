@@ -67,7 +67,7 @@
                 app:iconPadding="0dp"
                 android:padding="0dp"
                 app:iconGravity="textStart"
-                android:backgroundTint="@color/blue3"
+                android:backgroundTint="@color/blue2"
                 app:iconTint="@color/white"/>
 
             <Button
@@ -81,7 +81,7 @@
                 android:id="@+id/sign_in_with_qrcode_button"
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
-                android:backgroundTint="@color/blue3"/>
+                android:backgroundTint="@color/blue2"/>
 
         </LinearLayout>
 
@@ -98,7 +98,7 @@
             android:id="@+id/signinactivity_sign_in_with_device"
             android:layout_gravity="center"
             android:shadowRadius="@integer/material_motion_duration_long_1"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
 
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
@@ -110,7 +110,7 @@
             android:textColor="@color/white"
             android:id="@+id/signinactivity_sign_up_button"
             android:layout_gravity="center"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
 
     </LinearLayout>
 

@@ -33,7 +33,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:layout_gravity="center"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
 
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
