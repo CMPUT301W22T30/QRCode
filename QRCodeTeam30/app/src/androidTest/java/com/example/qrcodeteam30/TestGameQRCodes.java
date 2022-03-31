@@ -11,12 +11,17 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.CoreMatchers.anything;
 
+import android.content.Intent;
+
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -24,34 +29,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class TestGameQRCodes {
-    @Rule
-    public IntentsTestRule<MainActivity> intentsTestRule =
-            new IntentsTestRule<>(MainActivity.class);
-
-
-//    @Test
-//    public void testQRCodeScan() throws Exception {
-//        // Launch MainActivity
-//        ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
-//
-//        // Type "admin" to username editText
-//        Espresso.onView(withId(R.id.signin_username_editText))
-//                .perform(typeText("admin"));
-//        // Type password
-//        Espresso.onView(withId(R.id.signin_password_editText))
-//                .perform(typeText("pwadmin"));
-//
-//        // Press button to sign in
-//        Espresso.onView(withId(R.id.sign_in_button)).perform(click());
-//        Thread.sleep(10000);
-//        // Press Scan QR Code button to open camera
-//        Espresso.onView(withId(R.id.button_playerMenu_scanQRCode)).perform(click());
-//        Thread.sleep(10000);
-//        // Check if camera is opened
-//        intended(toPackage("com.journeyapps"));
-//        Thread.sleep(10000);
-//        scenario.close();
-//    }
 
     @Test
     public void testComment() throws Exception {
@@ -167,5 +144,49 @@ public class TestGameQRCodes {
 
 
         scenario.close();
+    }
+
+    @Test
+    public void scanQRCodeForScore() {
+        Intent intent = new Intent(ApplicationProvider.getApplicationContext(), PlayerMenuActivity.class);
+        intent.putExtra("SessionUsername", "admin");
+        Game game = new Game("DefaultAdmin", "admin");
+        intent.putExtra("Game", game);
+        ActivityScenario scenario = ActivityScenario.launch(intent);
+
+        Espresso.onView(withId(R.id.button_playerMenu_scanQRCode)).perform(click());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Espresso.onView(withText("Accept")).perform(click());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Espresso.onView(withText("Yes")).perform(click());
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Espresso.onView(withText("Yes")).perform(click());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 }
