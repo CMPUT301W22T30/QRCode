@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         if (userInformation.getPassword().equals(hashedPassword)) {
-//                            var intent = new Intent(MainActivity.this, PlayerMenuActivity.class);
                             var intent = new Intent(MainActivity.this, ChooseGameActivity.class);
                             intent.putExtra("SessionUsername", username);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -128,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot documentSnapshot = task.getResult();
                     if (documentSnapshot.exists()) {
-                        //var intent = new Intent(MainActivity.this, PlayerMenuActivity.class);
                         var intent = new Intent(MainActivity.this, ChooseGameActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("SessionUsername", uniqueID);
@@ -142,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         myFirestoreUpload.signUpNewUser(userInformation);
 
-                        var intent = new Intent(MainActivity.this, PlayerMenuActivity.class);
+                        var intent = new Intent(MainActivity.this, ChooseGameActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("SessionUsername", uniqueID);
                         startActivity(intent);
@@ -188,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                                 var userInformation = document.toObject(UserInformation.class);
 
                                 if (userInformation.getPassword().equals(password)) {
-                                    var intent = new Intent(MainActivity.this, PlayerMenuActivity.class);
+                                    var intent = new Intent(MainActivity.this, ChooseGameActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     intent.putExtra("SessionUsername", username);
                                     startActivity(intent);

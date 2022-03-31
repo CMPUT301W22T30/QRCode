@@ -40,6 +40,11 @@ public class TestGameQRCodes {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         Thread.sleep(1000);
 
         // Press View QR Code button to view QR Codes
@@ -83,6 +88,10 @@ public class TestGameQRCodes {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
         Thread.sleep(1000);
 
         // Press ranking button to view ranking
@@ -119,6 +128,10 @@ public class TestGameQRCodes {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
         Thread.sleep(1000);
 
         // Press View QR Code button to view QR Codes

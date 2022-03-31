@@ -7,6 +7,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static org.hamcrest.CoreMatchers.anything;
+
 import android.content.Intent;
 
 import androidx.test.core.app.ActivityScenario;
@@ -42,6 +44,10 @@ public class DemoTest {
         // Must sleep every time we switch activity (1 second is enough)
         // The reason is because Espresso is too fast, so the new activity has not been registered
         // yet after this code is run => Error
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         Thread.sleep(1000);
 
         // Check if ranking button is displayed

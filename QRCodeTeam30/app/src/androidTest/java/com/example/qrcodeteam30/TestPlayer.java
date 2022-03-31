@@ -47,17 +47,22 @@ public class TestPlayer {
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
 
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         // Sleep
         Thread.sleep(1000);
 
         // Press Scan QR Code button in main menu
         Espresso.onView(withId(R.id.button_playerMenu_scanQRCode)).perform(click());
 
-        // Press back
-        Espresso.onView(isRoot()).perform(pressBack());
+        Thread.sleep(1000);
 
-        // Check the main menu is displayed
-        Espresso.onView(withId(R.id.button_playerMenu_scanQRCode)).check(matches(isDisplayed()));
+        Espresso.onView(withText("Accept")).perform(click());
+        Thread.sleep(1000);
+        Espresso.onView(withText("No")).perform(click());
+        Thread.sleep(1000);
+        Espresso.onView(withText("No")).perform(click());
 
         scenario.close();
     }
@@ -76,6 +81,9 @@ public class TestPlayer {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);
@@ -106,6 +114,9 @@ public class TestPlayer {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);
@@ -147,6 +158,9 @@ public class TestPlayer {
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
 
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         // Sleep
         Thread.sleep(1000);
 
@@ -182,6 +196,9 @@ public class TestPlayer {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);
@@ -219,6 +236,9 @@ public class TestPlayer {
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
 
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         // Sleep
         Thread.sleep(1000);
 
@@ -240,8 +260,6 @@ public class TestPlayer {
         scenario.close();
     }
 
-
-    // Not done yet
     @Test
     public void otherPlayerProfile() throws Exception {
         // Launch MainActivity
@@ -256,6 +274,9 @@ public class TestPlayer {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);

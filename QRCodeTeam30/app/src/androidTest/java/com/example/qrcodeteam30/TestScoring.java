@@ -8,6 +8,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static org.hamcrest.CoreMatchers.anything;
+
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 
@@ -31,6 +33,9 @@ public class TestScoring {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);
@@ -61,6 +66,9 @@ public class TestScoring {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);
@@ -98,6 +106,9 @@ public class TestScoring {
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
 
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         // Sleep
         Thread.sleep(1000);
 
@@ -133,6 +144,9 @@ public class TestScoring {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);

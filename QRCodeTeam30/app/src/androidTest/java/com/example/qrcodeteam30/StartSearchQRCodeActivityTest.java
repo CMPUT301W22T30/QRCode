@@ -26,9 +26,7 @@ public class StartSearchQRCodeActivityTest {
         ActivityScenario scenario = ActivityScenario.launch(intent);
 
         Espresso.onView(withId(R.id.button_playerMenu_searchQRCode)).perform(click());
-        Thread.sleep(20000);
+        Thread.sleep(10000);
         Espresso.onView(withId(R.id.searchQRCode_mapView)).check(matches(isDisplayed()));
-//        Thread.sleep(20000);
-//        Espresso.onView(withId(R.id.searchQRCode_progressBar)).check(matches(isDisplayed()));
     }
 }

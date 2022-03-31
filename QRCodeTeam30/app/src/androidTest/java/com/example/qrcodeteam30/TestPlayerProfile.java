@@ -82,7 +82,9 @@ public class TestPlayerProfile {
         // Launch MainActivity
         ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
 
-        Espresso.onView(withId(R.id.sign_in_with_qrcode_button)).check(matches(isClickable()));
+        Espresso.onView(withId(R.id.sign_in_with_qrcode_button)).perform(click());
+
+        Thread.sleep(1000);
 
         scenario.close();
     }

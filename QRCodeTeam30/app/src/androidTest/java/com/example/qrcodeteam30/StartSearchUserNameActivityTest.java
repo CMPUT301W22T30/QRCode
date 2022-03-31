@@ -26,9 +26,8 @@ public class StartSearchUserNameActivityTest {
         ActivityScenario scenario = ActivityScenario.launch(intent);
 
         Espresso.onView(withId(R.id.button_playerMenu_searchUsername)).perform(click());
-        Thread.sleep(20000);
+        Thread.sleep(1000);
         Espresso.onView(withId(R.id.buttonQRCode_searchUsername)).check(matches(isDisplayed()));
-        Thread.sleep(20000);
         Espresso.onView(withId(R.id.searchView_searchUsername)).check(matches(isDisplayed()));
     }
 }

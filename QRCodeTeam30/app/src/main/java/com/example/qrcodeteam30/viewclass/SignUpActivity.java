@@ -26,7 +26,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * This activity is the interface for sign up.
- * Upon sign up completion, it automatically launches PlayerMenuActivity (The main menu).
+ * Upon sign up completion, it automatically launches ChooseGameActivity (to choose the game to play).
  */
 public class SignUpActivity extends AppCompatActivity {
     static private boolean retrievedSignUpInformation = false;  // Behave as a lock/mutex
@@ -101,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity {
                         retrievedSignUpInformation = false;
 
                         // Auto sign-in after sign up
-                        var intent = new Intent(SignUpActivity.this, PlayerMenuActivity.class);
+                        var intent = new Intent(SignUpActivity.this, ChooseGameActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("SessionUsername", username);
                         startActivity(intent);

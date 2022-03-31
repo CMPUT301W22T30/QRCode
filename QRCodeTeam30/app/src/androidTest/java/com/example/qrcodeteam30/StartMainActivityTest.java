@@ -11,6 +11,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static org.hamcrest.CoreMatchers.anything;
+
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -42,6 +44,10 @@ public class StartMainActivityTest {
         // The reason is because Espresso is too fast, so the new activity has not been registered
         // yet after this code is run => Error
         Thread.sleep(1000);
+
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Check if ranking button is displayed
         Espresso.onView(withId(R.id.button_playerMenu_ranking)).check(matches(isDisplayed()));
@@ -78,7 +84,7 @@ public class StartMainActivityTest {
         Thread.sleep(1000);
 
         // Go back
-        Espresso.onView(isRoot()).perform(pressBack());
+        //Espresso.onView(isRoot()).perform(pressBack());
 
         // Sleep
         Thread.sleep(1000);
@@ -103,8 +109,14 @@ public class StartMainActivityTest {
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
 
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         // Sleep
         Thread.sleep(1000);
+
+
 
         // Press my profile button to sign in
         Espresso.onView(withId(R.id.button_playerMenu_myProfile)).perform(click());
@@ -129,6 +141,10 @@ public class StartMainActivityTest {
                 .perform(typeText("pwadmin")).check(matches(withText("pwadmin")));
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);
@@ -183,6 +199,10 @@ public class StartMainActivityTest {
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
 
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         // Sleep
         Thread.sleep(1000);
 
@@ -218,6 +238,10 @@ public class StartMainActivityTest {
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
 
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         // Sleep
         Thread.sleep(1000);
 
@@ -250,6 +274,10 @@ public class StartMainActivityTest {
                 .perform(typeText("pwadmin")).check(matches(withText("pwadmin")));
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);

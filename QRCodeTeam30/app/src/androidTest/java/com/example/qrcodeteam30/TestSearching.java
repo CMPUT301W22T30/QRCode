@@ -10,6 +10,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.anything;
 
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,6 +42,9 @@ public class TestSearching {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);
@@ -86,6 +90,9 @@ public class TestSearching {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Sleep
         Thread.sleep(1000);

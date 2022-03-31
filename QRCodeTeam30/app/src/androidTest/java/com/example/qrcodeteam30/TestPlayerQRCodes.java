@@ -7,6 +7,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
+import static org.hamcrest.CoreMatchers.anything;
+
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -32,6 +34,8 @@ public class TestPlayerQRCodes {
 
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
         Thread.sleep(1000);
 
         // Press My Profile button to view QR Codes
@@ -65,6 +69,9 @@ public class TestPlayerQRCodes {
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
         Thread.sleep(1000);
 
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
         // Press My Profile button to view QR Codes
         Espresso.onView(withId(R.id.button_playerMenu_myProfile)).perform(click());
         Thread.sleep(1000);
@@ -95,6 +102,11 @@ public class TestPlayerQRCodes {
         // Press button to sign in
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
         Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
+        Thread.sleep(1000);
+
+
 
         // Press search username button
         Espresso.onView(withId(R.id.button_playerMenu_searchUsername)).perform(click());
