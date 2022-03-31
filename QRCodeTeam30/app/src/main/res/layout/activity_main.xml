@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/signin_username_editText"
+                android:fontFamily="@font/montserrat_regular"
                 android:hint="Username"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -41,6 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/signin_password_editText"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="textPassword"
                 android:hint="Password"/>
 
@@ -59,6 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_baseline_login_24"
+                android:textColor="@color/white"
                 android:layout_weight="1"
                 android:id="@+id/sign_in_button"
                 app:iconPadding="0dp"
@@ -71,7 +74,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="\u2386 QR CODE"
-                android:textSize="16sp"
+                android:fontFamily="@font/comedysketchdemoregular"
+                android:textSize="20sp"
+                android:textColor="@color/white"
                 android:id="@+id/sign_in_with_qrcode_button"
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
@@ -85,7 +90,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SIGN IN WITH THIS DEVICE"
-            android:textSize="16sp"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+
             android:id="@+id/signinactivity_sign_in_with_device"
             android:layout_gravity="center"
             android:shadowRadius="@integer/material_motion_duration_long_1"
@@ -96,7 +104,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SIGN UP"
-            android:textSize="16sp"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:id="@+id/signinactivity_sign_up_button"
             android:layout_gravity="center"
             android:backgroundTint="@color/blue3"/>

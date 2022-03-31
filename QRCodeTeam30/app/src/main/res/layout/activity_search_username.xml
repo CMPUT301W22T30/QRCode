@@ -17,22 +17,29 @@
         android:layout_margin="10dp">
 
         <Button
+            android:id="@+id/buttonQRCode_searchUsername"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="67dp"
+            android:backgroundTint="@color/blue3"
+            android:fontFamily="@font/comedysketchdemoregular"
             android:text="Check Username by QR Code"
-            android:id="@+id/buttonQRCode_searchUsername"/>
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="or"
             android:textSize="24sp"
+            android:fontFamily="@font/comedysketchdemoregular"
+
             android:textAlignment="center" />
 
         <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/searchView_searchUsername"
+            android:fontFamily="@font/montserrat_regular"
             app:iconifiedByDefault="false"
             app:queryHint="Enter username ..."/>
 

@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:textStyle="bold|italic"
+            android:textStyle="italic"
+            android:fontFamily="@font/montserrat_bold"
             android:id="@+id/textView_userProfile"/>
 
         <Button
@@ -28,6 +29,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_userProfile_viewAllQRCode"
             android:text="\nVIEW ALL QR CODE\n"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:layout_gravity="center"
             android:backgroundTint="@color/blue3"/>
 
@@ -37,6 +41,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_userProfile_deleteUser"
             android:text="\nDELETE USER\n"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+
             android:layout_gravity="center"
             android:backgroundTint="@color/red"
             android:textColor="@color/white"/>

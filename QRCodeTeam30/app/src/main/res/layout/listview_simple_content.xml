@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textSize="30dp"
+    android:fontFamily="@font/montserrat_regular"
+    android:background="@drawable/bg_listview"
     android:textStyle="bold|italic">
 
 </TextView>

@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/signup_username_editText"
+                android:fontFamily="@font/montserrat_regular"
                 android:hint="Username"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/signup_password_editText"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/signup_confirm_password_editText"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="textPassword"
                 android:hint="Confirm Password"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -76,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/signup_firstname_editText"
+                android:fontFamily="@font/montserrat_regular"
                 android:hint="First Name"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/signup_lastname_editText"
+                android:fontFamily="@font/montserrat_regular"
                 android:hint="Last Name"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,8 +103,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SIGN UP"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:id="@+id/signupactivity_sign_up_button"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:backgroundTint="@color/blue3"/>
 
     </LinearLayout>
 
