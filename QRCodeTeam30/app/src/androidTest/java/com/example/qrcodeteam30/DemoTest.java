@@ -14,6 +14,7 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 
@@ -56,6 +57,8 @@ public class DemoTest {
         // We simulate the input here
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), PlayerMenuActivity.class);
         intent.putExtra("SessionUsername", "admin");
+        Game game = new Game("DefaultAdmin", "admin", "1648684521764");
+        intent.putExtra("Game", game);
         ActivityScenario scenario = ActivityScenario.launch(intent);
 
         // Click on myProfile button to view my profile

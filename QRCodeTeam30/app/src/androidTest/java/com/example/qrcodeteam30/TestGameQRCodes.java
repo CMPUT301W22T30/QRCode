@@ -4,11 +4,9 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
 import static org.hamcrest.CoreMatchers.anything;
 
 import android.content.Intent;
@@ -16,14 +14,12 @@ import android.content.Intent;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -150,7 +146,7 @@ public class TestGameQRCodes {
     public void scanQRCodeForScore() {
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), PlayerMenuActivity.class);
         intent.putExtra("SessionUsername", "admin");
-        Game game = new Game("DefaultAdmin", "admin");
+        Game game = new Game("DefaultAdmin", "admin", "1648684521764");
         intent.putExtra("Game", game);
         ActivityScenario scenario = ActivityScenario.launch(intent);
 

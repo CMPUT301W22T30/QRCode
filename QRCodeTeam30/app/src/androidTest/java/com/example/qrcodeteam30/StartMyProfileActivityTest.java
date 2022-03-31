@@ -17,6 +17,7 @@ import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.myprofile.MyProfileActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 
@@ -30,6 +31,8 @@ public class StartMyProfileActivityTest {
         // We simulate the input here
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), PlayerMenuActivity.class);
         intent.putExtra("SessionUsername", "admin");
+        Game game = new Game("DefaultAdmin", "admin", "1648684521764");
+        intent.putExtra("Game", game);
         ActivityScenario scenario = ActivityScenario.launch(intent);
 
         // Click on myProfile button to view my profile
@@ -45,6 +48,8 @@ public class StartMyProfileActivityTest {
     public void testChangeProfile() throws Exception {
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), MyProfileActivity.class);
         intent.putExtra("SessionUsername", "admin");
+        Game game = new Game("DefaultAdmin", "admin", "1648684521764");
+        intent.putExtra("Game", game);
         ActivityScenario scenario = ActivityScenario.launch(intent);
 
         // Press Change profile button
@@ -82,6 +87,8 @@ public class StartMyProfileActivityTest {
     public void testGenerateQRCode() throws Exception {
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), MyProfileActivity.class);
         intent.putExtra("SessionUsername", "admin");
+        Game game = new Game("DefaultAdmin", "admin", "1648684521764");
+        intent.putExtra("Game", game);
         ActivityScenario scenario = ActivityScenario.launch(intent);
 
         // Click Generate QR Code button
@@ -100,6 +107,8 @@ public class StartMyProfileActivityTest {
     public void testEstimateMyRanking() throws Exception {
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), MyProfileActivity.class);
         intent.putExtra("SessionUsername", "admin");
+        Game game = new Game("DefaultAdmin", "admin", "1648684521764");
+        intent.putExtra("Game", game);
         ActivityScenario scenario = ActivityScenario.launch(intent);
 
         // Click Generate My Ranking button

@@ -14,6 +14,7 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.myprofile.ChangeProfileActivity;
 
 import org.junit.Test;
@@ -25,6 +26,8 @@ public class StartChangeProfileActivityTest {
     public void testChangeProfile() throws Exception {
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), ChangeProfileActivity.class);
         intent.putExtra("SessionUsername", "admin");
+        Game game = new Game("DefaultAdmin", "admin", "1648684521764");
+        intent.putExtra("Game", game);
         ActivityScenario scenario = ActivityScenario.launch(intent);
 
         // type first name
