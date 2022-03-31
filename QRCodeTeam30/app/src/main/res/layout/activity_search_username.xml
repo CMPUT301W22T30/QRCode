@@ -20,7 +20,7 @@
             android:id="@+id/buttonQRCode_searchUsername"
             android:layout_width="match_parent"
             android:layout_height="67dp"
-            android:backgroundTint="@color/blue3"
+            android:backgroundTint="@color/blue2"
             android:fontFamily="@font/comedysketchdemoregular"
             android:text="Check Username by QR Code"
             android:textColor="@color/white"
