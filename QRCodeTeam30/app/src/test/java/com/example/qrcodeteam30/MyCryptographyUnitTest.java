@@ -2,7 +2,6 @@ package com.example.qrcodeteam30;
 
 import static org.junit.Assert.assertEquals;
 
-import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
 import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 
 import org.junit.Test;
