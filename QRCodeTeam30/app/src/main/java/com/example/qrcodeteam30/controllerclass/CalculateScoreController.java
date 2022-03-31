@@ -65,6 +65,13 @@ public class CalculateScoreController {
         return score;
     }
 
+    /**
+     * Calculate the total score of the user in a single game session
+     * (Filter out all QR codes that are not belonged to the game)
+     * @param userInformation
+     * @param game
+     * @return
+     */
     public static double calculateTotalScore(UserInformation userInformation, Game game) {
         double result = 0;
         for (var qrCode: userInformation.getQrCodeList()) {

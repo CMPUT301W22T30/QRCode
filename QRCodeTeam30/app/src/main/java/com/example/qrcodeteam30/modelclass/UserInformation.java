@@ -1,8 +1,5 @@
 package com.example.qrcodeteam30.modelclass;
 
-import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**

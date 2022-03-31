@@ -61,6 +61,13 @@ public class MyBitmapController {
         }
     }
 
+    /**
+     * Resize bitmap to certain resolution
+     * @param bm original bitmap
+     * @param newWidth
+     * @param newHeight
+     * @return scaled bitmap
+     */
     public static Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
         int width = bm.getWidth();
         int height = bm.getHeight();
@@ -75,6 +82,12 @@ public class MyBitmapController {
         return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
     }
 
+    /**
+     * Create a bitmap of barcode
+     * @param str Content of the barcode
+     * @param format such as QR_CODE
+     * @return bitmap of image
+     */
     public static Bitmap displayQRCode(String str, String format) {
         var barcodeEncoder = new BarcodeEncoder();
         Bitmap bitmap = null;

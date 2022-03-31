@@ -267,6 +267,11 @@ public class MyFirestoreUploadController {
 
     }
 
+    /**
+     * Delete all QR code in a game of a user on Firestore
+     * @param username
+     * @param game
+     */
     public void serverScopeDeleteUser(String username, Game game) {
         DocumentReference docRef = collectionReferenceSignInInformation.document(username);
         docRef.get().addOnCompleteListener(task -> {

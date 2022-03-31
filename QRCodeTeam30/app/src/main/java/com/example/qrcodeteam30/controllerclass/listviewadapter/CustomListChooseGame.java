@@ -16,6 +16,9 @@ import com.example.qrcodeteam30.modelclass.Game;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Custom Array Adapter for the listview in ChooseGameActivity
+ */
 public class CustomListChooseGame extends ArrayAdapter<Game> {
     ArrayList<Game> arrayList;
     Context context;

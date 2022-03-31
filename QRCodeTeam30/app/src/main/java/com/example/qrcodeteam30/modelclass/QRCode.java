@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * This model class represents a QR code and its properties
- * Includiong username that the QR code belongs to, the content, the location, the date of taken
+ * Including username that the QR code belongs to, the content, the location, the date of taken
  * The score, the reference to the list of comment on Firestore, the format (QR code/barcodes/...),
  * the reference to the photo on Firestore
  */
