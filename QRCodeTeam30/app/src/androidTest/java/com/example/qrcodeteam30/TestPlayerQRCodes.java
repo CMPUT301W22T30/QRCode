@@ -69,8 +69,8 @@ public class TestPlayerQRCodes {
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
         Thread.sleep(1000);
 
-        Thread.sleep(1000);
         Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+        Thread.sleep(1000);
 
         // Press My Profile button to view QR Codes
         Espresso.onView(withId(R.id.button_playerMenu_myProfile)).perform(click());
@@ -83,11 +83,25 @@ public class TestPlayerQRCodes {
         // Check the QR Code
         Espresso.onView(withId(R.id.MyProfileImageView)).check(matches(isDisplayed()));
 
+        Espresso.onView(withId(R.id.button_logout)).perform(click());
+        Thread.sleep(1000);
+        Espresso.onView(withId(android.R.id.button1)).perform(click());
+        Thread.sleep(1000);
+
+        Espresso.onView(withId(R.id.sign_in_with_qrcode_button)).perform(click());
+        Thread.sleep(1000);
+
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+        Thread.sleep(1000);
+
+        Espresso.onView(withId(R.id.button_playerMenu_myProfile)).check(matches(isDisplayed()));
+
         scenario.close();
     }
 
     @Test
-    public void searchUserRCode() throws Exception {
+    public void searchUserQRCode() throws Exception {
         // Launch MainActivity
         ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
 
@@ -103,17 +117,27 @@ public class TestPlayerQRCodes {
         Espresso.onView(withId(R.id.sign_in_button)).perform(click());
         Thread.sleep(1000);
         Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
-
         Thread.sleep(1000);
 
+        // Press My Profile button to view QR Codes
+        Espresso.onView(withId(R.id.button_playerMenu_myProfile)).perform(click());
+        Thread.sleep(1000);
 
+        // Press Generate QR Code button
+        Espresso.onView(withId(R.id.button_myProfile_generateQRCode)).perform(click());
+        Thread.sleep(1000);
+
+        Espresso.onView(withId(R.id.button_toolbar_home)).perform(click());
+        Thread.sleep(1000);
 
         // Press search username button
         Espresso.onView(withId(R.id.button_playerMenu_searchUsername)).perform(click());
         Thread.sleep(1000);
 
-        // Check if QR code can be used to search username
-        Espresso.onView(withId(R.id.buttonQRCode_searchUsername)).check(matches(isClickable()));
+        Espresso.onView(withId(R.id.buttonQRCode_searchUsername)).perform(click());
+        Thread.sleep(1000);
+
+        Espresso.onView(withId(R.id.textView_userProfile)).check(matches(isDisplayed()));
 
         scenario.close();
     }

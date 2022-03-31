@@ -11,11 +11,26 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.Espresso;
 
 import com.example.qrcodeteam30.modelclass.Game;
+import com.example.qrcodeteam30.modelclass.QRCode;
+import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import static org.junit.Assert.assertNotEquals;
 
+@RunWith(JUnit4.class)
 public class TestPrivacy {
+    @Test
+    public void noCodeRecord() {
+        // Launch MainActivity
+        ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
+        QRCode qrCode = new QRCode("abc", 0, 0, "admin", "QR_CODE",
+                "placeHolder", false, false, "placeHolder", "DefaultAdmin", "admin");
+        assertNotEquals("abc", qrCode.getQrCodeContent());
+    }
+
     @Test
     public void scanQRCodeForScoreDeclineLocation() {
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), PlayerMenuActivity.class);

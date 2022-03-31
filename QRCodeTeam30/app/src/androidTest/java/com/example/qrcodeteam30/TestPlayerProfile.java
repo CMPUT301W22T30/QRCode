@@ -11,6 +11,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static org.hamcrest.CoreMatchers.anything;
+
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 
@@ -78,13 +80,17 @@ public class TestPlayerProfile {
     }
 
     @Test
-    public void usingQRToLogInTest() throws Exception {
+    public void signInWithUniqueDeviceId() throws Exception {
         // Launch MainActivity
         ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
 
-        Espresso.onView(withId(R.id.sign_in_with_qrcode_button)).perform(click());
-
+        Espresso.onView(withId(R.id.signinactivity_sign_in_with_device)).perform(click());
         Thread.sleep(1000);
+
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+        Thread.sleep(1000);
+
+        Espresso.onView(withId(R.id.button_playerMenu_myProfile)).check(matches(isDisplayed()));
 
         scenario.close();
     }

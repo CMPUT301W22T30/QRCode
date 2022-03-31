@@ -4,9 +4,11 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressKey;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anything;
@@ -26,6 +28,44 @@ import org.hamcrest.Matcher;
 import org.junit.Test;
 
 public class TestOwner {
+    @Test
+    public void deleteQRCode() throws Exception {
+        // Launch MainActivity
+        ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
+
+        // Type "admin" to username editText
+        Espresso.onView(withId(R.id.signin_username_editText))
+                .perform(typeText("admin")).check(matches(withText("admin")));
+        // Type password
+        Espresso.onView(withId(R.id.signin_password_editText))
+                .perform(typeText("pwadmin")).check(matches(withText("pwadmin")));
+
+        // Press button to sign in
+        Espresso.onView(withId(R.id.sign_in_button)).perform(click());
+
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
+
+        // Sleep
+        Thread.sleep(1000);
+
+        Espresso.onView(withId(R.id.button_playerMenu_searchUsername)).perform(click());
+        Thread.sleep(1000);
+
+        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(click());
+        Thread.sleep(1000);
+        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(typeSearchViewText("admin"));
+        Espresso.onView(withId(R.id.searchView_searchUsername)).perform(pressKey(KeyEvent.KEYCODE_ENTER));
+        Thread.sleep(1000);
+
+        Espresso.onView(withId(R.id.button_userProfile_viewAllQRCode)).perform(click());
+        Thread.sleep(1000);
+        Espresso.onData(anything()).inAdapterView(withId(R.id.viewAllQRCode_listView)).atPosition(0).perform(click());
+        Thread.sleep(1000);
+        Espresso.onView(withId(R.id.button_delete_qrCode_info)).perform(click());
+        Thread.sleep(1000);
+    }
+
     @Test
     public void testDeletePlayer() throws Exception {
         ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
@@ -65,7 +105,6 @@ public class TestOwner {
         Espresso.onView(withId(R.id.button_userProfile_deleteUser)).perform(click());
 
         scenario.close();
-
 
     }
 
