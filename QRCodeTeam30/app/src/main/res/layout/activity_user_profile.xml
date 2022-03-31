@@ -39,6 +39,17 @@
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/button_userProfile_deleteUserServerOnly"
+            android:text="\nDELETE USER IN THIS SERVER ONLY\n"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"/>
+
+
+        <Button
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/button_userProfile_deleteUser"
             android:text="\nDELETE USER\n"
             android:fontFamily="@font/comedysketchdemoregular"

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * This model class represents the basic information of a user
  * Username, password, firstName, lastName, his/her total score, and the list of QR Code
  */
-public class UserInformation implements Serializable, Comparable<UserInformation> {
+public class UserInformation {
     private String username;
     private String password;
     private String firstName;
@@ -117,27 +117,5 @@ public class UserInformation implements Serializable, Comparable<UserInformation
      */
     public void setQrCodeList(ArrayList<QRCode> qrCodeList) {
         this.qrCodeList = qrCodeList;
-    }
-
-    public double maxScoreQRCode() {
-        double max = getQrCodeList().get(0).getScore();
-        for (QRCode qrCode: getQrCodeList()) {
-            if (qrCode.getScore() > max) {
-                max = qrCode.getScore();
-            }
-        }
-        return max;
-    }
-
-
-    /**
-     * This function is used to comapre UserInformation based on total score
-     * @param userInformation
-     * @return
-     */
-    @Override
-    public int compareTo(UserInformation userInformation) {
-        return Double.compare(CalculateScoreController.calculateTotalScore(this),
-                CalculateScoreController.calculateTotalScore(userInformation));
     }
 }

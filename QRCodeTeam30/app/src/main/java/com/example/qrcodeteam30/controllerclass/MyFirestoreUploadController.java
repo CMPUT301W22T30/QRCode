@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 import com.example.qrcodeteam30.modelclass.Comment;
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.google.firebase.firestore.CollectionReference;
@@ -182,7 +183,6 @@ public class MyFirestoreUploadController {
                         false, true, "Photo/" + photoDocumentName + "/", gameName, gameOwner);
                 final DocumentReference documentReference = collectionReferenceSignInInformation.document(sessionUsername);
                 documentReference.update("qrCodeList", FieldValue.arrayUnion(qrCode));
-                //documentReference.update("score", FieldValue.increment(qrCode.getScore()));
             });
         });
         Toast.makeText(context, "Scan Completed", Toast.LENGTH_SHORT).show();
@@ -265,5 +265,24 @@ public class MyFirestoreUploadController {
             Toast.makeText(context, String.format(Locale.CANADA, "Delete @%s complete", username), Toast.LENGTH_SHORT).show();
         });
 
+    }
+
+    public void serverScopeDeleteUser(String username, Game game) {
+        DocumentReference docRef = collectionReferenceSignInInformation.document(username);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                var document = task.getResult();
+                if (document.exists()) {
+                    UserInformation userInformation = document.toObject(UserInformation.class);
+                    for (var qrCode: userInformation.getQrCodeList()) {
+                        if (qrCode.getGameName().equals(game.getGameName())) {
+                            db.document(qrCode.getCommentListReference()).delete();
+                            db.document(qrCode.getPhotoReference()).delete();
+                            docRef.update("qrCodeList", FieldValue.arrayRemove(qrCode));
+                        }
+                    }
+                }
+            }
+        });
     }
 }

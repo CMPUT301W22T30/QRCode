@@ -15,6 +15,7 @@ import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
 import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.UserInformation;
+import com.example.qrcodeteam30.modelclass.UserScoreGameSession;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -114,7 +115,9 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
 
             for (var queryDocumentSnapshot : value) {
                 UserInformation userInformation = queryDocumentSnapshot.toObject(UserInformation.class);
-                double totalScore = CalculateScoreController.calculateTotalScore(userInformation);
+                UserScoreGameSession userScoreGameSession = new UserScoreGameSession(userInformation, game);
+
+                double totalScore = CalculateScoreController.calculateTotalScore(userInformation, game);
                 if (totalScore < score) {
                     cfScore++;
                 } else if (totalScore == score) {
@@ -122,14 +125,14 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
                 }
                 scoreArr.add(totalScore);
 
-                if (userInformation.getQrCodeList().size() < count) {
+                if (userScoreGameSession.getQrCodeArrayList().size() < count) {
                     cfCount++;
-                } else if (userInformation.getQrCodeList().size() == count) {
+                } else if (userScoreGameSession.getQrCodeArrayList().size() == count) {
                     fCount++;
                 }
-                countArr.add(userInformation.getQrCodeList().size());
+                countArr.add(userScoreGameSession.getQrCodeArrayList().size());
 
-                for (var qrCode: userInformation.getQrCodeList()) {
+                for (var qrCode: userScoreGameSession.getQrCodeArrayList()) {
                     if (qrCode.getScore() < max) {
                         cfMax++;
                     } else if (qrCode.getScore() == max) {

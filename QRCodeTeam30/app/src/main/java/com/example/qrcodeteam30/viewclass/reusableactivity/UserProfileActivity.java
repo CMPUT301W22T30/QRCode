@@ -12,12 +12,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.modelclass.Game;
-import com.example.qrcodeteam30.viewclass.MainActivity;
-import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.UserInformation;
+import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.viewclass.viewallqrcode.ViewAllQRCodeActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
@@ -52,6 +52,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         username = getIntent().getStringExtra("Username");
         game = (Game) getIntent().getSerializableExtra("Game");
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
 
         myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
 
@@ -71,6 +72,10 @@ public class UserProfileActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView_userProfile);
         Button buttonViewAllQRCode = findViewById(R.id.button_userProfile_viewAllQRCode);
         Button buttonDeleteUser = findViewById(R.id.button_userProfile_deleteUser);
+        Button buttonDeleteUserServerOnly = findViewById(R.id.button_userProfile_deleteUserServerOnly);
+        if (!sessionUsername.equals("admin")) {
+            buttonDeleteUser.setVisibility(View.GONE);
+        }
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference collectionReferenceSignInInformation = db.collection("SignInInformation");
@@ -85,7 +90,6 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
@@ -107,12 +111,19 @@ public class UserProfileActivity extends AppCompatActivity {
                 myFirestoreUpload.deleteUser(username);
                 finish();
             });
-        } else if (sessionUsername.equals(game.getOwnerUsername()) && !username.equals("admin")) {
-            buttonDeleteUser.setOnClickListener(v -> {
 
+            buttonDeleteUserServerOnly.setOnClickListener(v -> {
+                myFirestoreUpload.serverScopeDeleteUser(username, game);
+                finish();
+            });
+
+        } else if (sessionUsername.equals(game.getOwnerUsername()) && !username.equals("admin")) {
+            buttonDeleteUserServerOnly.setOnClickListener(v -> {
+                myFirestoreUpload.serverScopeDeleteUser(username, game);
+                finish();
             });
         } else {
-            buttonDeleteUser.setVisibility(View.GONE);
+            buttonDeleteUserServerOnly.setVisibility(View.GONE);
         }
     }
 

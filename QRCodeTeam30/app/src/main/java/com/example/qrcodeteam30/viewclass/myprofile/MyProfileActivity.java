@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -18,6 +19,7 @@ import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
 import com.example.qrcodeteam30.controllerclass.MyBitmapController;
 import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.UserInformation;
+import com.example.qrcodeteam30.modelclass.UserScoreGameSession;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -108,6 +110,7 @@ public class MyProfileActivity extends AppCompatActivity {
     protected void onStart() {
         listenerRegistration = documentReference.addSnapshotListener((value, error) -> {
             UserInformation userInformation = value.toObject(UserInformation.class);
+            UserScoreGameSession userScoreGameSession = new UserScoreGameSession(userInformation, game);
             password = userInformation.getPassword();
 
             if (userInformation.getFirstName().equals("") && userInformation.getLastName().equals("")) {
@@ -117,27 +120,26 @@ public class MyProfileActivity extends AppCompatActivity {
                         userInformation.getFirstName(), userInformation.getLastName(), userInformation.getUsername()));
             }
 
-            final var temp = userInformation.getQrCodeList();
-            if (temp.size() == 0) {
+            if (userScoreGameSession.getQrCodeArrayList().size() == 0) {
                 buttonEstimateRanking.setOnClickListener(v -> {
                     Intent intent = new Intent(MyProfileActivity.this, EstimateMyRankingActivity.class);
                     intent.putExtra("SessionUsername", userInformation.getUsername());
                     intent.putExtra("Max", -1);
-                    intent.putExtra("Count", temp.size());
-                    intent.putExtra("Score", CalculateScoreController.calculateTotalScore(userInformation));
+                    intent.putExtra("Count", userScoreGameSession.getQrCodeArrayList().size());
+                    intent.putExtra("Score", CalculateScoreController.calculateTotalScore(userInformation, game));
                     intent.putExtra("Game", game);
                     startActivity(intent);
                 });
                 return;
             }
 
-            final double max = userInformation.maxScoreQRCode();
+            final double max = userScoreGameSession.maxScoreQRCode();
             buttonEstimateRanking.setOnClickListener(v -> {
                 Intent intent = new Intent(MyProfileActivity.this, EstimateMyRankingActivity.class);
                 intent.putExtra("SessionUsername", userInformation.getUsername());
                 intent.putExtra("Max", max);
-                intent.putExtra("Count", temp.size());
-                intent.putExtra("Score", CalculateScoreController.calculateTotalScore(userInformation));
+                intent.putExtra("Count", userScoreGameSession.getQrCodeArrayList().size());
+                intent.putExtra("Score", CalculateScoreController.calculateTotalScore(userInformation, game));
                 intent.putExtra("Game", game);
                 startActivity(intent);
             });

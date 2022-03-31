@@ -100,7 +100,10 @@ public class RankingActivity extends AppCompatActivity {
             arrayList.clear();
             for (var doc: value) {
                 var userInformation = doc.toObject(UserInformation.class);
-                arrayList.add(new UserScoreGameSession(userInformation, game));
+                var userScoreGameSession = new UserScoreGameSession(userInformation, game);
+                if (userScoreGameSession.getScore() > 0) {
+                    arrayList.add(new UserScoreGameSession(userInformation, game));
+                }
             }
             arrayList.sort(Comparator.reverseOrder());
             arrayAdapter.notifyDataSetChanged();

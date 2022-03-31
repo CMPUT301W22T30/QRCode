@@ -65,14 +65,6 @@ public class CalculateScoreController {
         return score;
     }
 
-    public static double calculateTotalScore(UserInformation userInformation) {
-        double result = 0;
-        for (var x: userInformation.getQrCodeList()) {
-            result += x.getScore();
-        }
-        return result;
-    }
-
     public static double calculateTotalScore(UserInformation userInformation, Game game) {
         double result = 0;
         for (var qrCode: userInformation.getQrCodeList()) {
