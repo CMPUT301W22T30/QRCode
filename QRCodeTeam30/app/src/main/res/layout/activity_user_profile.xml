@@ -43,7 +43,9 @@
             android:text="\nDELETE USER IN THIS SERVER ONLY\n"
             android:layout_gravity="center"
             android:backgroundTint="@color/red"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"/>
 
 
         <Button
