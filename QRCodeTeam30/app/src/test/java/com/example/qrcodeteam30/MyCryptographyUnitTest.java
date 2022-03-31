@@ -46,26 +46,29 @@ public class MyCryptographyUnitTest {
                 "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068");
     }
 
-    /*
+
     @Test
     public void encryptDecryptTest1() {
-        String str = "Hello";
-        assertEquals(MyCryptographyController.encrypt(str), "AAAHello");
-        assertEquals(MyCryptographyController.decrypt("AAAHello"), str);
+        String str = "BFG5DGW54";
+        assertEquals(MyCryptographyController.encrypt(str), "8227ad036b504e39fe29393ce170908be2b1ea636554488fa86de5d9d6cd2c32");
+        assertEquals(MyCryptographyController.decrypt("8227ad036b504e39fe29393ce170908be2b1ea636554488fa86de5d9d6cd2c32"),
+                "8227ad036b504e39fe29393ce170908be2b1ea636554488fa86de5d9d6cd2c32");
     }
 
     @Test
     public void encryptDecryptTest2() {
         String str = "";
-        assertEquals(MyCryptographyController.encrypt(str), "AAA");
-        assertEquals(MyCryptographyController.decrypt("AAA"), str);
+        assertEquals(MyCryptographyController.encrypt(str), "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
+        assertEquals(MyCryptographyController.decrypt("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
+                "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
     }
 
     @Test
     public void encryptDecryptTest3() {
-        String str = "AAA";
-        assertEquals(MyCryptographyController.encrypt(str), "AAAAAA");
-        assertEquals(MyCryptographyController.decrypt("AAAAAA"), str);
+        String str = "A";
+        assertEquals(MyCryptographyController.encrypt(str), "559aead08264d5795d3909718cdd05abd49572e84fe55590eef31a88a08fdffd");
+        assertEquals(MyCryptographyController.decrypt("559aead08264d5795d3909718cdd05abd49572e84fe55590eef31a88a08fdffd"),
+                "559aead08264d5795d3909718cdd05abd49572e84fe55590eef31a88a08fdffd");
     }
-    */
+
 }

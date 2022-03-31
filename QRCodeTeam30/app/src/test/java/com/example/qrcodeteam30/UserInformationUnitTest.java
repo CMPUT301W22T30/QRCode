@@ -94,57 +94,36 @@ public class UserInformationUnitTest {
         assertEquals("Maguire", user.getLastName());
     }
 
-//    @Test
-//    public void getterAndSetterQRCodeListTest1() {
-//        ArrayList<QRCode> listOfQRCode = new ArrayList<>();
-//        listOfQRCode.add(new QRCode("AAA4710247000478", 53.5190187, -113.4872028, "newuser", "EAN_13", "Comment/zrg4rSgjg2atVs3VFsu7/", true, true, "Photo/IAZcnsDAEmEmSd2c4oue/"));
-//        listOfQRCode.add(new QRCode("AAA8936024920647", 0, 0, "Chubbyson", "EAN_13", "Comment/jKrHVSpY3fvbPz0qZyAk/", false, true, "Photo/uWyteQZPg3L8w3uDngJt/"));
-//        listOfQRCode.add(new QRCode("AAAX001FBV5YT", 53.516341648064554, -113.50690981373191, "dat", "CODE_128", "Comment/ljXcTqdtiybuMXWyZpL6/", true, true, "Photo/chAeV4tFjBksFTHJOuvZ/"));
-//        UserInformation user = new UserInformation();
-//        user.setQrCodeList(listOfQRCode);
-//        assertEquals(listOfQRCode, user.getQrCodeList());
-//    }
-//
-//    @Test
-//    public void getterAndSetterQRCodeListTest2() {
-//        ArrayList<QRCode> listOfQRCode = new ArrayList<>();
-//        listOfQRCode.add(new QRCode("AAA9028359385093", 465.47, -14.376636, "user", "EAN_13", "Comment/zrg4rSgjg2atVs3VFsu7/", true, false, "Photo/IAZcnsDAEmEmSd2c4oue/"));
-//        listOfQRCode.add(new QRCode("AAA2385023985022", 100, 100, "abc", "EAN_13", "Comment/uFqHVSpY3fvbPz0qZyAk/", false, true, "Photo/uWyteQZPg6L1w3uDngJt/"));
-//        listOfQRCode.add(new QRCode("AAAX454XDI8PL", 3525238, -2342742, "qwe", "CODE_128", "Comment/ljXcTqdtiybuKOPyZpL6/", true, true, "Photo/chAeV4tFjBksQWEJOuvZ/"));
-//        UserInformation user = new UserInformation();
-//        user.setQrCodeList(listOfQRCode);
-//        assertEquals(listOfQRCode, user.getQrCodeList());
-//    }
-//
-//    @Test
-//    public void getterAndSetterQRCodeListTest3() {
-//        ArrayList<QRCode> listOfQRCode = new ArrayList<>();
-//        listOfQRCode.add(new QRCode("AAA7890247123478", 11.111, -23.345, "olduser", "EAN_13", "Comment/abc4rSqwe2atVs3VFsu7/", false, false, "Photo/IAZcnsDAEmEmSd2c4tyu/"));
-//        listOfQRCode.add(new QRCode("AAA8936024123456", 33, 11, "user1", "EAN_13", "Comment/jKrHVSpY3bnhPz0qZyAk/", false, true, "Photo/oPfnmQZPg3L8w3eMkgJt/"));
-//        listOfQRCode.add(new QRCode("AAAX1234FBV5RQ", 4, -7, "user2", "CODE_128", "Comment/ljXcTqdtyuioMXWyZpG9/", false, false, "Photo/afAeV4tFjBksFTHJOupF/"));
-//        UserInformation user = new UserInformation();
-//        user.setQrCodeList(listOfQRCode);
-//        assertEquals(listOfQRCode, user.getQrCodeList());
-//    }
+    @Test
+    public void getterAndSetterQRCodeListTest1() {
+        ArrayList<QRCode> listOfQRCode = new ArrayList<>();
+        listOfQRCode.add(new QRCode("AAA4710247000478", 53.5190187, -113.4872028, "newuser", "EAN_13", "Comment/zrg4rSgjg2atVs3VFsu7/", true, true, "Photo/IAZcnsDAEmEmSd2c4oue/", "a", "a"));
+        listOfQRCode.add(new QRCode("AAA8936024920647", 0, 0, "Chubbyson", "EAN_13", "Comment/jKrHVSpY3fvbPz0qZyAk/", false, true, "Photo/uWyteQZPg3L8w3uDngJt/", "a", "a"));
+        listOfQRCode.add(new QRCode("AAAX001FBV5YT", 53.516341648064554, -113.50690981373191, "dat", "CODE_128", "Comment/ljXcTqdtiybuMXWyZpL6/", true, true, "Photo/chAeV4tFjBksFTHJOuvZ/", "a", "a"));
+        UserInformation user = new UserInformation();
+        user.setQrCodeList(listOfQRCode);
+        assertEquals(listOfQRCode, user.getQrCodeList());
+    }
 
-//    @Test
-//    public void getterSetterScoreTest1() {
-//        UserInformation user = new UserInformation();
-//        user.setScore(20.1256);
-//        assertEquals(20.1256, user.getScore(), 0.00001);
-//    }
-//
-//    @Test
-//    public void getterSetterScoreTest2() {
-//        UserInformation user = new UserInformation();
-//        user.setScore(56.897);
-//        assertEquals(56.897, user.getScore(), 0.00001);
-//    }
-//
-//    @Test
-//    public void getterSetterScoreTest3() {
-//        UserInformation user = new UserInformation();
-//        user.setScore(1234.789);
-//        assertEquals(1234.789, user.getScore(), 0.00001);
-//    }
+    @Test
+    public void getterAndSetterQRCodeListTest2() {
+        ArrayList<QRCode> listOfQRCode = new ArrayList<>();
+        listOfQRCode.add(new QRCode("AAA9028359385093", 465.47, -14.376636, "user", "EAN_13", "Comment/zrg4rSgjg2atVs3VFsu7/", true, false, "Photo/IAZcnsDAEmEmSd2c4oue/", "a", "a"));
+        listOfQRCode.add(new QRCode("AAA2385023985022", 100, 100, "abc", "EAN_13", "Comment/uFqHVSpY3fvbPz0qZyAk/", false, true, "Photo/uWyteQZPg6L1w3uDngJt/", "a", "a"));
+        listOfQRCode.add(new QRCode("AAAX454XDI8PL", 3525238, -2342742, "qwe", "CODE_128", "Comment/ljXcTqdtiybuKOPyZpL6/", true, true, "Photo/chAeV4tFjBksQWEJOuvZ/", "a", "a"));
+        UserInformation user = new UserInformation();
+        user.setQrCodeList(listOfQRCode);
+        assertEquals(listOfQRCode, user.getQrCodeList());
+    }
+
+    @Test
+    public void getterAndSetterQRCodeListTest3() {
+        ArrayList<QRCode> listOfQRCode = new ArrayList<>();
+        listOfQRCode.add(new QRCode("AAA7890247123478", 11.111, -23.345, "olduser", "EAN_13", "Comment/abc4rSqwe2atVs3VFsu7/", false, false, "Photo/IAZcnsDAEmEmSd2c4tyu/", "a", "a"));
+        listOfQRCode.add(new QRCode("AAA8936024123456", 33, 11, "user1", "EAN_13", "Comment/jKrHVSpY3bnhPz0qZyAk/", false, true, "Photo/oPfnmQZPg3L8w3eMkgJt/", "a", "a"));
+        listOfQRCode.add(new QRCode("AAAX1234FBV5RQ", 4, -7, "user2", "CODE_128", "Comment/ljXcTqdtyuioMXWyZpG9/", false, false, "Photo/afAeV4tFjBksFTHJOupF/", "a", "a"));
+        UserInformation user = new UserInformation();
+        user.setQrCodeList(listOfQRCode);
+        assertEquals(listOfQRCode, user.getQrCodeList());
+    }
 }
