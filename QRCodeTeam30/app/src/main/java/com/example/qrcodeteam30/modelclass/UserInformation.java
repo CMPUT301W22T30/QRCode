@@ -1,5 +1,7 @@
 package com.example.qrcodeteam30.modelclass;
 
+import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,7 +14,6 @@ public class UserInformation implements Serializable, Comparable<UserInformation
     private String password;
     private String firstName;
     private String lastName;
-    private double score;
     private ArrayList<QRCode> qrCodeList;
 
     /**
@@ -34,7 +35,7 @@ public class UserInformation implements Serializable, Comparable<UserInformation
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.score = score;
+        //this.score = score;
         qrCodeList = new ArrayList<>();
     }
 
@@ -118,21 +119,16 @@ public class UserInformation implements Serializable, Comparable<UserInformation
         this.qrCodeList = qrCodeList;
     }
 
-    /**
-     * get total score
-     * @return score
-     */
-    public double getScore() {
-        return score;
+    public double maxScoreQRCode() {
+        double max = getQrCodeList().get(0).getScore();
+        for (QRCode qrCode: getQrCodeList()) {
+            if (qrCode.getScore() > max) {
+                max = qrCode.getScore();
+            }
+        }
+        return max;
     }
 
-    /**
-     * set total score
-     * @param score
-     */
-    public void setScore(double score) {
-        this.score = score;
-    }
 
     /**
      * This function is used to comapre UserInformation based on total score
@@ -141,6 +137,7 @@ public class UserInformation implements Serializable, Comparable<UserInformation
      */
     @Override
     public int compareTo(UserInformation userInformation) {
-        return Double.compare(this.score, userInformation.getScore());
+        return Double.compare(CalculateScoreController.calculateTotalScore(this),
+                CalculateScoreController.calculateTotalScore(userInformation));
     }
 }

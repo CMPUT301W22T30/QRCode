@@ -22,41 +22,9 @@ public class QRCode implements Serializable {
     private String commentListReference;
     private String format;
     private boolean recordLocation;
-
-    /**
-     * Get photoReference
-     * @return
-     */
-    public String getPhotoReference() {
-        return photoReference;
-    }
-
-    /**
-     * Set photoReference
-     * @param photoReference
-     */
-    public void setPhotoReference(String photoReference) {
-        this.photoReference = photoReference;
-    }
-
+    private String gameName;
+    private String gameOwner;
     private String photoReference;
-
-    /**
-     * Check if recordPhoto is true or false
-     * @return
-     */
-    public boolean isRecordPhoto() {
-        return recordPhoto;
-    }
-
-    /**
-     * Set recordPhoto
-     * @param recordPhoto
-     */
-    public void setRecordPhoto(boolean recordPhoto) {
-        this.recordPhoto = recordPhoto;
-    }
-
     private boolean recordPhoto;
 
     /**
@@ -76,10 +44,13 @@ public class QRCode implements Serializable {
      * @param recordLocation
      * @param recordPhoto
      * @param photoReference
+     * @param gameName
+     * @param gameOwner
      */
     public QRCode(String qrCodeContent, double latitude, double longitude,
                   String username, String format, String commentListReference,
-                  boolean recordLocation, boolean recordPhoto, String photoReference) {
+                  boolean recordLocation, boolean recordPhoto, String photoReference,
+                  String gameName, String gameOwner) {
         this.qrCodeContent = MyCryptographyController.encrypt(qrCodeContent);
         this.latitude = latitude;
         this.longitude = longitude;
@@ -91,6 +62,8 @@ public class QRCode implements Serializable {
         this.recordLocation = recordLocation;
         this.recordPhoto = recordPhoto;
         this.photoReference = photoReference;
+        this.gameName = gameName;
+        this.gameOwner = gameOwner;
     }
 
     /**
@@ -235,6 +208,54 @@ public class QRCode implements Serializable {
      */
     public void setRecordLocation(boolean recordLocation) {
         this.recordLocation = recordLocation;
+    }
+
+    /**
+     * Get photoReference
+     * @return
+     */
+    public String getPhotoReference() {
+        return photoReference;
+    }
+
+    /**
+     * Set photoReference
+     * @param photoReference
+     */
+    public void setPhotoReference(String photoReference) {
+        this.photoReference = photoReference;
+    }
+
+    /**
+     * Check if recordPhoto is true or false
+     * @return
+     */
+    public boolean isRecordPhoto() {
+        return recordPhoto;
+    }
+
+    /**
+     * Set recordPhoto
+     * @param recordPhoto
+     */
+    public void setRecordPhoto(boolean recordPhoto) {
+        this.recordPhoto = recordPhoto;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+    public String getGameOwner() {
+        return gameOwner;
+    }
+
+    public void setGameOwner(String gameOwner) {
+        this.gameOwner = gameOwner;
     }
 
 }

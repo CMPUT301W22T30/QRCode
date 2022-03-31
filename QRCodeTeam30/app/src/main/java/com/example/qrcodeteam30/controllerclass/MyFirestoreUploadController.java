@@ -56,7 +56,7 @@ public class MyFirestoreUploadController {
      * @param bitmapResizeString
      * @param sessionUsername
      */
-    public void uploadQRCodeToDBLocationPhoto(String str, String formatName, String bitmapResizeString, String sessionUsername) {
+    public void uploadQRCodeToDBLocationPhoto(String str, String formatName, String bitmapResizeString, String sessionUsername, String gameName, String gameOwner) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // If no location permission, return
@@ -80,10 +80,10 @@ public class MyFirestoreUploadController {
                         String photoDocumentName = task1.getResult().getId();
                         var qrCode = new QRCode(str, location.getLatitude(), location.getLongitude(), sessionUsername,
                                 formatName, "Comment/" + commentDocumentName + "/",
-                                true, true, "Photo/" + photoDocumentName + "/");
+                                true, true, "Photo/" + photoDocumentName + "/", gameName, gameOwner);
                         final DocumentReference documentReference = collectionReferenceSignInInformation.document(sessionUsername);
                         documentReference.update("qrCodeList", FieldValue.arrayUnion(qrCode));
-                        documentReference.update("score", FieldValue.increment(qrCode.getScore()));
+                        //documentReference.update("score", FieldValue.increment(qrCode.getScore()));
                     });
                 });
                 Toast.makeText(context, "Scan Completed", Toast.LENGTH_SHORT).show();
@@ -112,7 +112,7 @@ public class MyFirestoreUploadController {
      * @param formatName
      * @param sessionUsername
      */
-    public void uploadQRCodeToDBLocationNoPhoto(String str, String formatName, String sessionUsername) {
+    public void uploadQRCodeToDBLocationNoPhoto(String str, String formatName, String sessionUsername, String gameName, String gameOwner) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // If no location permission, return
@@ -131,10 +131,10 @@ public class MyFirestoreUploadController {
                     String commentDocumentName = task.getResult().getId();
                     var qrCode = new QRCode(str, location.getLatitude(), location.getLongitude(), sessionUsername,
                             formatName, "Comment/" + commentDocumentName + "/",
-                            true, false, "N/A");
+                            true, false, "N/A", gameName, gameOwner);
                     final DocumentReference documentReference = collectionReferenceSignInInformation.document(sessionUsername);
                     documentReference.update("qrCodeList", FieldValue.arrayUnion(qrCode));
-                    documentReference.update("score", FieldValue.increment(qrCode.getScore()));
+                    //documentReference.update("score", FieldValue.increment(qrCode.getScore()));
                 });
                 Toast.makeText(context, "Scan Completed", Toast.LENGTH_SHORT).show();
             }
@@ -164,7 +164,7 @@ public class MyFirestoreUploadController {
      * @param bitmapResizeString
      * @param sessionUsername
      */
-    public void uploadQRCodeToDBNoLocationPhoto(String str, String formatName, String bitmapResizeString, String sessionUsername) {
+    public void uploadQRCodeToDBNoLocationPhoto(String str, String formatName, String bitmapResizeString, String sessionUsername, String gameName, String gameOwner) {
         final var colRefPhoto = db.collection("Photo");
         final var colRefComment = db.collection("Comment");
 
@@ -179,10 +179,10 @@ public class MyFirestoreUploadController {
                 final String photoDocumentName = task1.getResult().getId();
                 var qrCode = new QRCode(str, 0, 0, sessionUsername, formatName,
                         "Comment/" + commentDocumentName + "/",
-                        false, true, "Photo/" + photoDocumentName + "/");
+                        false, true, "Photo/" + photoDocumentName + "/", gameName, gameOwner);
                 final DocumentReference documentReference = collectionReferenceSignInInformation.document(sessionUsername);
                 documentReference.update("qrCodeList", FieldValue.arrayUnion(qrCode));
-                documentReference.update("score", FieldValue.increment(qrCode.getScore()));
+                //documentReference.update("score", FieldValue.increment(qrCode.getScore()));
             });
         });
         Toast.makeText(context, "Scan Completed", Toast.LENGTH_SHORT).show();
@@ -196,7 +196,7 @@ public class MyFirestoreUploadController {
      * @param formatName
      * @param sessionUsername
      */
-    public void uploadQRCodeToDBNoLocationNoPhoto(String str, String formatName, String sessionUsername) {
+    public void uploadQRCodeToDBNoLocationNoPhoto(String str, String formatName, String sessionUsername, String gameName, String gameOwner) {
         final var colRefComment = db.collection("Comment");
         Map<String, Object> map = new HashMap<>();
         map.put("CommentList", Arrays.asList());
@@ -205,10 +205,10 @@ public class MyFirestoreUploadController {
             String commentDocumentName = task.getResult().getId();
             var qrCode = new QRCode(str, 0, 0, sessionUsername,
                     formatName, "Comment/" + commentDocumentName + "/",
-                    false, false, "N/A");
+                    false, false, "N/A", gameName, gameOwner);
             final DocumentReference documentReference = collectionReferenceSignInInformation.document(sessionUsername);
             documentReference.update("qrCodeList", FieldValue.arrayUnion(qrCode));
-            documentReference.update("score", FieldValue.increment(qrCode.getScore()));
+            //documentReference.update("score", FieldValue.increment(qrCode.getScore()));
         });
         Toast.makeText(context, "Scan Completed", Toast.LENGTH_SHORT).show();
     }

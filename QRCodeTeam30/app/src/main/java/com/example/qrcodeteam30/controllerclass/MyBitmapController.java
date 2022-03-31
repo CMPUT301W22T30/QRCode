@@ -5,6 +5,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.util.Base64;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+
 import java.io.ByteArrayOutputStream;
 
 /**
@@ -70,4 +74,26 @@ public class MyBitmapController {
         // "RECREATE" THE NEW BITMAP
         return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
     }
+
+    public static Bitmap displayQRCode(String str, String format) {
+        var barcodeEncoder = new BarcodeEncoder();
+        Bitmap bitmap = null;
+        int width;
+        int height;
+        try {
+            if (format.equals("QR_CODE")) {
+                width = 1000;
+                height = 1000;
+            } else {
+                width = 1000;
+                height = 500;
+            }
+            bitmap = barcodeEncoder.encodeBitmap(str, BarcodeFormat.valueOf(format), width, height);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+        return bitmap;
+    }
+
 }

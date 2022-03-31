@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.MyPermissionController;
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.example.qrcodeteam30.viewclass.reusableactivity.QRCodeInfoActivity;
@@ -61,6 +62,7 @@ public class SearchQRCodeActivity extends AppCompatActivity {
     private MyPermissionController myPermission;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReferenceSignInInformation = db.collection("SignInInformation");
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,9 @@ public class SearchQRCodeActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
         setContentView(R.layout.activity_search_qrcode);
+
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
 
         Toolbar toolbar = findViewById(R.id.toolbar_logout);
         setSupportActionBar(toolbar);
@@ -90,11 +95,11 @@ public class SearchQRCodeActivity extends AppCompatActivity {
                     }).show();
         });
 
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -192,7 +197,7 @@ public class SearchQRCodeActivity extends AppCompatActivity {
 
             ArrayList<Marker> arrayList = new ArrayList<>();
             for (QRCode qrCode: arrayListQRCode) {
-                if (!qrCode.isRecordLocation()) {
+                if (!qrCode.isRecordLocation() || !qrCode.getGameName().equals(game.getGameName())) {
                     continue;
                 }
                 var marker = new Marker(mapView);
@@ -205,6 +210,7 @@ public class SearchQRCodeActivity extends AppCompatActivity {
                     var intent = new Intent(SearchQRCodeActivity.this, QRCodeInfoActivity.class);
                     intent.putExtra("SessionUsername", sessionUsername);
                     intent.putExtra("QRCode", qrCode);
+                    intent.putExtra("Game", game);
                     startActivity(intent);
                     return false;
                 });

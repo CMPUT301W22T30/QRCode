@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.qrcodeteam30.R;
+import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
@@ -37,14 +39,18 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
     private int count;
     private TextView textView;
     private TextView textViewExact;
-    ListenerRegistration listenerRegistration;
-    FirebaseFirestore db;
-    CollectionReference collectionReference;
+    private ListenerRegistration listenerRegistration;
+    private FirebaseFirestore db;
+    private CollectionReference collectionReference;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estimate_my_ranking);
+
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
 
         Toolbar toolbar = findViewById(R.id.toolbar_logout);
         setSupportActionBar(toolbar);
@@ -67,7 +73,6 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView_estimateRanking);
         textViewExact = findViewById(R.id.textView_estimateRanking_exactRanking);
 
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         max = getIntent().getDoubleExtra("Max", -1);
         score = getIntent().getDoubleExtra("Score", -1);
         count = getIntent().getIntExtra("Count", -1);
@@ -76,6 +81,7 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -108,12 +114,13 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
 
             for (var queryDocumentSnapshot : value) {
                 UserInformation userInformation = queryDocumentSnapshot.toObject(UserInformation.class);
-                if (userInformation.getScore() < score) {
+                double totalScore = CalculateScoreController.calculateTotalScore(userInformation);
+                if (totalScore < score) {
                     cfScore++;
-                } else if (userInformation.getScore() == score) {
+                } else if (totalScore == score) {
                     fScore++;
                 }
-                scoreArr.add(userInformation.getScore());
+                scoreArr.add(totalScore);
 
                 if (userInformation.getQrCodeList().size() < count) {
                     cfCount++;

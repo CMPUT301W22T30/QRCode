@@ -13,19 +13,18 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.R;
+import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
+import com.example.qrcodeteam30.controllerclass.MyBitmapController;
+import com.example.qrcodeteam30.modelclass.Game;
+import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
-import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.modelclass.QRCode;
-import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.util.Locale;
 
@@ -41,13 +40,18 @@ public class MyProfileActivity extends AppCompatActivity {
     private CollectionReference collectionReferenceSignInInformation;
     private DocumentReference documentReference;
     private ListenerRegistration listenerRegistration;
-    TextView textViewInfo;
-    Button buttonEstimateRanking;
+    private TextView textViewInfo;
+    private Button buttonEstimateRanking;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
+
         Toolbar toolbar = findViewById(R.id.toolbar_logout);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -66,8 +70,6 @@ public class MyProfileActivity extends AppCompatActivity {
                     }).show();
         });
 
-
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         db = FirebaseFirestore.getInstance();
         collectionReferenceSignInInformation = db.collection("SignInInformation");
         documentReference = collectionReferenceSignInInformation.document(sessionUsername);
@@ -76,6 +78,7 @@ public class MyProfileActivity extends AppCompatActivity {
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -88,19 +91,14 @@ public class MyProfileActivity extends AppCompatActivity {
         buttonChangeProfile.setOnClickListener(v -> {
             Intent intent = new Intent(MyProfileActivity.this, ChangeProfileActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
 
         buttonGenerateQRCode.setOnClickListener(v -> {
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = null;
-            try {
-                final String qrCodeFormat = String.format(Locale.CANADA, "%s %s", sessionUsername, password);
-                bitmap = barcodeEncoder.encodeBitmap(qrCodeFormat, BarcodeFormat.QR_CODE, 1000, 1000);
-            } catch (WriterException e) {
-                e.printStackTrace();
-            }
+            final String qrCodeContent = String.format(Locale.CANADA, "%s %s", sessionUsername, password);
+            Bitmap bitmap = MyBitmapController.displayQRCode(qrCodeContent, "QR_CODE");
             imageView.setImageBitmap(bitmap);
         });
 
@@ -126,26 +124,21 @@ public class MyProfileActivity extends AppCompatActivity {
                     intent.putExtra("SessionUsername", userInformation.getUsername());
                     intent.putExtra("Max", -1);
                     intent.putExtra("Count", temp.size());
-                    intent.putExtra("Score", userInformation.getScore());
+                    intent.putExtra("Score", CalculateScoreController.calculateTotalScore(userInformation));
+                    intent.putExtra("Game", game);
                     startActivity(intent);
                 });
                 return;
             }
 
-            double max = temp.get(0).getScore();
-            for (QRCode qrCode: temp) {
-                if (qrCode.getScore() > max) {
-                    max = qrCode.getScore();
-                }
-            }
-
-            final double finalMax = max;
+            final double max = userInformation.maxScoreQRCode();
             buttonEstimateRanking.setOnClickListener(v -> {
                 Intent intent = new Intent(MyProfileActivity.this, EstimateMyRankingActivity.class);
                 intent.putExtra("SessionUsername", userInformation.getUsername());
-                intent.putExtra("Max", finalMax);
+                intent.putExtra("Max", max);
                 intent.putExtra("Count", temp.size());
-                intent.putExtra("Score", userInformation.getScore());
+                intent.putExtra("Score", CalculateScoreController.calculateTotalScore(userInformation));
+                intent.putExtra("Game", game);
                 startActivity(intent);
             });
         });

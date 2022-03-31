@@ -14,7 +14,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListRankingController;
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.UserInformation;
+import com.example.qrcodeteam30.modelclass.UserScoreGameSession;
 import com.example.qrcodeteam30.viewclass.reusableactivity.UserProfileActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
@@ -28,12 +30,13 @@ import java.util.Comparator;
  * Display the ranking of all users based on their total score
  */
 public class RankingActivity extends AppCompatActivity {
-    private ArrayAdapter<UserInformation> arrayAdapter;
-    private ArrayList<UserInformation> arrayList;
+    private ArrayAdapter<UserScoreGameSession> arrayAdapter;
+    private ArrayList<UserScoreGameSession> arrayList;
     private String sessionUsername;
     FirebaseFirestore db;
     CollectionReference collectionReferenceSignInInformation;
     private ListenerRegistration listenerRegistration;
+    Game game;
 
 
     @Override
@@ -45,6 +48,9 @@ public class RankingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
 
         db = FirebaseFirestore.getInstance();
         collectionReferenceSignInInformation = db.collection("SignInInformation");
@@ -68,11 +74,11 @@ public class RankingActivity extends AppCompatActivity {
         arrayAdapter = new CustomListRankingController(this, arrayList);
         listView.setAdapter(arrayAdapter);
 
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -81,6 +87,7 @@ public class RankingActivity extends AppCompatActivity {
             var intent = new Intent(RankingActivity.this, UserProfileActivity.class);
             intent.putExtra("Username", arrayAdapter.getItem(i).getUsername());
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
     }
@@ -93,7 +100,7 @@ public class RankingActivity extends AppCompatActivity {
             arrayList.clear();
             for (var doc: value) {
                 var userInformation = doc.toObject(UserInformation.class);
-                arrayList.add(userInformation);
+                arrayList.add(new UserScoreGameSession(userInformation, game));
             }
             arrayList.sort(Comparator.reverseOrder());
             arrayAdapter.notifyDataSetChanged();

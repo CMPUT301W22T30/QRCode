@@ -11,6 +11,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
@@ -34,6 +35,7 @@ public class UserStatisticsActivity extends AppCompatActivity {
     private UserInformation userInformation;
     private TextView textView;
     private ArrayList<Double> arrayList;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class UserStatisticsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        username = getIntent().getStringExtra("Username");
+        game = (Game) getIntent().getSerializableExtra("Game");
 
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {
@@ -56,12 +61,11 @@ public class UserStatisticsActivity extends AppCompatActivity {
                         finish();
                     }).show();
         });
-
-        username = getIntent().getStringExtra("Username");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", username);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
