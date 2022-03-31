@@ -78,15 +78,18 @@ public class ChooseGameActivity extends AppCompatActivity {
 
 
         listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            Game game = arrayAdapter.getItem(i);
+            if (!sessionUsername.equals("admin") && !game.getOwnerUsername().equals(sessionUsername)) {
+                return true;
+            }
             var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(ChooseGameActivity.this);
             materialAlertDialogBuilder
                     .setTitle("Delete This Game?")
                     .setNegativeButton("Cancel", null)
                     .setPositiveButton("Delete", (dialogInterface, i1) -> {
-                         Game game = arrayAdapter.getItem(i);
-                         colRefGame.document(game.getGameName()).delete();
+                        colRefGame.document(game.getGameName()).delete();
                     }).show();
-            return false;
+            return true;
         });
 
 

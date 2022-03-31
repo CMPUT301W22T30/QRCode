@@ -107,6 +107,10 @@ public class UserProfileActivity extends AppCompatActivity {
                 myFirestoreUpload.deleteUser(username);
                 finish();
             });
+        } else if (sessionUsername.equals(game.getOwnerUsername()) && !username.equals("admin")) {
+            buttonDeleteUser.setOnClickListener(v -> {
+
+            });
         } else {
             buttonDeleteUser.setVisibility(View.GONE);
         }
