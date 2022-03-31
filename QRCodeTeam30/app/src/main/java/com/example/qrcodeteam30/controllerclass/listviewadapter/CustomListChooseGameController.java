@@ -19,11 +19,11 @@ import java.util.Date;
 /**
  * Custom Array Adapter for the listview in ChooseGameActivity
  */
-public class CustomListChooseGame extends ArrayAdapter<Game> {
+public class CustomListChooseGameController extends ArrayAdapter<Game> {
     ArrayList<Game> arrayList;
     Context context;
 
-    public CustomListChooseGame(Context context, ArrayList<Game> arrayList) {
+    public CustomListChooseGameController(Context context, ArrayList<Game> arrayList) {
         super(context, 0, arrayList);
         this.arrayList = arrayList;
         this.context = context;

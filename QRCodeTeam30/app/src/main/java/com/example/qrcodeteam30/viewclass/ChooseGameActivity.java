@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListChooseGame;
+import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListChooseGameController;
 import com.example.qrcodeteam30.modelclass.Game;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
@@ -71,7 +71,7 @@ public class ChooseGameActivity extends AppCompatActivity {
         colRefGame = db.collection("Game");
 
         arrayList = new ArrayList<>();
-        arrayAdapter = new CustomListChooseGame(this, arrayList);
+        arrayAdapter = new CustomListChooseGameController(this, arrayList);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
