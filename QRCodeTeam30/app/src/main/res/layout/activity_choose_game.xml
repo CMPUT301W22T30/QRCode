@@ -31,7 +31,7 @@
             android:textColor="@color/white"
             android:id="@+id/button_chooseGame"
             android:layout_weight="1"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
 
     </LinearLayout>
 

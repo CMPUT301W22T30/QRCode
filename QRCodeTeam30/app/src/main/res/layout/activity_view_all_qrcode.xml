@@ -35,7 +35,7 @@
             android:fontFamily="@font/comedysketchdemoregular"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
 
     </LinearLayout>
 

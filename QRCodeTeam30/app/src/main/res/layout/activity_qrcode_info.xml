@@ -33,7 +33,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:id="@+id/button_checkSameQRCode_qrCode_info"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:id="@+id/button_viewLocation_qrCode_info"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:id="@+id/button_viewPhoto_qrCode_info"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:id="@+id/button_viewComment_qrCode_info"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"

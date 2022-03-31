@@ -35,7 +35,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:id="@+id/button_myProfile_myRanking"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
 
 
         <Button
@@ -47,7 +47,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:id="@+id/button_myProfile_changeProfile"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
 
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
@@ -58,7 +58,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:id="@+id/button_myProfile_generateQRCode"
-            android:backgroundTint="@color/blue3"/>
+            android:backgroundTint="@color/blue2"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

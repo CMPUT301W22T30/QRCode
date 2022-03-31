@@ -42,7 +42,7 @@
                 android:layout_weight="2"
                 android:id="@+id/button_addComment_viewAllComment"
                 android:text="\u27A3"
-                android:backgroundTint="@color/blue3"/>
+                android:backgroundTint="@color/blue2"/>
 
         </LinearLayout>
 
