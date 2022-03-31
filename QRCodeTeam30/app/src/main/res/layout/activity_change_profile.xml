@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_changeProfile_firstName"
+                android:fontFamily="@font/montserrat_regular"
                 android:hint="First Name"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -40,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_changeProfile_lastName"
+                android:fontFamily="@font/montserrat_regular"
                 android:hint="Last Name"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -55,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_changeProfile_password"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="textPassword"
                 android:hint="New Password"/>
 
@@ -64,8 +67,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="UPDATE"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:id="@+id/button_myProfile_update"
-            android:backgroundTint="@color/blue2"/>
+            android:backgroundTint="@color/blue3"/>
 
 
     </LinearLayout>

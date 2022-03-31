@@ -22,14 +22,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_myprofile_info"
+            android:fontFamily="@font/montserrat_bold"
             android:textSize="24sp"
-            android:textStyle="bold|italic"/>
+            android:textStyle="italic"/>
 
         <Button
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="\nEstimate my Ranking\n"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:id="@+id/button_myProfile_myRanking"
             android:backgroundTint="@color/blue3"/>
 
@@ -39,6 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="\nChange Profile\n"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:id="@+id/button_myProfile_changeProfile"
             android:backgroundTint="@color/blue3"/>
 
@@ -47,6 +54,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="\nGenerate QR Code\n"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:id="@+id/button_myProfile_generateQRCode"
             android:backgroundTint="@color/blue3"/>
         <ImageView

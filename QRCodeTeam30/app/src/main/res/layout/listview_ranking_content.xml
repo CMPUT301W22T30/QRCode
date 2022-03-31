@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@drawable/background_listview">
+    android:background="@drawable/bg_listview">
 
 
     <TextView
@@ -12,12 +12,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/listview_ranking_content_textView_name"
         android:textSize="20sp"
-        android:textStyle="bold|italic"/>
+        android:fontFamily="@font/montserrat_bold"
+        android:textStyle="italic"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listview_ranking_content_textView_username"
+        android:fontFamily="@font/montserrat_regular"
+
         android:textSize="16sp"/>
 
     <TextView
@@ -25,6 +28,8 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:id="@+id/listview_ranking_content_textView_score"
+        android:fontFamily="@font/montserrat_regular"
+
         android:textStyle="bold"
         android:gravity="right"
         android:layout_gravity="right"/>

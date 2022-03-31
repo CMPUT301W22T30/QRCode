@@ -32,6 +32,9 @@
             android:layout_weight="1"
             android:id="@+id/button_viewAllQRCode_statistics"
             android:text="Statistics"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:backgroundTint="@color/blue3"/>
 
     </LinearLayout>

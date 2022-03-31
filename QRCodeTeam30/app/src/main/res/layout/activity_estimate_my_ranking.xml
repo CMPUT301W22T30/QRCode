@@ -19,17 +19,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:id="@+id/textView_estimateRanking"
+            android:fontFamily="@font/montserrat_regular"
             android:layout_margin="10dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textSize="20sp"
             android:id="@+id/textView_estimateRanking_exactRanking"
+            android:fontFamily="@font/montserrat_regular"
             android:layout_margin="10dp" />
 
     </LinearLayout>

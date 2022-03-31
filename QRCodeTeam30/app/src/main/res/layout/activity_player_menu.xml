@@ -23,6 +23,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_scanQRCode"
             android:text="Scan QR Code"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:backgroundTint="@color/blue3"/>
         <Button
@@ -31,6 +34,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_searchQRCode"
             android:text="Search QR Code"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:backgroundTint="@color/blue3"/>
         <Button
@@ -39,6 +45,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_searchUsername"
             android:text="Search Username"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:backgroundTint="@color/blue3"/>
         <Button
@@ -47,6 +56,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_ranking"
             android:text="Ranking"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:backgroundTint="@color/blue3"/>
         <Button
@@ -55,6 +67,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_myProfile"
             android:text="My Profile"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:backgroundTint="@color/blue3"/>
         <Button
@@ -63,6 +78,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_viewQRCode"
             android:text="View QR Code"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:backgroundTint="@color/blue3"/>
 

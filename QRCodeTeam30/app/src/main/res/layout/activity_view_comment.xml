@@ -32,6 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
+                android:fontFamily="@font/montserrat_regular"
                 android:id="@+id/editText_addComment_viewAllComment"
                 android:hint="Add Comment ..."/>
 
@@ -40,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:id="@+id/button_addComment_viewAllComment"
-                android:text="\u27A3"/>
+                android:text="\u27A3"
+                android:backgroundTint="@color/blue3"/>
 
         </LinearLayout>
 

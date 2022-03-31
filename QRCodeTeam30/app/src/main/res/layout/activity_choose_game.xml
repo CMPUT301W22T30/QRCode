@@ -26,8 +26,12 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:text="Add Game"
+            android:fontFamily="@font/comedysketchdemoregular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
             android:id="@+id/button_chooseGame"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue3"/>
 
     </LinearLayout>
 
