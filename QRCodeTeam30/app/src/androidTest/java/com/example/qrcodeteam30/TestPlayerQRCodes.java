@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class TestPlayerQRCodes {
     @Test
-    public void testgenerateQRCode() throws Exception {
+    public void testGenerateQRCode() throws Exception {
         // Launch MainActivity
         ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
 
