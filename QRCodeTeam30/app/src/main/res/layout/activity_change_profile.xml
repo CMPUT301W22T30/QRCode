@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_changeProfile_firstName"
                 android:fontFamily="@font/montserrat_regular"
-                android:hint="First Name"/>
+                android:hint="First Name"
+                android:inputType="textNoSuggestions"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,7 +43,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_changeProfile_lastName"
                 android:fontFamily="@font/montserrat_regular"
-                android:hint="Last Name"/>
+                android:hint="Last Name"
+                android:inputType="textNoSuggestions"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

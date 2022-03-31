@@ -2,6 +2,7 @@ package com.example.qrcodeteam30.viewclass;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,6 +27,9 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.ArrayList;
 
+/**
+ * This activity allows user to choose game session or create new one
+ */
 public class ChooseGameActivity extends AppCompatActivity {
     private CollectionReference colRefGame;
     private ArrayList<Game> arrayList;
@@ -146,5 +151,15 @@ public class ChooseGameActivity extends AppCompatActivity {
     protected void onStop() {
         listenerRegistration.remove();
         super.onStop();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

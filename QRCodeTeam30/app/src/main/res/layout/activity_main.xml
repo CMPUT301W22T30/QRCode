@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/signin_username_editText"
                 android:fontFamily="@font/montserrat_regular"
+                android:inputType="textNoSuggestions"
                 android:hint="Username"/>
 
         </com.google.android.material.textfield.TextInputLayout>
