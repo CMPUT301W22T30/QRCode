@@ -1,6 +1,5 @@
 package com.example.qrcodeteam30.viewclass.reusableactivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,6 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
@@ -23,9 +23,6 @@ import com.example.qrcodeteam30.controllerclass.MyPermissionController;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.math.BigDecimal;
 import java.util.Locale;
@@ -39,10 +36,10 @@ import java.util.Locale;
  * It also includes a button to delete this QR Code (if the current logged in username is admin)
  */
 public class QRCodeInfoActivity extends AppCompatActivity {
-    private ImageView imageView;
     private int listViewPosition;
     private String sessionUsername;
     private MyPermissionController myPermission;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +50,10 @@ public class QRCodeInfoActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        QRCode qrCode = (QRCode) getIntent().getSerializableExtra("QRCode");
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
+
         myPermission = new MyPermissionController(this, this);
 
         Button buttonLogOut = findViewById(R.id.button_logout);
@@ -60,28 +61,23 @@ public class QRCodeInfoActivity extends AppCompatActivity {
             var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(QRCodeInfoActivity.this);
             materialAlertDialogBuilder.setTitle("Log out").setMessage("Do you want to log out?")
                     .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Log out", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(QRCodeInfoActivity.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
+                    .setPositiveButton("Log out", (dialogInterface, i) -> {
+                        var intent = new Intent(QRCodeInfoActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
                     }).show();
         });
 
-        QRCode qrCode = (QRCode) getIntent().getSerializableExtra("QRCode");
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
         listViewPosition = getIntent().getIntExtra("ListViewPosition", -1);
 
-        imageView = findViewById(R.id.imageView_qrCode_info);
         TextView textViewScore = findViewById(R.id.textView_score_qrCode_info);
         Button checkSameQRCodeButton = findViewById(R.id.button_checkSameQRCode_qrCode_info);
         Button viewLocationButton = findViewById(R.id.button_viewLocation_qrCode_info);
@@ -89,25 +85,21 @@ public class QRCodeInfoActivity extends AppCompatActivity {
         Button viewCommentButton = findViewById(R.id.button_viewComment_qrCode_info);
         Button deleteQRCodeButton = findViewById(R.id.button_delete_qrCode_info);
 
-        /*
-        if (qrCode.isRecordPhoto()) {
-            //displayQRCode(MyCryptography.decrypt(qrCode.getQrCodeContent()), qrCode.getFormat());
-        } else {
-            imageView.setVisibility(View.GONE);
-        }
-        */
-        imageView.setVisibility(View.GONE);
-
 
         var strippedScore = new BigDecimal(Double.toString(qrCode.getScore())).stripTrailingZeros();
         textViewScore.setText(String.format(Locale.CANADA, "Score: %s\n@%s\n%s", strippedScore.toPlainString(), qrCode.getUsername(), qrCode.getDate()));
+        if (qrCode.isRecordLocation()) {
+            checkSameQRCodeButton.setOnClickListener(v -> {
+                var intent = new Intent(QRCodeInfoActivity.this, CheckSameQRCodeActivity.class);
+                intent.putExtra("QRCode", qrCode);
+                intent.putExtra("SessionUsername", sessionUsername);
+                intent.putExtra("Game", game);
+                startActivity(intent);
+            });
+        } else {
+            checkSameQRCodeButton.setVisibility(View.GONE);
+        }
 
-        checkSameQRCodeButton.setOnClickListener(v -> {
-            var intent = new Intent(QRCodeInfoActivity.this, CheckSameQRCodeActivity.class);
-            intent.putExtra("QRCode", qrCode);
-            intent.putExtra("SessionUsername", sessionUsername);
-            startActivity(intent);
-        });
 
         // listViewPosition == -1 only if we view the QRCode by clicking from the map
         if (listViewPosition != -1 && qrCode.isRecordLocation()) {
@@ -116,6 +108,7 @@ public class QRCodeInfoActivity extends AppCompatActivity {
                     var intent = new Intent(QRCodeInfoActivity.this, MapQRCodeActivity.class);
                     intent.putExtra("SessionUsername", sessionUsername);
                     intent.putExtra("QRCode", qrCode);
+                    intent.putExtra("Game", game);
                     startActivity(intent);
                 } else {
                     myPermission.requestWritingLocationPermission();
@@ -156,11 +149,15 @@ public class QRCodeInfoActivity extends AppCompatActivity {
             intent.putExtra("SessionUsername", sessionUsername);
             intent.putExtra("QRCodeUsername", qrCode.getUsername());
             intent.putExtra("QRCode", qrCode);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
 
-        if (listViewPosition != -1 && (sessionUsername.equals(qrCode.getUsername()) || sessionUsername.equals("admin"))) {
+        if (listViewPosition != -1
+                && (sessionUsername.equals(qrCode.getUsername())
+                || sessionUsername.equals("admin")
+                || sessionUsername.equals(game.getOwnerUsername()))) {
             deleteQRCodeButton.setOnClickListener(v -> {
                 var intent = new Intent();
                 intent.putExtra("Delete", true);
@@ -171,26 +168,6 @@ public class QRCodeInfoActivity extends AppCompatActivity {
         } else {
             deleteQRCodeButton.setVisibility(View.GONE);
         }
-    }
-
-    private void displayQRCode(String str, String format) {
-        var barcodeEncoder = new BarcodeEncoder();
-        Bitmap bitmap = null;
-        int width;
-        int height;
-        try {
-            if (format.equals("QR_CODE")) {
-                width = 1000;
-                height = 1000;
-            } else {
-                width = 1000;
-                height = 500;
-            }
-            bitmap = barcodeEncoder.encodeBitmap(str, BarcodeFormat.valueOf(format), width, height);
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
-        imageView.setImageBitmap(bitmap);
     }
 
     @Override

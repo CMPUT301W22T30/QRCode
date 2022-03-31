@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".viewclass.PlayerMenuActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/background">
 
     <include layout="@layout/toolbar_logout"/>
 
@@ -17,41 +18,53 @@
         android:layout_margin="10dp">
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_scanQRCode"
             android:text="Scan QR Code"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue3"/>
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_searchQRCode"
             android:text="Search QR Code"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue3"/>
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_searchUsername"
             android:text="Search Username"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue3"/>
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_ranking"
             android:text="Ranking"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue3"/>
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_myProfile"
             android:text="My Profile"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue3"/>
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_playerMenu_viewQRCode"
             android:text="View QR Code"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue3"/>
 
     </LinearLayout>
 

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.qrcodeteam30.R;
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.example.qrcodeteam30.viewclass.reusableactivity.UserProfileActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -29,8 +30,9 @@ import java.util.ArrayList;
  */
 public class SearchUsernameActivity extends AppCompatActivity {
     private String sessionUsername;
-    FirebaseFirestore db;
-    ArrayList<String> arrayList;
+    private FirebaseFirestore db;
+    private ArrayList<String> arrayList;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +41,19 @@ public class SearchUsernameActivity extends AppCompatActivity {
         SearchView searchView = findViewById(R.id.searchView_searchUsername);
         Button buttonQRCode = findViewById(R.id.buttonQRCode_searchUsername);
 
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
+
         Toolbar toolbar = findViewById(R.id.toolbar_logout);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -82,6 +87,7 @@ public class SearchUsernameActivity extends AppCompatActivity {
                             var intent = new Intent(SearchUsernameActivity.this, UserProfileActivity.class);
                             intent.putExtra("Username", query);
                             intent.putExtra("SessionUsername", sessionUsername);
+                            intent.putExtra("Game", game);
                             startActivity(intent);
                             return true;
                         }
@@ -127,6 +133,7 @@ public class SearchUsernameActivity extends AppCompatActivity {
                     var intent = new Intent(SearchUsernameActivity.this, UserProfileActivity.class);
                     intent.putExtra("Username", username);
                     intent.putExtra("SessionUsername", sessionUsername);
+                    intent.putExtra("Game", game);
                     startActivity(intent);
                 }
             });

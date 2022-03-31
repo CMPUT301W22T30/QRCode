@@ -11,6 +11,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.modelclass.Game;
+import com.example.qrcodeteam30.modelclass.UserScoreGameSession;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
@@ -34,6 +36,7 @@ public class UserStatisticsActivity extends AppCompatActivity {
     private UserInformation userInformation;
     private TextView textView;
     private ArrayList<Double> arrayList;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,9 @@ public class UserStatisticsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        username = getIntent().getStringExtra("Username");
+        game = (Game) getIntent().getSerializableExtra("Game");
 
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {
@@ -56,12 +62,11 @@ public class UserStatisticsActivity extends AppCompatActivity {
                         finish();
                     }).show();
         });
-
-        username = getIntent().getStringExtra("Username");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", username);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -78,7 +83,8 @@ public class UserStatisticsActivity extends AppCompatActivity {
             if (value != null) {
                 double sum = 0;
                 userInformation = value.toObject(UserInformation.class);
-                for (QRCode qrCode: userInformation.getQrCodeList()) {
+                UserScoreGameSession userScoreGameSession = new UserScoreGameSession(userInformation, game);
+                for (QRCode qrCode: userScoreGameSession.getQrCodeArrayList()) {
                     arrayList.add(qrCode.getScore());
                     sum += qrCode.getScore();
                 }
@@ -86,11 +92,11 @@ public class UserStatisticsActivity extends AppCompatActivity {
                 var strippedSum = new BigDecimal(Double.toString(sum)).stripTrailingZeros();
 
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(String.format(Locale.CANADA, "Number of Barcodes: %d\n", userInformation.getQrCodeList().size()));
+                stringBuilder.append(String.format(Locale.CANADA, "Number of Barcodes: %d\n", userScoreGameSession.getQrCodeArrayList().size()));
                 stringBuilder.append(String.format(Locale.CANADA, "Total score: %s\n", strippedSum.toPlainString()));
 
                 if (userInformation.getQrCodeList().size() > 0) {
-                    var strippedAverage = new BigDecimal(Double.toString(sum / userInformation.getQrCodeList().size())).stripTrailingZeros();
+                    var strippedAverage = new BigDecimal(Double.toString(sum / userScoreGameSession.getQrCodeArrayList().size())).stripTrailingZeros();
                     var strippedMax = new BigDecimal(Double.toString(Collections.max(arrayList))).stripTrailingZeros();
                     var strippedMin = new BigDecimal(Double.toString(Collections.min(arrayList))).stripTrailingZeros();
                     stringBuilder.append(String.format(Locale.CANADA, "Average: %s\n", strippedAverage.toPlainString()));

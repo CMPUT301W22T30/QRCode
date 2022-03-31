@@ -1,6 +1,5 @@
 package com.example.qrcodeteam30.viewclass.viewallqrcode;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,6 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
@@ -37,6 +37,7 @@ import java.util.ArrayList;
 public class ViewAllQRCodeActivity extends AppCompatActivity {
     private String username;
     private String sessionUsername;
+    private Game game;
     private FirebaseFirestore db;
     private DocumentReference documentReference;
     private UserInformation userInformation;
@@ -53,28 +54,28 @@ public class ViewAllQRCodeActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        username = getIntent().getStringExtra("Username");
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
+
         Button buttonLogOut = findViewById(R.id.button_logout);
         buttonLogOut.setOnClickListener(v -> {
             var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(ViewAllQRCodeActivity.this);
             materialAlertDialogBuilder.setTitle("Log out").setMessage("Do you want to log out?")
                     .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Log out", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            var intent = new Intent(ViewAllQRCodeActivity.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
+                    .setPositiveButton("Log out", (dialogInterface, i) -> {
+                        var intent = new Intent(ViewAllQRCodeActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
                     }).show();
         });
 
-        username = getIntent().getStringExtra("Username");
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -95,6 +96,7 @@ public class ViewAllQRCodeActivity extends AppCompatActivity {
             intent.putExtra("QRCode", qrCode);
             intent.putExtra("ListViewPosition", i);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             activityResultLauncher.launch(intent);
         });
 
@@ -102,6 +104,7 @@ public class ViewAllQRCodeActivity extends AppCompatActivity {
         button.setOnClickListener(v -> {
             var intent = new Intent(ViewAllQRCodeActivity.this, UserStatisticsActivity.class);
             intent.putExtra("Username", username);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
     }
@@ -119,7 +122,6 @@ public class ViewAllQRCodeActivity extends AppCompatActivity {
                     db.document(qrCode.getPhotoReference()).delete();
 
                     documentReference.update("qrCodeList", FieldValue.arrayRemove(qrCode));
-                    documentReference.update("score", FieldValue.increment(-qrCode.getScore()));
                 }
             }
     );
@@ -146,7 +148,12 @@ public class ViewAllQRCodeActivity extends AppCompatActivity {
             if (value != null) {
                 arrayList.clear();
                 userInformation = value.toObject(UserInformation.class);
-                arrayList.addAll(userInformation.getQrCodeList());
+                for (var qrCode: userInformation.getQrCodeList()) {
+                    if (qrCode.getGameName().equals(game.getGameName())) {
+                        arrayList.add(qrCode);
+                    }
+                }
+                //arrayList.addAll(userInformation.getQrCodeList());
                 arrayAdapter.notifyDataSetChanged();
             }
         });

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".viewclass.reusableactivity.UserProfileActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background">
     <include layout="@layout/toolbar_logout"/>
 
     <LinearLayout
@@ -22,19 +23,34 @@
             android:id="@+id/textView_userProfile"/>
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_userProfile_viewAllQRCode"
             android:text="\nVIEW ALL QR CODE\n"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:backgroundTint="@color/blue3"/>
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_userProfile_deleteUserServerOnly"
+            android:text="\nDELETE USER IN THIS SERVER ONLY\n"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"/>
+
+
+        <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_userProfile_deleteUser"
             android:text="\nDELETE USER\n"
             android:layout_gravity="center"
-            android:backgroundTint="@color/red"/>
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

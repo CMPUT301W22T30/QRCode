@@ -1,5 +1,8 @@
 package com.example.qrcodeteam30.controllerclass;
 
+import com.example.qrcodeteam30.modelclass.Game;
+import com.example.qrcodeteam30.modelclass.UserInformation;
+
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -60,5 +63,14 @@ public class CalculateScoreController {
             i = j;
         }
         return score;
+    }
+
+    public static double calculateTotalScore(UserInformation userInformation, Game game) {
+        double result = 0;
+        for (var qrCode: userInformation.getQrCodeList()) {
+            if (qrCode.getGameName().equals(game.getGameName()))
+                result += qrCode.getScore();
+        }
+        return result;
     }
 }

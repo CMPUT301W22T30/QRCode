@@ -11,10 +11,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.R;
+import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
+import com.example.qrcodeteam30.modelclass.Game;
+import com.example.qrcodeteam30.modelclass.UserInformation;
+import com.example.qrcodeteam30.modelclass.UserScoreGameSession;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
-import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.modelclass.UserInformation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,14 +40,18 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
     private int count;
     private TextView textView;
     private TextView textViewExact;
-    ListenerRegistration listenerRegistration;
-    FirebaseFirestore db;
-    CollectionReference collectionReference;
+    private ListenerRegistration listenerRegistration;
+    private FirebaseFirestore db;
+    private CollectionReference collectionReference;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estimate_my_ranking);
+
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
 
         Toolbar toolbar = findViewById(R.id.toolbar_logout);
         setSupportActionBar(toolbar);
@@ -67,7 +74,6 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView_estimateRanking);
         textViewExact = findViewById(R.id.textView_estimateRanking_exactRanking);
 
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         max = getIntent().getDoubleExtra("Max", -1);
         score = getIntent().getDoubleExtra("Score", -1);
         count = getIntent().getIntExtra("Count", -1);
@@ -76,6 +82,7 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -101,34 +108,42 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
             int numQRCodes = 0;
             int numDocs = 0;
 
-            HashSet<Double> allQRCodeHashSet = new HashSet<>();
+            HashSet<String> allQRCodeHashSetString = new HashSet<>();
+            ArrayList<Double> allQRCodeArr = new ArrayList<>();
             ArrayList<Double> scoreArr = new ArrayList<>();
             ArrayList<Integer> countArr = new ArrayList<>();
 
             for (var queryDocumentSnapshot : value) {
                 UserInformation userInformation = queryDocumentSnapshot.toObject(UserInformation.class);
-                if (userInformation.getScore() < score) {
+                UserScoreGameSession userScoreGameSession = new UserScoreGameSession(userInformation, game);
+
+                double totalScore = CalculateScoreController.calculateTotalScore(userInformation, game);
+                if (totalScore < score) {
                     cfScore++;
-                } else if (userInformation.getScore() == score) {
+                } else if (totalScore == score) {
                     fScore++;
                 }
-                scoreArr.add(userInformation.getScore());
+                scoreArr.add(totalScore);
 
-                if (userInformation.getQrCodeList().size() < count) {
+                if (userScoreGameSession.getQrCodeArrayList().size() < count) {
                     cfCount++;
-                } else if (userInformation.getQrCodeList().size() == count) {
+                } else if (userScoreGameSession.getQrCodeArrayList().size() == count) {
                     fCount++;
                 }
-                countArr.add(userInformation.getQrCodeList().size());
+                countArr.add(userScoreGameSession.getQrCodeArrayList().size());
 
-                for (var qrCode: userInformation.getQrCodeList()) {
+                for (var qrCode: userScoreGameSession.getQrCodeArrayList()) {
                     if (qrCode.getScore() < max) {
                         cfMax++;
                     } else if (qrCode.getScore() == max) {
                         fMax++;
                     }
                     numQRCodes++;
-                    allQRCodeHashSet.add(qrCode.getScore());
+
+                    if (!allQRCodeHashSetString.contains(qrCode.getQrCodeContent())) {
+                        allQRCodeHashSetString.add(qrCode.getQrCodeContent());
+                        allQRCodeArr.add(qrCode.getScore());
+                    }
                 }
 
                 numDocs++;
@@ -145,7 +160,6 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
                     "Total Score Percentile: Top %s%%\n\nMax Score Percentile: Top %s%%\n\nNumber of Barcodes Percentile: Top %s%%",
                     strippedValSum.toPlainString(), strippedValMax.toPlainString(), strippedValCount.toPlainString()));
 
-            ArrayList<Double> allQRCodeArr = new ArrayList<>(allQRCodeHashSet);
 
             allQRCodeArr.sort(Collections.reverseOrder());
             scoreArr.sort(Collections.reverseOrder());
@@ -154,10 +168,16 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
             int rankMax = allQRCodeArr.indexOf(max);
             int rankScore = scoreArr.indexOf(score);
             int rankCount = countArr.indexOf(count);
-            textViewExact.setText(
-                    String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Unique Max Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
-                            rankScore + 1, scoreArr.size(), rankMax + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
 
+            if (max == -1) {
+                textViewExact.setText(
+                        String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
+                                rankScore + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
+            } else {
+                textViewExact.setText(
+                        String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Unique Max Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
+                                rankScore + 1, scoreArr.size(), rankMax + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
+            }
         });
         super.onStart();
     }

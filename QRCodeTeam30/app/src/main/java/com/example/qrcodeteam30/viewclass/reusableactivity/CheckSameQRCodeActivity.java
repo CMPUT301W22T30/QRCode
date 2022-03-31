@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
@@ -36,6 +37,7 @@ public class CheckSameQRCodeActivity extends AppCompatActivity {
     private String sessionUsername;
     private ArrayList<QRCode> arrayListQRCode;
     private ArrayList<String> arrayListRelevantUsername;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +63,14 @@ public class CheckSameQRCodeActivity extends AppCompatActivity {
 
         qrCode = (QRCode) getIntent().getSerializableExtra("QRCode");
         sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
         arrayListQRCode = new ArrayList<>();
         arrayListRelevantUsername = new ArrayList<>();
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -78,6 +82,7 @@ public class CheckSameQRCodeActivity extends AppCompatActivity {
             var intent = new Intent(CheckSameQRCodeActivity.this, UserProfileActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
             intent.putExtra("Username", arrayAdapter.getItem(i).substring(2, arrayAdapter.getItem(i).length() - 1));
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -97,7 +102,8 @@ public class CheckSameQRCodeActivity extends AppCompatActivity {
                 if (MyCryptographyController.decrypt(qrCode.getQrCodeContent()).equals(MyCryptographyController.decrypt(qrCode_iterator.getQrCodeContent()))
                         && Math.abs(qrCode.getLatitude() - qrCode_iterator.getLatitude()) < 0.001
                         && Math.abs(qrCode.getLongitude() - qrCode_iterator.getLongitude()) < 0.001
-                        && !qrCode_iterator.getUsername().equals(qrCode.getUsername())) {
+                        && !qrCode_iterator.getUsername().equals(qrCode.getUsername())
+                        && qrCode_iterator.getGameName().equals(game.getGameName())) {
 
                     // Make sure one username is added only one time in the hashset
                     if (!seen.contains(qrCode_iterator.getUsername())) {

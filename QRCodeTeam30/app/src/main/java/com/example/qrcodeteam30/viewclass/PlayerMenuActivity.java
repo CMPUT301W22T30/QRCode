@@ -20,6 +20,7 @@ import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
 import com.example.qrcodeteam30.controllerclass.MyBitmapController;
 import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.controllerclass.MyPermissionController;
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.myprofile.MyProfileActivity;
 import com.example.qrcodeteam30.viewclass.viewallqrcode.ViewAllQRCodeActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -31,17 +32,16 @@ import java.math.BigDecimal;
 import java.util.Locale;
 
 /**
- * <p>
- *     The main menu for the app, with five buttons represent five major features of the code.
- *     Button 1: Scan QR Code (Which launch the camera and scan the QR Code)
- *     Button 2: Search QR Code (Choosing from a map)
- *     Button 3: Search username
- *     Button 4: Check my profile
- *     Button 5: View all of my QR Codes
- * </p>
+ * The main menu for the app, with five buttons represent five major features of the code.
+ * Button 1: Scan QR Code (Which launch the camera and scan the QR Code)
+ * Button 2: Search QR Code (Choosing from a map)
+ * Button 3: Search username
+ * Button 4: Check my profile
+ * Button 5: View all of my QR Codes
  */
 public class PlayerMenuActivity extends AppCompatActivity {
     private String sessionUsername;
+    private Game game;
     private MyFirestoreUploadController myFirestoreUpload;
     private MyPermissionController myPermission;
 
@@ -66,7 +66,9 @@ public class PlayerMenuActivity extends AppCompatActivity {
                     }).show();
         });
 
+
         sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
         myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
         myPermission = new MyPermissionController(this, this);
 
@@ -77,7 +79,14 @@ public class PlayerMenuActivity extends AppCompatActivity {
         Button buttonMyProfile = findViewById(R.id.button_playerMenu_myProfile);
         Button buttonViewQRCode = findViewById(R.id.button_playerMenu_viewQRCode);
         Button buttonHome = findViewById(R.id.button_toolbar_home);
-        buttonHome.setVisibility(View.GONE);
+
+        buttonHome.setOnClickListener(v -> {
+            var intent = new Intent(PlayerMenuActivity.this, ChooseGameActivity.class);
+            intent.putExtra("SessionUsername", sessionUsername);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        });
 
 
         buttonScanQRCode.setOnClickListener(v -> {
@@ -95,6 +104,7 @@ public class PlayerMenuActivity extends AppCompatActivity {
             if (myPermission.hasWritingLocationPermission()) {
                 var intent = new Intent(PlayerMenuActivity.this, SearchQRCodeActivity.class);
                 intent.putExtra("SessionUsername", sessionUsername);
+                intent.putExtra("Game", game);
                 startActivity(intent);
             } else {
                 myPermission.requestWritingLocationPermission();
@@ -105,6 +115,7 @@ public class PlayerMenuActivity extends AppCompatActivity {
         buttonSearchUsername.setOnClickListener(v -> {
             var intent = new Intent(PlayerMenuActivity.this, SearchUsernameActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
 
         });
@@ -112,12 +123,14 @@ public class PlayerMenuActivity extends AppCompatActivity {
         buttonRanking.setOnClickListener(v -> {
             var intent = new Intent(PlayerMenuActivity.this, RankingActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
         buttonMyProfile.setOnClickListener(v -> {
             var intent = new Intent(PlayerMenuActivity.this, MyProfileActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -125,6 +138,7 @@ public class PlayerMenuActivity extends AppCompatActivity {
             var intent = new Intent(PlayerMenuActivity.this, ViewAllQRCodeActivity.class);
             intent.putExtra("Username", sessionUsername);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
@@ -162,11 +176,13 @@ public class PlayerMenuActivity extends AppCompatActivity {
                                             locationDialog.setTitle("Do you want to record the location?")
                                                     .setPositiveButton("Yes", (dialogInterface12, i12) ->
                                                             myFirestoreUpload.uploadQRCodeToDBLocationNoPhoto(
-                                                                    str, result.getFormatName(), sessionUsername)
+                                                                    str, result.getFormatName(), sessionUsername,
+                                                                    game.getGameName(), game.getOwnerUsername())
                                                     )
                                                     .setNegativeButton("No", (dialogInterface1, i1) ->
                                                             myFirestoreUpload.uploadQRCodeToDBNoLocationNoPhoto(
-                                                                    str, result.getFormatName(), sessionUsername)
+                                                                    str, result.getFormatName(),
+                                                                    sessionUsername, game.getGameName(), game.getOwnerUsername())
                                                     )
                                                     .show();
                                         })
@@ -175,11 +191,13 @@ public class PlayerMenuActivity extends AppCompatActivity {
                                             locationDialog.setTitle("Do you want to record the location?")
                                                     .setPositiveButton("Yes", (dialogInterface141, i141) ->
                                                             myFirestoreUpload.uploadQRCodeToDBLocationPhoto(
-                                                                    str, result.getFormatName(), bitmapResizeString, sessionUsername)
+                                                                    str, result.getFormatName(), bitmapResizeString,
+                                                                    sessionUsername, game.getGameName(), game.getOwnerUsername())
                                                     )
                                                     .setNegativeButton("No", (dialogInterface1412, i1412) ->
                                                             myFirestoreUpload.uploadQRCodeToDBNoLocationPhoto(
-                                                                    str, result.getFormatName(), bitmapResizeString, sessionUsername)
+                                                                    str, result.getFormatName(), bitmapResizeString,
+                                                                    sessionUsername, game.getGameName(), game.getOwnerUsername())
                                                     )
                                                     .show();
                                         }).show();

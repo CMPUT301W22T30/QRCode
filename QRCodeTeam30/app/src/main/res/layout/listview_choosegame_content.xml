@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:background="@drawable/background_listview">
-
+    android:background="@drawable/background_listview"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listview_ranking_content_textView_name"
+        android:id="@+id/listview_chooseGame_textView_name"
         android:textSize="20sp"
         android:textStyle="bold|italic"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listview_ranking_content_textView_username"
+        android:id="@+id/listview_chooseGame_textView_owner"
         android:textSize="16sp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:id="@+id/listview_ranking_content_textView_score"
-        android:textStyle="bold"
-        android:gravity="right"
-        android:layout_gravity="right"/>
+        android:id="@+id/listview_chooseGame_textView_date"
+        android:textSize="16sp"/>
 
 </LinearLayout>

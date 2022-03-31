@@ -1,5 +1,7 @@
 package com.example.qrcodeteam30.modelclass;
 
+import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,12 +9,11 @@ import java.util.ArrayList;
  * This model class represents the basic information of a user
  * Username, password, firstName, lastName, his/her total score, and the list of QR Code
  */
-public class UserInformation implements Serializable, Comparable<UserInformation> {
+public class UserInformation {
     private String username;
     private String password;
     private String firstName;
     private String lastName;
-    private double score;
     private ArrayList<QRCode> qrCodeList;
 
     /**
@@ -34,7 +35,7 @@ public class UserInformation implements Serializable, Comparable<UserInformation
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.score = score;
+        //this.score = score;
         qrCodeList = new ArrayList<>();
     }
 
@@ -116,31 +117,5 @@ public class UserInformation implements Serializable, Comparable<UserInformation
      */
     public void setQrCodeList(ArrayList<QRCode> qrCodeList) {
         this.qrCodeList = qrCodeList;
-    }
-
-    /**
-     * get total score
-     * @return score
-     */
-    public double getScore() {
-        return score;
-    }
-
-    /**
-     * set total score
-     * @param score
-     */
-    public void setScore(double score) {
-        this.score = score;
-    }
-
-    /**
-     * This function is used to comapre UserInformation based on total score
-     * @param userInformation
-     * @return
-     */
-    @Override
-    public int compareTo(UserInformation userInformation) {
-        return Double.compare(this.score, userInformation.getScore());
     }
 }

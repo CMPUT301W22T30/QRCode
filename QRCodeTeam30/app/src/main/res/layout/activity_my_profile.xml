@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".viewclass.myprofile.MyProfileActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/background">
     <include layout="@layout/toolbar_logout"/>
 
     <LinearLayout
@@ -17,6 +18,7 @@
         android:gravity="center">
 
         <TextView
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView_myprofile_info"
@@ -24,23 +26,29 @@
             android:textStyle="bold|italic"/>
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="\nEstimate my Ranking\n"
-            android:id="@+id/button_myProfile_myRanking"/>
+            android:id="@+id/button_myProfile_myRanking"
+            android:backgroundTint="@color/blue3"/>
 
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="\nChange Profile\n"
-            android:id="@+id/button_myProfile_changeProfile"/>
+            android:id="@+id/button_myProfile_changeProfile"
+            android:backgroundTint="@color/blue3"/>
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="\nGenerate QR Code\n"
-            android:id="@+id/button_myProfile_generateQRCode"/>
+            android:id="@+id/button_myProfile_generateQRCode"
+            android:backgroundTint="@color/blue3"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

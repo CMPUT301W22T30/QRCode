@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".viewclass.myprofile.ChangeProfileActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background">
     <include layout="@layout/toolbar_logout"/>
 
     <LinearLayout
@@ -15,30 +16,56 @@
         android:gravity="center"
         android:layout_margin="10dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="New first name ..."
-            android:id="@+id/editText_changeProfile_firstName"/>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="New last name ..."
-            android:id="@+id/editText_changeProfile_lastName"/>
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_changeProfile_firstName"
+                android:hint="First Name"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="New password ..."
-            android:id="@+id/editText_changeProfile_password"/>
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_changeProfile_lastName"
+                android:hint="Last Name"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_changeProfile_password"
+                android:inputType="textPassword"
+                android:hint="New Password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="UPDATE"
             android:id="@+id/button_myProfile_update"
-            android:backgroundTint="@color/teal_200"/>
+            android:backgroundTint="@color/blue2"/>
 
 
     </LinearLayout>

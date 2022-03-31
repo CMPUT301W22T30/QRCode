@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.controllerclass.MyCryptographyController;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
@@ -27,10 +28,15 @@ import java.security.NoSuchAlgorithmException;
  */
 public class ChangeProfileActivity extends AppCompatActivity {
     private String sessionUsername;
+    private Game game;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_profile);
+
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
+
         Toolbar toolbar = findViewById(R.id.toolbar_logout);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -49,11 +55,11 @@ public class ChangeProfileActivity extends AppCompatActivity {
                     }).show();
         });
 
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 

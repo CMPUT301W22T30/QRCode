@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
@@ -37,7 +38,8 @@ public class ViewAllCommentActivity extends AppCompatActivity {
     private String sessionUsername;
     private String qrCodeUsername;
     private DocumentReference documentReference;
-    MyFirestoreUploadController myFirestoreUpload;
+    private MyFirestoreUploadController myFirestoreUpload;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,11 @@ public class ViewAllCommentActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
+        qrCodeUsername = getIntent().getStringExtra("QRCodeUsername");
+        QRCode qrCode = (QRCode) getIntent().getSerializableExtra("QRCode");
 
         myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
 
@@ -63,17 +70,13 @@ public class ViewAllCommentActivity extends AppCompatActivity {
                     }).show();
         });
 
-        sessionUsername = getIntent().getStringExtra("SessionUsername");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
-
-
-        qrCodeUsername = getIntent().getStringExtra("QRCodeUsername");
-        QRCode qrCode = (QRCode) getIntent().getSerializableExtra("QRCode");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         documentReference = db.document(qrCode.getCommentListReference());

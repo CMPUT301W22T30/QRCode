@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
@@ -37,6 +38,7 @@ import java.util.Locale;
  */
 public class MapQRCodeActivity extends AppCompatActivity {
     private String sessionUsername;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +68,12 @@ public class MapQRCodeActivity extends AppCompatActivity {
         });
 
         sessionUsername = getIntent().getStringExtra("SessionUsername");
+        game = (Game) getIntent().getSerializableExtra("Game");
         Button buttonHome = findViewById(R.id.button_toolbar_home);
         buttonHome.setOnClickListener(v -> {
             var intent = new Intent(this, PlayerMenuActivity.class);
             intent.putExtra("SessionUsername", sessionUsername);
+            intent.putExtra("Game", game);
             startActivity(intent);
         });
 
