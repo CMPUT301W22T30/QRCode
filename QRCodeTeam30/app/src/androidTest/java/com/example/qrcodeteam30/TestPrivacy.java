@@ -27,7 +27,7 @@ public class TestPrivacy {
         // Launch MainActivity
         ActivityScenario scenario = ActivityScenario.launch(MainActivity.class);
         QRCode qrCode = new QRCode("abc", 0, 0, "admin", "QR_CODE",
-                "placeHolder", false, false, "placeHolder", "DefaultAdmin", "admin");
+                "placeHolder", false, false, "placeHolder", new Game());
         assertNotEquals("abc", qrCode.getQrCodeContent());
     }
 

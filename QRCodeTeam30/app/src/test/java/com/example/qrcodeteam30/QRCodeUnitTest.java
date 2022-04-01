@@ -1,6 +1,8 @@
 package com.example.qrcodeteam30;
 
 import static org.junit.Assert.assertEquals;
+
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.QRCode;
 import org.junit.Test;
 
@@ -189,7 +191,8 @@ public class QRCodeUnitTest {
 
     @Test
     public void getterSetterGameName1() {
-        QRCode code = new QRCode("AAA7890247123478", 11.111, -23.345, "olduser", "EAN_13", "Comment/abc4rSqwe2atVs3VFsu7/", false, false, "Photo/IAZcnsDAEmEmSd2c4tyu/", "a", "b");
+        Game game = new Game("a", "b", "0");
+        QRCode code = new QRCode("AAA7890247123478", 11.111, -23.345, "olduser", "EAN_13", "Comment/abc4rSqwe2atVs3VFsu7/", false, false, "Photo/IAZcnsDAEmEmSd2c4tyu/", game);
         assertEquals(code.getGameName(), "a");
         code.setGameName("B");
         assertEquals(code.getGameName(), "B");
@@ -197,7 +200,8 @@ public class QRCodeUnitTest {
 
     @Test
     public void getterSetterGameName2() {
-        QRCode code = new QRCode("AAA7890247123478ascva", 11.1121, -23.3452, "olduser", "EAN_13", "Comment/abc4rSqwe2atVs3VFsu7/", false, false, "Photo/IAZcnsDAEmEmSd2c4tyu/", "c", "d");
+        Game game = new Game("c", "d", "0");
+        QRCode code = new QRCode("AAA7890247123478ascva", 11.1121, -23.3452, "olduser", "EAN_13", "Comment/abc4rSqwe2atVs3VFsu7/", false, false, "Photo/IAZcnsDAEmEmSd2c4tyu/", game);
         assertEquals(code.getGameName(), "c");
         code.setGameName("D");
         assertEquals(code.getGameName(), "D");
@@ -205,7 +209,8 @@ public class QRCodeUnitTest {
 
     @Test
     public void getterSetterGameName3() {
-        QRCode code = new QRCode("AAA7890247123478asc", 11.21111, -23.34345, "olduser", "EAN_13", "Comment/abc4rSqwe2atVs3VFsu7/", false, false, "Photo/IAZcnsDAEmEmSd2c4tyu/", "e", "f");
+        Game game = new Game("e", "f", "0");
+        QRCode code = new QRCode("AAA7890247123478asc", 11.21111, -23.34345, "olduser", "EAN_13", "Comment/abc4rSqwe2atVs3VFsu7/", false, false, "Photo/IAZcnsDAEmEmSd2c4tyu/", game);
         assertEquals(code.getGameName(), "e");
         code.setGameName("F");
         assertEquals(code.getGameName(), "F");

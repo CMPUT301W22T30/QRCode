@@ -177,12 +177,12 @@ public class PlayerMenuActivity extends AppCompatActivity {
                                                     .setPositiveButton("Yes", (dialogInterface12, i12) ->
                                                             myFirestoreUpload.uploadQRCodeToDBLocationNoPhoto(
                                                                     str, result.getFormatName(), sessionUsername,
-                                                                    game.getGameName(), game.getOwnerUsername())
+                                                                    game)
                                                     )
                                                     .setNegativeButton("No", (dialogInterface1, i1) ->
                                                             myFirestoreUpload.uploadQRCodeToDBNoLocationNoPhoto(
                                                                     str, result.getFormatName(),
-                                                                    sessionUsername, game.getGameName(), game.getOwnerUsername())
+                                                                    sessionUsername, game)
                                                     )
                                                     .show();
                                         })
@@ -192,12 +192,12 @@ public class PlayerMenuActivity extends AppCompatActivity {
                                                     .setPositiveButton("Yes", (dialogInterface141, i141) ->
                                                             myFirestoreUpload.uploadQRCodeToDBLocationPhoto(
                                                                     str, result.getFormatName(), bitmapResizeString,
-                                                                    sessionUsername, game.getGameName(), game.getOwnerUsername())
+                                                                    sessionUsername, game)
                                                     )
                                                     .setNegativeButton("No", (dialogInterface1412, i1412) ->
                                                             myFirestoreUpload.uploadQRCodeToDBNoLocationPhoto(
                                                                     str, result.getFormatName(), bitmapResizeString,
-                                                                    sessionUsername, game.getGameName(), game.getOwnerUsername())
+                                                                    sessionUsername, game)
                                                     )
                                                     .show();
                                         }).show();

@@ -44,13 +44,12 @@ public class QRCode implements Serializable {
      * @param recordLocation
      * @param recordPhoto
      * @param photoReference
-     * @param gameName
-     * @param gameOwner
+     * @param game
      */
     public QRCode(String qrCodeContent, double latitude, double longitude,
                   String username, String format, String commentListReference,
                   boolean recordLocation, boolean recordPhoto, String photoReference,
-                  String gameName, String gameOwner) {
+                  Game game) {
         this.qrCodeContent = MyCryptographyController.encrypt(qrCodeContent);
         this.latitude = latitude;
         this.longitude = longitude;
@@ -62,8 +61,8 @@ public class QRCode implements Serializable {
         this.recordLocation = recordLocation;
         this.recordPhoto = recordPhoto;
         this.photoReference = photoReference;
-        this.gameName = gameName;
-        this.gameOwner = gameOwner;
+        this.gameName = game.getGameName();
+        this.gameOwner = game.getOwnerUsername();
     }
 
     /**
