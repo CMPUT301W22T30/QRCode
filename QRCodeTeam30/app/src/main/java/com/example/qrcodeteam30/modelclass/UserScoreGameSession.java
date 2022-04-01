@@ -39,6 +39,13 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
     }
 
     /**
+     * Empty constructor
+     */
+    public UserScoreGameSession() {
+
+    }
+
+    /**
      * Get username
      * @return username
      */
