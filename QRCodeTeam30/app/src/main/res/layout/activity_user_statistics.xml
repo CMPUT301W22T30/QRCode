@@ -9,13 +9,21 @@
     android:background="@drawable/background">
     <include layout="@layout/toolbar_logout"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/user_statistics_textView"
-        android:fontFamily="@font/montserrat_regular"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_margin="10dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_statistics_textView"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

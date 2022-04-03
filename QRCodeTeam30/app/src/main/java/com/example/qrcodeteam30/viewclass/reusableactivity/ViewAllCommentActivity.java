@@ -13,14 +13,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.qrcodeteam30.modelclass.Game;
-import com.example.qrcodeteam30.viewclass.MainActivity;
-import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.example.qrcodeteam30.R;
 import com.example.qrcodeteam30.controllerclass.MyFirestoreUploadController;
 import com.example.qrcodeteam30.controllerclass.listviewadapter.CustomListViewAllCommentController;
 import com.example.qrcodeteam30.modelclass.Comment;
+import com.example.qrcodeteam30.modelclass.Game;
 import com.example.qrcodeteam30.modelclass.QRCode;
+import com.example.qrcodeteam30.viewclass.MainActivity;
+import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -83,7 +83,6 @@ public class ViewAllCommentActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listView_viewAllComment);
         Button addButton = findViewById(R.id.button_addComment_viewAllComment);
-        editText = findViewById(R.id.editText_addComment_viewAllComment);
 
         arrayList = new ArrayList<>();
         arrayAdapter = new CustomListViewAllCommentController(this, arrayList);
@@ -126,16 +125,20 @@ public class ViewAllCommentActivity extends AppCompatActivity {
 
 
         addButton.setOnClickListener(view -> {
-            final var commentContent = editText.getText().toString();
-            if (commentContent.length() == 0) {
-                return;
-            }
-            editText.setText("");
-            var comment = new Comment(qrCodeUsername, sessionUsername, commentContent);
-            myFirestoreUpload.addComment(comment, qrCode);
-
+            var view1 = getLayoutInflater().inflate(R.layout.choosing_game_dialog_layout, null);
+            EditText editTextAddComment = view1.findViewById(R.id.editText_addGame);
+            editTextAddComment.setHint("Add comment");
+            var materialAlertDialogBuilder = new MaterialAlertDialogBuilder(ViewAllCommentActivity.this);
+            materialAlertDialogBuilder.setTitle("Add comment")
+                    .setView(view1)
+                    .setPositiveButton("Add", (dialogInterface, i) -> {
+                        final String gameName = editTextAddComment.getText().toString();
+                        if (gameName.length() > 0) {
+                            var comment = new Comment(qrCodeUsername, sessionUsername, gameName);
+                            myFirestoreUpload.addComment(comment, qrCode);
+                        }
+                    }).setNegativeButton("Cancel", null).show();
         });
-
     }
 
     @Override
