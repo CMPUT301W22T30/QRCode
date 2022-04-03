@@ -12,10 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.qrcodeteam30.R;
-import com.example.qrcodeteam30.controllerclass.CalculateScoreController;
+import com.example.qrcodeteam30.controllerclass.StatisticsController;
 import com.example.qrcodeteam30.modelclass.Game;
-import com.example.qrcodeteam30.modelclass.UserInformation;
-import com.example.qrcodeteam30.modelclass.UserScoreGameSession;
 import com.example.qrcodeteam30.viewclass.MainActivity;
 import com.example.qrcodeteam30.viewclass.PlayerMenuActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -25,8 +23,6 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Locale;
 
 /**
@@ -99,94 +95,44 @@ public class EstimateMyRankingActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         listenerRegistration = collectionReference.addSnapshotListener((value, error) -> {
-            int cfMax = 0;
-            int fMax = 0;
-            int cfCount = 0;
-            int fCount = 0;
-            int cfScore = 0;
-            int fScore = 0;
-            int numQRCodes = 0;
-            int numDocs = 0;
+            if (value == null) return;
+            ArrayList<Object> objectArrayList = StatisticsController.estimateRanking(value, game, score, count, max);
 
-            HashSet<String> allQRCodeHashSetString = new HashSet<>();
-            ArrayList<Double> allQRCodeArr = new ArrayList<>();
-            ArrayList<Double> scoreArr = new ArrayList<>();
-            ArrayList<Integer> countArr = new ArrayList<>();
-
-            for (var queryDocumentSnapshot : value) {
-                UserInformation userInformation = queryDocumentSnapshot.toObject(UserInformation.class);
-                UserScoreGameSession userScoreGameSession = new UserScoreGameSession(userInformation, game);
-
-                double totalScore = CalculateScoreController.calculateTotalScore(userInformation, game);
-                if (totalScore < score) {
-                    cfScore++;
-                } else if (totalScore == score) {
-                    fScore++;
-                }
-                scoreArr.add(totalScore);
-
-                if (userScoreGameSession.getQrCodeArrayList().size() < count) {
-                    cfCount++;
-                } else if (userScoreGameSession.getQrCodeArrayList().size() == count) {
-                    fCount++;
-                }
-                countArr.add(userScoreGameSession.getQrCodeArrayList().size());
-
-                for (var qrCode: userScoreGameSession.getQrCodeArrayList()) {
-                    if (qrCode.getScore() < max) {
-                        cfMax++;
-                    } else if (qrCode.getScore() == max) {
-                        fMax++;
-                    }
-                    numQRCodes++;
-
-                    if (!allQRCodeHashSetString.contains(qrCode.getQrCodeContent())) {
-                        allQRCodeHashSetString.add(qrCode.getQrCodeContent());
-                        allQRCodeArr.add(qrCode.getScore());
-                    }
-                }
-
-                numDocs++;
-            }
-            double topPercentileRankSum = 100 - (cfScore + (0.5 * fScore)) / numDocs * 100;
-            double topPercentileRankMax = 100 - (cfMax + (0.5 * fMax)) / numQRCodes * 100;
-            double topPercentileRankCount = 100 - (cfCount + (0.5 * fCount)) / numDocs * 100;
-
-            BigDecimal strippedValSum = new BigDecimal(Double.toString(topPercentileRankSum)).setScale(2, BigDecimal.ROUND_HALF_EVEN).stripTrailingZeros();
-            BigDecimal strippedValMax = new BigDecimal(Double.toString(topPercentileRankMax)).setScale(2, BigDecimal.ROUND_HALF_EVEN).stripTrailingZeros();
-            BigDecimal strippedValCount = new BigDecimal(Double.toString(topPercentileRankCount)).setScale(2, BigDecimal.ROUND_HALF_EVEN).stripTrailingZeros();
+            BigDecimal strippedValSum = new BigDecimal(Double.toString((double) objectArrayList.get(0))).setScale(2, BigDecimal.ROUND_HALF_EVEN).stripTrailingZeros();
+            BigDecimal strippedValMax = new BigDecimal(Double.toString((double) objectArrayList.get(1))).setScale(2, BigDecimal.ROUND_HALF_EVEN).stripTrailingZeros();
+            BigDecimal strippedValCount = new BigDecimal(Double.toString((double) objectArrayList.get(2))).setScale(2, BigDecimal.ROUND_HALF_EVEN).stripTrailingZeros();
 
             textView.setText(String.format(Locale.CANADA,
                     "Total Score Percentile: Top %s%%\n\nMax Score Percentile: Top %s%%\n\nNumber of Barcodes Percentile: Top %s%%",
                     strippedValSum.toPlainString(), strippedValMax.toPlainString(), strippedValCount.toPlainString()));
 
-
-            allQRCodeArr.sort(Collections.reverseOrder());
-            scoreArr.sort(Collections.reverseOrder());
-            countArr.sort(Collections.reverseOrder());
-
-            int rankMax = allQRCodeArr.indexOf(max);
-            int rankScore = scoreArr.indexOf(score);
-            int rankCount = countArr.indexOf(count);
+            int rankScore = (int) objectArrayList.get(3);
+            int numberOfScore = (int) objectArrayList.get(4);
+            int rankMax = (int) objectArrayList.get(5);
+            int numberOfMax = (int) objectArrayList.get(6);
+            int rankCount = (int) objectArrayList.get(7);
+            int numberOfCount = (int) objectArrayList.get(8);
 
             if (max == -1) {
                 textViewExact.setText(
                         String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
-                                rankScore + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
+                                rankScore + 1, numberOfScore, rankCount + 1, numberOfCount));
             } else {
                 textViewExact.setText(
                         String.format(Locale.CANADA, "Rank Total Score: %d/%d\n\nRank Unique Max Score: %d/%d\n\nRank Number of Barcodes: %d/%d",
-                                rankScore + 1, scoreArr.size(), rankMax + 1, allQRCodeArr.size(), rankCount + 1, countArr.size()));
+                                rankScore + 1, numberOfScore, rankMax + 1, numberOfMax, rankCount + 1, numberOfCount));
             }
         });
         super.onStart();
     }
+
 
     @Override
     protected void onStop() {
         listenerRegistration.remove();
         super.onStop();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

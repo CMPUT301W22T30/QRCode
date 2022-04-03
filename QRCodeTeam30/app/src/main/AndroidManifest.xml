@@ -22,7 +22,8 @@
         android:theme="@style/Theme.QRCodeTeam30">
         <activity
             android:name=".viewclass.ChooseGameActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".viewclass.myprofile.EstimateMyRankingActivity"
             android:configChanges="orientation|screenSize"
@@ -34,7 +35,8 @@
         <activity
             android:name=".viewclass.reusableactivity.ViewAllCommentActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".viewclass.SearchQRCodeActivity"
             android:configChanges="orientation|screenSize"
