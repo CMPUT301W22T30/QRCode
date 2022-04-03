@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Handling anything related to cryptography (hash, encrypt, decrypt)
+ * Handle anything related to cryptography (hash, encrypt, decrypt)
  * TO DO: Implement an encrypt/decrypt algorithm for QR Code content (planned using AES-256)
  */
 public class MyCryptographyController {

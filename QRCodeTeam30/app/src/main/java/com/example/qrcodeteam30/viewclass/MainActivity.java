@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         MyFirestoreUploadController myFirestoreUpload = new MyFirestoreUploadController(getApplicationContext());
-        String uniqueID = DeviceUniqueIDController.getDeviceUniqueID(this, this);
+        String uniqueID = DeviceUniqueIDController.getDeviceUniqueID(this);
 
         signInWithDeviceButton.setOnClickListener(v -> {
             final DocumentReference documentReference = collectionReferenceSignInInformation.document(uniqueID);

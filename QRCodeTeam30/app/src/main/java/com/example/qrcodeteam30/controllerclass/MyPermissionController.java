@@ -9,7 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 /**
- * Handling asking permission
+ * Handle asking permission
  */
 public class MyPermissionController {
     private Context context;

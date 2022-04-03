@@ -12,7 +12,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import java.io.ByteArrayOutputStream;
 
 /**
- * Handling anything related to Bitmap (Photo)
+ * Handleanything related to Bitmap (Photo)
  */
 public class MyBitmapController {
     /**

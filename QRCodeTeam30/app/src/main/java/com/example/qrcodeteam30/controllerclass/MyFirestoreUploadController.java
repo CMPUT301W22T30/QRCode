@@ -29,7 +29,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Handling anything related to modify the Google Firestore database (on cloud)
+ * Handle anything related to modify the Google Firestore database (on cloud)
  * Because of the limitation of Android, unfortunately for the download part, it is integrated in the Activity (View)
  * class, and we cannot separate it into its own class like this
  */

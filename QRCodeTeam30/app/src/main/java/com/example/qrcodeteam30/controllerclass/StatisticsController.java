@@ -13,6 +13,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
 
+/**
+ * Handle anything related to Statistics
+ */
 public class StatisticsController {
     /**
      * Estimate the user's ranking within the server
