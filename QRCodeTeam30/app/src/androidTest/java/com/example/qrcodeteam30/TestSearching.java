@@ -100,6 +100,9 @@ public class TestSearching {
         // Press Search QR Code button
         Espresso.onView(withId(R.id.button_playerMenu_searchQRCode)).perform(click());
 
+        // Sleep
+        Thread.sleep(10000);
+
         scenario.close();
     }
 

@@ -42,7 +42,7 @@ public class TestLocation {
 
         // Press Search QR Code button
         Espresso.onView(withId(R.id.button_playerMenu_searchQRCode)).perform(click());
-        Thread.sleep(5000);
+        Thread.sleep(10000);
 
         Espresso.onView(withId(R.id.searchQRCode_mapView)).check(matches(isDisplayed()));
 
