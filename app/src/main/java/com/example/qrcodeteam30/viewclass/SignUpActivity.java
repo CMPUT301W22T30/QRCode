@@ -88,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
                     } else {
                         UserInformation userInformation = null;
                         try {
-                            userInformation = new UserInformation(username, MyCryptographyController.hashSHA256(password), firstName, lastName, 0);
+                            userInformation = new UserInformation(username, MyCryptographyController.hashSHA256(password), firstName, lastName);
                         } catch (NoSuchAlgorithmException e) {
                             e.printStackTrace();
                         }

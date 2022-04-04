@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         UserInformation userInformation = null;
                         try {
-                            userInformation = new UserInformation(uniqueID, MyCryptographyController.hashSHA256(uniqueID + "QRCodeTeam30"), "", "", 0);
+                            userInformation = new UserInformation(uniqueID, MyCryptographyController.hashSHA256(uniqueID + "QRCodeTeam30"), "", "");
                         } catch (NoSuchAlgorithmException e) {
                             e.printStackTrace();
                         }

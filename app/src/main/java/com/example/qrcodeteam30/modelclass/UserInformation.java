@@ -25,14 +25,12 @@ public class UserInformation {
      * @param password
      * @param firstName
      * @param lastName
-     * @param score
      */
-    public UserInformation(String username, String password, String firstName, String lastName, double score) {
+    public UserInformation(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        //this.score = score;
         qrCodeList = new ArrayList<>();
     }
 
