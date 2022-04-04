@@ -45,8 +45,6 @@ public class StartMainActivityTest {
         // yet after this code is run => Error
         Thread.sleep(1000);
 
-        Thread.sleep(1000);
-
         Espresso.onData(anything()).inAdapterView(withId(R.id.chooseGameListView)).atPosition(0).perform(click());
 
         // Check if ranking button is displayed
