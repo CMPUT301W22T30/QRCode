@@ -21,10 +21,10 @@ public class UserInformation {
 
     /**
      * Constructor
-     * @param username
-     * @param password
-     * @param firstName
-     * @param lastName
+     * @param username username
+     * @param password hashed password
+     * @param firstName first name
+     * @param lastName last name
      */
     public UserInformation(String username, String password, String firstName, String lastName) {
         this.username = username;
@@ -44,7 +44,7 @@ public class UserInformation {
 
     /**
      * set username
-     * @param username
+     * @param username username (in String)
      */
     public void setUsername(String username) {
         this.username = username;
@@ -59,8 +59,8 @@ public class UserInformation {
     }
 
     /**
-     * set password
-     * @param password
+     * set hashed password
+     * @param password hashed password (in String)
      */
     public void setPassword(String password) {
         this.password = password;
@@ -76,7 +76,7 @@ public class UserInformation {
 
     /**
      * set first name
-     * @param firstName
+     * @param firstName first name (in String)
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -92,7 +92,7 @@ public class UserInformation {
 
     /**
      * set last name
-     * @param lastName
+     * @param lastName last name (in String)
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -108,7 +108,7 @@ public class UserInformation {
 
     /**
      * set list of qr codes
-     * @param qrCodeList
+     * @param qrCodeList list of all barcodes
      */
     public void setQrCodeList(ArrayList<QRCode> qrCodeList) {
         this.qrCodeList = qrCodeList;

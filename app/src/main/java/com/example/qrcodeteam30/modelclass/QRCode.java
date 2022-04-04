@@ -35,16 +35,16 @@ public class QRCode implements Serializable {
 
     /**
      * Constructor
-     * @param qrCodeContent
-     * @param latitude
-     * @param longitude
-     * @param username
-     * @param format
-     * @param commentListReference
-     * @param recordLocation
-     * @param recordPhoto
-     * @param photoReference
-     * @param game
+     * @param qrCodeContent content of the barcode
+     * @param latitude latitude of location
+     * @param longitude longitude of location
+     * @param username username of the owner of the QR code
+     * @param format format of the barcode (QR_CODE or CODE_39)
+     * @param commentListReference reference to comment on Firestore
+     * @param recordLocation Store location or not
+     * @param recordPhoto Store photo or not
+     * @param photoReference reference to the photo on Firestore
+     * @param game The game the QR Code belongs to
      */
     public QRCode(String qrCodeContent, double latitude, double longitude,
                   String username, String format, String commentListReference,
@@ -75,7 +75,7 @@ public class QRCode implements Serializable {
 
     /**
      * set content
-     * @param qrCodeContent
+     * @param qrCodeContent The string we want to set the content to
      */
     public void setQrCodeContent(String qrCodeContent) {
         this.qrCodeContent = qrCodeContent;
@@ -91,7 +91,7 @@ public class QRCode implements Serializable {
 
     /**
      * set latitude
-     * @param latitude
+     * @param latitude The latitude we want to set
      */
     public void setLatitude(double latitude) {
         this.latitude = latitude;
@@ -107,14 +107,14 @@ public class QRCode implements Serializable {
 
     /**
      * set longitude
-     * @param longitude
+     * @param longitude The longitude we want to set
      */
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
     /**
-     * get date
+     * get date of creation of barcode
      * @return the date
      */
     public String getDate() {
@@ -122,15 +122,15 @@ public class QRCode implements Serializable {
     }
 
     /**
-     * set date
-     * @param date
+     * set date of creation of barcode
+     * @param date The string of the date
      */
     public void setDate(String date) {
         this.date = date;
     }
 
     /**
-     * get score
+     * get score of the barcode
      * @return the score
      */
     public double getScore() {
@@ -138,8 +138,8 @@ public class QRCode implements Serializable {
     }
 
     /**
-     * set score
-     * @param score
+     * set score of the barcode
+     * @param score The score of the barcode
      */
     public void setScore(double score) {
         this.score = score;
@@ -155,14 +155,14 @@ public class QRCode implements Serializable {
 
     /**
      * set username
-     * @param username
+     * @param username The string of the username
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * get format
+     * get format of the barcode
      * @return return the format of QR code in String
      */
     public String getFormat() {
@@ -170,8 +170,8 @@ public class QRCode implements Serializable {
     }
 
     /**
-     * set format
-     * @param format
+     * set format of the barcode
+     * @param format The format of the barcode (in String)
      */
     public void setFormat(String format) {
         this.format = format;
@@ -187,7 +187,7 @@ public class QRCode implements Serializable {
 
     /**
      * set reference to comment list on Firestore
-     * @param commentListReference
+     * @param commentListReference reference to comment list on Firestore (in String)
      */
     public void setCommentListReference(String commentListReference) {
         this.commentListReference = commentListReference;
@@ -203,23 +203,23 @@ public class QRCode implements Serializable {
 
     /**
      * set record location
-     * @param recordLocation
+     * @param recordLocation Set to true or false
      */
     public void setRecordLocation(boolean recordLocation) {
         this.recordLocation = recordLocation;
     }
 
     /**
-     * Get photoReference
-     * @return
+     * Get photoReference on Firestore
+     * @return photoReference on Firestore
      */
     public String getPhotoReference() {
         return photoReference;
     }
 
     /**
-     * Set photoReference
-     * @param photoReference
+     * Set photoReference on Firestore
+     * @param photoReference photoReference on Firestore
      */
     public void setPhotoReference(String photoReference) {
         this.photoReference = photoReference;
@@ -227,32 +227,48 @@ public class QRCode implements Serializable {
 
     /**
      * Check if recordPhoto is true or false
-     * @return
+     * @return true if the photo is record, false otherwise
      */
     public boolean isRecordPhoto() {
         return recordPhoto;
     }
 
     /**
-     * Set recordPhoto
-     * @param recordPhoto
+     * Set recordPhoto to true or false
+     * @param recordPhoto Set to true or false
      */
     public void setRecordPhoto(boolean recordPhoto) {
         this.recordPhoto = recordPhoto;
     }
 
+    /**
+     * Get the name of the game the barcode belongs to
+     * @return The name of the game in String
+     */
     public String getGameName() {
         return gameName;
     }
 
+    /**
+     * Set the name of the game the barcode belongs to
+     * @param gameName The name of the game the barcode belongs to
+     */
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
 
+    /**
+     * Get the name of the game owner the barcode belongs to
+     * @return the name of the game owner the barcode belongs to (in String)
+     */
     public String getGameOwner() {
         return gameOwner;
     }
 
+    /**
+     * Set the name of the game owner the barcode belongs to
+     * @param gameOwner the name of the game owner the barcode belongs to
+     */
     public void setGameOwner(String gameOwner) {
         this.gameOwner = gameOwner;
     }

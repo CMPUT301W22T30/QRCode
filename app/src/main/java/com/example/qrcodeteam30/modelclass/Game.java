@@ -20,9 +20,9 @@ public class Game implements Serializable {
 
     /**
      * Constructor
-     * @param gameName
-     * @param ownerUsername
-     * @param date
+     * @param gameName name of the game (in String)
+     * @param ownerUsername owner of the game (in String)
+     * @param date date of the creation (in String)
      */
     public Game(String gameName, String ownerUsername, String date) {
         this.gameName = gameName;
@@ -32,8 +32,8 @@ public class Game implements Serializable {
 
     /**
      * Constructor (auto assign current time)
-     * @param gameName
-     * @param ownerUsername
+     * @param gameName name of the game (in String)
+     * @param ownerUsername owner of the game (in String)
      */
     public Game(String gameName, String ownerUsername) {
         this.gameName = gameName;
@@ -50,8 +50,8 @@ public class Game implements Serializable {
     }
 
     /**
-     * Setting game name
-     * @param gameName
+     * Setting name of the game
+     * @param gameName name of the game (in String)
      */
     public void setGameName(String gameName) {
         this.gameName = gameName;
@@ -59,7 +59,7 @@ public class Game implements Serializable {
 
     /**
      * Get owner of the game (in username)
-     * @return owner username
+     * @return owner username (in String)
      */
     public String getOwnerUsername() {
         return ownerUsername;
@@ -67,7 +67,7 @@ public class Game implements Serializable {
 
     /**
      * Setting owner of the game (set username)
-     * @param ownerUsername
+     * @param ownerUsername username of the owner (in String)
      */
     public void setOwnerUsername(String ownerUsername) {
         this.ownerUsername = ownerUsername;
@@ -83,7 +83,8 @@ public class Game implements Serializable {
 
     /**
      * Set date of creation, in epoch time (millisecond)
-     * @param date
+     * @param date date of creation in epoch time (in String)
+     * We can use Long.parseLong() to parse this String to Long
      */
     public void setDate(String date) {
         this.date = date;

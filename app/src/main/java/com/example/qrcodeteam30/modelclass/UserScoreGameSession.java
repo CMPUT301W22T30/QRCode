@@ -19,8 +19,8 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
     /**
      * Constructor
      * Auto filter out all QR codes of the userInformation that is not belonged to the game
-     * @param userInformation
-     * @param game
+     * @param userInformation userInformation we want to filter out so that all the barcode belongs to the specify game parameter
+     * @param game The game we want to filter all barcode in userInformation parameter
      */
     public UserScoreGameSession(UserInformation userInformation, Game game) {
         this.username = userInformation.getUsername();
@@ -55,7 +55,7 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
 
     /**
      * Set username
-     * @param username
+     * @param username username (in String)
      */
     public void setUsername(String username) {
         this.username = username;
@@ -71,7 +71,7 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
 
     /**
      * Set hashed password
-     * @param password
+     * @param password hashed password (in String)
      */
     public void setPassword(String password) {
         this.password = password;
@@ -87,7 +87,7 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
 
     /**
      * set first name
-     * @param firstName
+     * @param firstName first name (in String)
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -103,7 +103,7 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
 
     /**
      * set last name
-     * @param lastName
+     * @param lastName last name (in String)
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -119,7 +119,7 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
 
     /**
      * set total score in this game of the user
-     * @param score
+     * @param score total score in this game of the user
      */
     public void setScore(double score) {
         this.score = score;
@@ -135,15 +135,15 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
 
     /**
      * set array list of QR codes in this game of the user
-     * @param qrCodeArrayList
+     * @param qrCodeArrayList array list of QR codes in this game of the user
      */
     public void setQrCodeArrayList(ArrayList<QRCode> qrCodeArrayList) {
         this.qrCodeArrayList = qrCodeArrayList;
     }
 
     /**
-     *
-     * @return
+     * Get the maximum score of the barcode in this game
+     * @return the maximum score of the barcode in this game
      */
     public double maxScoreQRCode() {
         if (getQrCodeArrayList().size() == 0) {
@@ -161,8 +161,8 @@ public class UserScoreGameSession implements Comparable<UserScoreGameSession> {
 
     /**
      * This is the comparator override method to user Collections.sort()
-     * @param userScoreGameSession
-     * @return
+     * @param userScoreGameSession The other UserScoreGameSession we want to compare to
+     * @return The correct format for Collections.sort()
      */
     @Override
     public int compareTo(UserScoreGameSession userScoreGameSession) {
