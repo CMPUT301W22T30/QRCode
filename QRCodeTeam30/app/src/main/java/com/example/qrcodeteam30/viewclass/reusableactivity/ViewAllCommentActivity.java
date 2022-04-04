@@ -34,7 +34,6 @@ import java.util.Map;
 public class ViewAllCommentActivity extends AppCompatActivity {
     private ArrayAdapter<Comment> arrayAdapter;
     private ArrayList<Comment> arrayList;
-    private EditText editText;
     private String sessionUsername;
     private String qrCodeUsername;
     private DocumentReference documentReference;

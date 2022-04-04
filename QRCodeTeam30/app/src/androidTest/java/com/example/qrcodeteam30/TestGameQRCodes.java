@@ -60,15 +60,21 @@ public class TestGameQRCodes {
         // Press on the view comment button to view and add comments
         Espresso.onView(withId(R.id.button_viewComment_qrCode_info)).perform(click());
 
+        // Sleep
         Thread.sleep(1000);
-
-        // Type comment
-        Espresso.onView(withId(R.id.editText_addComment_viewAllComment))
-                .perform(typeText("admin_test_comment"), closeSoftKeyboard());
 
         // Add comment
         Espresso.onView(withId(R.id.button_addComment_viewAllComment)).perform(click());
 
+        // Sleep
+        Thread.sleep(1000);
+
+        // Add Comment
+        Espresso.onView(withId(R.id.editText_addGame)).perform(typeText("admin_test_comment"));
+
+        Espresso.onView(withId(android.R.id.button1)).perform(click());
+
+        // Sleep
         Thread.sleep(1000);
 
         scenario.close();
