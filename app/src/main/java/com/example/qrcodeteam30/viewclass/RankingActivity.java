@@ -33,10 +33,10 @@ public class RankingActivity extends AppCompatActivity {
     private ArrayAdapter<UserScoreGameSession> arrayAdapter;
     private ArrayList<UserScoreGameSession> arrayList;
     private String sessionUsername;
-    FirebaseFirestore db;
-    CollectionReference collectionReferenceSignInInformation;
+    private FirebaseFirestore db;
+    private CollectionReference collectionReferenceSignInInformation;
     private ListenerRegistration listenerRegistration;
-    Game game;
+    private Game game;
 
 
     @Override
